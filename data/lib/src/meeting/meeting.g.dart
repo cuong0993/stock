@@ -501,7 +501,7 @@ class _$MeetingQuery extends QueryReference<MeetingQuerySnapshot>
     MeetingDocumentSnapshot? endBeforeDocument,
     MeetingDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -543,7 +543,7 @@ class _$MeetingQuery extends QueryReference<MeetingQuerySnapshot>
     MeetingDocumentSnapshot? endBeforeDocument,
     MeetingDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('name', descending: false);
+    var query = reference.orderBy('name', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -585,7 +585,7 @@ class _$MeetingQuery extends QueryReference<MeetingQuerySnapshot>
     MeetingDocumentSnapshot? endBeforeDocument,
     MeetingDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('createdUserId', descending: false);
+    var query = reference.orderBy('createdUserId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -627,7 +627,7 @@ class _$MeetingQuery extends QueryReference<MeetingQuerySnapshot>
     MeetingDocumentSnapshot? endBeforeDocument,
     MeetingDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('participantCount', descending: false);
+    var query = reference.orderBy('participantCount', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);

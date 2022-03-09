@@ -389,7 +389,7 @@ class _$TagQuery extends QueryReference<TagQuerySnapshot> implements TagQuery {
     TagDocumentSnapshot? endBeforeDocument,
     TagDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('name', descending: false);
+    var query = reference.orderBy('name', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -431,7 +431,7 @@ class _$TagQuery extends QueryReference<TagQuerySnapshot> implements TagQuery {
     TagDocumentSnapshot? endBeforeDocument,
     TagDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);

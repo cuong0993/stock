@@ -495,7 +495,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -537,7 +537,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('name', descending: false);
+    var query = reference.orderBy('name', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -579,7 +579,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('photoUrl', descending: false);
+    var query = reference.orderBy('photoUrl', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -621,7 +621,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('tokens', descending: false);
+    var query = reference.orderBy('tokens', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);

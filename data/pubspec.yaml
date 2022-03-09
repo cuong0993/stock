@@ -4,7 +4,6 @@ environment:
   sdk: '>=2.15.0 <3.0.0'
 
 dependencies:
-  agora_rtc_engine: any
   cached_network_image: any
   cloud_firestore: any
   cloud_firestore_odm: any

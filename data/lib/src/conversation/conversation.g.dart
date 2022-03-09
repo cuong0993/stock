@@ -405,7 +405,7 @@ class _$ConversationQuery extends QueryReference<ConversationQuerySnapshot>
     ConversationDocumentSnapshot? endBeforeDocument,
     ConversationDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -447,7 +447,7 @@ class _$ConversationQuery extends QueryReference<ConversationQuerySnapshot>
     ConversationDocumentSnapshot? endBeforeDocument,
     ConversationDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('participantCount', descending: false);
+    var query = reference.orderBy('participantCount', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1134,7 +1134,7 @@ class _$MessageQuery extends QueryReference<MessageQuerySnapshot>
     MessageDocumentSnapshot? endBeforeDocument,
     MessageDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userName', descending: false);
+    var query = reference.orderBy('userName', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1176,7 +1176,7 @@ class _$MessageQuery extends QueryReference<MessageQuerySnapshot>
     MessageDocumentSnapshot? endBeforeDocument,
     MessageDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userId', descending: false);
+    var query = reference.orderBy('userId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1218,7 +1218,7 @@ class _$MessageQuery extends QueryReference<MessageQuerySnapshot>
     MessageDocumentSnapshot? endBeforeDocument,
     MessageDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('conversationId', descending: false);
+    var query = reference.orderBy('conversationId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1260,7 +1260,7 @@ class _$MessageQuery extends QueryReference<MessageQuerySnapshot>
     MessageDocumentSnapshot? endBeforeDocument,
     MessageDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userPhotoUrl', descending: false);
+    var query = reference.orderBy('userPhotoUrl', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1302,7 +1302,7 @@ class _$MessageQuery extends QueryReference<MessageQuerySnapshot>
     MessageDocumentSnapshot? endBeforeDocument,
     MessageDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('text', descending: false);
+    var query = reference.orderBy('text', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1344,7 +1344,7 @@ class _$MessageQuery extends QueryReference<MessageQuerySnapshot>
     MessageDocumentSnapshot? endBeforeDocument,
     MessageDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);

@@ -1,6 +1,5 @@
 // ignore_for_file: do_not_use_environment, avoid_redundant_argument_values, prefer-match-file-name
 
-import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -65,18 +64,4 @@ abstract class NetworkModule {
               'https://${const String.fromEnvironment('ENV_FIREBASE_APP_REGION')}-${firebaseApp.options.projectId}.cloudfunctions.net',
         ),
       );
-}
-
-@module
-abstract class VideoModule {
-  Future<RtcEngine> getRtcEngine() async {
-    final rtcEngine = await RtcEngine.createWithContext(
-      RtcEngineContext(const String.fromEnvironment('ENV_AGORA_APP_ID')),
-    );
-    await rtcEngine.setChannelProfile(ChannelProfile.Communication);
-    await rtcEngine.enableVideo();
-    await rtcEngine.enableAudio();
-
-    return rtcEngine;
-  }
 }

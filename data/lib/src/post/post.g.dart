@@ -881,7 +881,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userName', descending: false);
+    var query = reference.orderBy('userName', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -923,7 +923,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userId', descending: false);
+    var query = reference.orderBy('userId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -965,7 +965,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userPhotoUrl', descending: false);
+    var query = reference.orderBy('userPhotoUrl', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1007,7 +1007,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('text', descending: false);
+    var query = reference.orderBy('text', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1049,7 +1049,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('name', descending: false);
+    var query = reference.orderBy('name', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1091,7 +1091,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('tags', descending: false);
+    var query = reference.orderBy('tags', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1133,7 +1133,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('images', descending: false);
+    var query = reference.orderBy('images', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1175,7 +1175,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('timeSlots', descending: false);
+    var query = reference.orderBy('timeSlots', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1217,7 +1217,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('commentCount', descending: false);
+    var query = reference.orderBy('commentCount', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1259,7 +1259,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('likedUserIds', descending: false);
+    var query = reference.orderBy('likedUserIds', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1301,7 +1301,7 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     PostDocumentSnapshot? endBeforeDocument,
     PostDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1931,7 +1931,7 @@ class _$LikeQuery extends QueryReference<LikeQuerySnapshot>
     LikeDocumentSnapshot? endBeforeDocument,
     LikeDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userName', descending: false);
+    var query = reference.orderBy('userName', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -1973,7 +1973,7 @@ class _$LikeQuery extends QueryReference<LikeQuerySnapshot>
     LikeDocumentSnapshot? endBeforeDocument,
     LikeDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userId', descending: false);
+    var query = reference.orderBy('userId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2015,7 +2015,7 @@ class _$LikeQuery extends QueryReference<LikeQuerySnapshot>
     LikeDocumentSnapshot? endBeforeDocument,
     LikeDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('postId', descending: false);
+    var query = reference.orderBy('postId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2057,7 +2057,7 @@ class _$LikeQuery extends QueryReference<LikeQuerySnapshot>
     LikeDocumentSnapshot? endBeforeDocument,
     LikeDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userPhotoUrl', descending: false);
+    var query = reference.orderBy('userPhotoUrl', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2099,7 +2099,7 @@ class _$LikeQuery extends QueryReference<LikeQuerySnapshot>
     LikeDocumentSnapshot? endBeforeDocument,
     LikeDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2785,7 +2785,7 @@ class _$CommentQuery extends QueryReference<CommentQuerySnapshot>
     CommentDocumentSnapshot? endBeforeDocument,
     CommentDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userName', descending: false);
+    var query = reference.orderBy('userName', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2827,7 +2827,7 @@ class _$CommentQuery extends QueryReference<CommentQuerySnapshot>
     CommentDocumentSnapshot? endBeforeDocument,
     CommentDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userId', descending: false);
+    var query = reference.orderBy('userId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2869,7 +2869,7 @@ class _$CommentQuery extends QueryReference<CommentQuerySnapshot>
     CommentDocumentSnapshot? endBeforeDocument,
     CommentDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('postId', descending: false);
+    var query = reference.orderBy('postId', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2911,7 +2911,7 @@ class _$CommentQuery extends QueryReference<CommentQuerySnapshot>
     CommentDocumentSnapshot? endBeforeDocument,
     CommentDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('userPhotoUrl', descending: false);
+    var query = reference.orderBy('userPhotoUrl', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2953,7 +2953,7 @@ class _$CommentQuery extends QueryReference<CommentQuerySnapshot>
     CommentDocumentSnapshot? endBeforeDocument,
     CommentDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('text', descending: false);
+    var query = reference.orderBy('text', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -2995,7 +2995,7 @@ class _$CommentQuery extends QueryReference<CommentQuerySnapshot>
     CommentDocumentSnapshot? endBeforeDocument,
     CommentDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy('id', descending: false);
+    var query = reference.orderBy('id', descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);

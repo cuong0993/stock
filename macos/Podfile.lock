@@ -338,10 +338,6 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - agora_rtc_engine (5.0.0):
-    - AgoraIrisRTC_macOS (= 3.5.2)
-    - FlutterMacOS
-  - AgoraIrisRTC_macOS (3.5.2)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -416,7 +412,7 @@ PODS:
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.12.0):
+  - FirebaseCoreDiagnostics (8.13.0):
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
@@ -441,7 +437,7 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (8.12.0):
+  - FirebaseInstallations (8.13.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
@@ -534,7 +530,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - agora_rtc_engine (from `Flutter/ephemeral/.symlinks/plugins/agora_rtc_engine/macos`)
   - cloud_firestore (from `Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos`)
   - device_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/device_info_plus_macos/macos`)
   - firebase_app_check (from `Flutter/ephemeral/.symlinks/plugins/firebase_app_check/macos`)
@@ -556,7 +551,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
-    - AgoraIrisRTC_macOS
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAppCheck
@@ -579,8 +573,6 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
-  agora_rtc_engine:
-    :path: Flutter/ephemeral/.symlinks/plugins/agora_rtc_engine/macos
   cloud_firestore:
     :path: Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos
   device_info_plus_macos:
@@ -618,8 +610,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
-  agora_rtc_engine: 7f3d4ddc24acff2a4d7ab06dd7a30befdc1b5357
-  AgoraIrisRTC_macOS: ece5c92036457b2c8902c838aeb6205773ca4938
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: aaecbaa2643ca4de74935d30d0eab5201268c44f
   device_info_plus_macos: 1ad388a1ef433505c4038e7dd9605aadd1e2e9c7
@@ -633,10 +623,10 @@ SPEC CHECKSUMS:
   FirebaseAppCheck: 533dc5089466b73349aa63ffdf468a387a67fd26
   FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
-  FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
+  FirebaseCoreDiagnostics: c2836d254a8f0bbb4121ff18f2c2ea39d118fd08
   FirebaseCrashlytics: 62268addefae79601057818156e8bc69d71fee41
   FirebaseFirestore: 3b2e4b532c68809b3df5f8d39d28b3398ffc196b
-  FirebaseInstallations: 25764cf322e77f99449395870a65b2bef88e1545
+  FirebaseInstallations: 60edbf7e11d91ae4c751d26c200dfd037099abe0
   FirebaseMessaging: 02e248e8997f71fa8cc9d78e9d49ec1a701ba14a
   FirebaseStorage: 4d05cb1112ff8822a0f9f5090da8bd6d550602ec
   flutter_local_notifications: 3805ca215b2fb7f397d78b66db91f6a747af52e4
