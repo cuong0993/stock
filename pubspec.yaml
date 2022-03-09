@@ -1,0 +1,69 @@
+name: stock
+
+environment:
+  sdk: '>=2.15.0 <3.0.0'
+
+dependencies:
+  agora_rtc_engine: any
+  animations: any
+  application:
+    path: ./application
+  auto_route: any
+  cached_network_image: any
+  data:
+    path: ./data
+  device_info_plus: any
+  domain:
+    path: ./domain
+  firebase_messaging: any
+  flutter:
+    sdk: flutter
+  flutter_hooks: any
+  flutter_local_notifications: any
+  flutter_localizations:
+    sdk: flutter
+  flutter_staggered_grid_view: any
+  flutter_svg: any
+  hooks_riverpod: any
+  image_picker: any
+  in_app_review: any
+  intl: any
+  logging: any
+  mailto: any
+  package_info_plus: any
+  permission_handler: any
+  readmore: any
+  timeago: any
+  url_launcher: any
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+
+dev_dependencies:
+  auto_route_generator: any
+  build_runner: any
+  dart_code_metrics: any
+  dependency_validator: any
+  flutter_launcher_icons: any
+  flutter_native_splash: any
+  # golden_toolkit: any
+
+flutter_icons:
+  image_path_android: assets/blank.png
+  image_path_ios: assets/blank.png
+  android: true
+  ios: true
+  adaptive_icon_background: assets/blank.png
+  adaptive_icon_foreground: assets/blank.png
+
+flutter_native_splash:
+  color: '#000000'
+  image: assets/blank.png
+  fullscreen: true
+
+flutter:
+  assets:
+    - assets/images/
+  generate: true
+  uses-material-design: true

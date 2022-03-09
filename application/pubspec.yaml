@@ -1,0 +1,16 @@
+name: application
+
+environment:
+  sdk: '>=2.15.0 <3.0.0'
+
+dependencies:
+  domain:
+    path: ../domain
+  freezed_annotation: any
+  get_it: any
+  riverpod: any
+
+dev_dependencies:
+  build_runner: any
+  dart_code_metrics: any
+  freezed: any

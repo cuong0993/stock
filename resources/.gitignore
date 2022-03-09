@@ -1,0 +1,7 @@
+/venv
+/.idea/*
+!/.idea/codeStyles/
+!/.idea/runConfigurations/
+*.iml
+*tmp.png
+/__pycache__/*

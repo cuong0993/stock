@@ -1,0 +1,82 @@
+include: all_lint_rules.yaml
+analyzer:
+  plugins:
+    - dart_code_metrics
+  errors:
+    missing_required_param: error
+    omit_local_variable_types: error
+    include_file_not_found: error
+    unused_element: error
+    unused_field: error
+    unused_local_variable: error
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.gr.dart'
+    - '**/*.freezed.dart'
+    - '**/*.config.dart'
+    - 'lib/generated_plugin_registrant.dart'
+linter:
+  rules:
+
+    # too verbose
+    prefer_final_parameters: false
+
+    # Too verbose with little value, and this is taken care of by the Flutter devtool anyway.
+    diagnostic_describe_all_properties: false
+
+    # Conflicts with `prefer_single_quotes`
+    # Single quotes are easier to type and don't compromise on readability.
+    prefer_double_quotes: false
+
+    # This project doesn't use Flutter-style todos
+    flutter_style_todos: false
+
+    # Boring as it sometimes force a line of 81 characters to be split in two.
+    # As long as we try to respect that 80 characters limit, going slightly
+    # above is fine.
+    lines_longer_than_80_chars: false
+
+    # Conflicts with disabling `implicit-dynamic`
+    avoid_annotating_with_dynamic: false
+
+    # conflicts with `prefer_relative_imports`
+    always_use_package_imports: false
+
+    public_member_api_docs: false
+
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    maximum-nesting-level: 5
+    number-of-parameters: 4
+    source-lines-of-code: 80
+  metrics-exclude:
+    - test/**
+  rules:
+    # - avoid-ignoring-return-values
+    # - avoid-late-keyword
+    # - avoid-nested-conditional-expressions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    # - no-equal-arguments
+    - no-equal-then-else
+    - no-object-declaration
+    - prefer-conditional-expressions
+    - prefer-correct-identifier-length
+    - prefer-correct-type-name
+    # - prefer-first
+    - prefer-last
+    - prefer-match-file-name
+    - prefer-trailing-comma
+    - prefer-correct-identifier-length:
+        min-identifier-length: 2

@@ -1,0 +1,43 @@
+repos:
+  - repo: local
+    hooks:
+      - id: format_flutter
+        name: Run flutter format
+        entry: bash -c "flutter format ."
+        language: system
+      - id: analyze_flutter
+        name: Run flutter analyze
+        entry: bash -c "flutter analyze ."
+        language: system
+      - id: format_svg
+        name: Run format svg
+        entry: bash -c "svgo --pretty -r -f ./"
+        language: system
+      - id: flutter_pub_upgrade
+        name: Run flutter pub upgrade
+        entry: bash -c "flutter pub upgrade"
+        language: system
+      - id: flutter_pub_upgrade
+        name: Run flutter pub upgrade
+        entry: bash -c "cd domain; flutter pub upgrade"
+        language: system
+      - id: flutter_pub_upgrade
+        name: Run flutter pub upgrade
+        entry: bash -c "cd data; flutter pub upgrade"
+        language: system
+      - id: flutter_pub_upgrade
+        name: Run flutter pub upgrade
+        entry: bash -c "cd application; flutter pub upgrade"
+        language: system
+      - id: terraform_check
+        name: Run terraform fmt
+        entry: bash -c "cd terraform; terraform init; terraform fmt; terraform validate"
+        language: system
+      - id: shellscript_check
+        name: Run shellscript check
+        entry: bash -c "shfmt -w **/*.sh; shellcheck -e SC1090,SC1091,SC2154 **/*.sh"
+        language: system
+      - id: python_check
+        name: Run python check
+        entry: bash -c "yapf --in-place --recursive **/*.py"
+        language: system
