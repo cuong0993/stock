@@ -19,7 +19,7 @@ cat "${SRCROOT}/Runner/${ENV_FLAVOR}/GoogleService-Info.plist" >"${SRCROOT}"/Run
 echo "GOOGLE_SERVICE_REVERSED_CLIENT_ID=$(/usr/libexec/PlistBuddy -c 'print ":REVERSED_CLIENT_ID"' "${SRCROOT}"/Runner/GoogleService-Info.plist)" >>"${SRCROOT}"/Flutter/Environment.xcconfig
 
 if [[ "$ENV_FLAVOR" == "prod" ]]; then
-  echo "APP_NAME=Guide Stream" >>"${SRCROOT}"/Flutter/Environment.xcconfig
+  echo "APP_NAME=Stock" >>"${SRCROOT}"/Flutter/Environment.xcconfig
 else
-  echo "APP_NAME=Guide Stream $ENV_FLAVOR" >>"${SRCROOT}"/Flutter/Environment.xcconfig
+  echo "APP_NAME=Stock $ENV_FLAVOR" >>"${SRCROOT}"/Flutter/Environment.xcconfig
 fi

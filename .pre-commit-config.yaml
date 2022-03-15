@@ -41,3 +41,7 @@ repos:
         name: Run python check
         entry: bash -c "yapf --in-place --recursive **/*.py"
         language: system
+      - id: kotlin_check
+        name: Run kotlin check
+        entry: bash -c "ktlint"
+        language: system

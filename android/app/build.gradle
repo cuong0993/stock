@@ -64,7 +64,7 @@ android {
     }
 
     defaultConfig {
-        resValue "string", "app_name", "Guide Stream" + ((dartEnvironmentVariables.ENV_FLAVOR == "prod") ? "" : (" " + dartEnvironmentVariables.ENV_FLAVOR))
+        resValue "string", "app_name", "Stock" + ((dartEnvironmentVariables.ENV_FLAVOR == "prod") ? "" : (" " + dartEnvironmentVariables.ENV_FLAVOR))
         resValue "string", "facebook_app_id", dartEnvironmentVariables.ENV_FACEBOOK_APP_ID ? dartEnvironmentVariables.ENV_FACEBOOK_APP_ID : ""
         applicationId "com.chaomao.stock"
         minSdkVersion 19

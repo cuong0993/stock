@@ -5,7 +5,7 @@ set -o allexport
 source "$1"
 set +o allexport
 
-if gcloud projects create "$ENV_FIREBASE_APP_ID" --name="Guide Stream $ENV_FLAVOR"; then
+if gcloud projects create "$ENV_FIREBASE_APP_ID" --name="Stock $ENV_FLAVOR"; then
   gcloud alpha billing accounts projects link "$ENV_FIREBASE_APP_ID" --billing-account="$ENV_FIREBASE_BILLING_ACCOUNT"
   ACCOUNT="sa-$ENV_FLAVOR"
   EMAIL="${ACCOUNT}@$ENV_FIREBASE_APP_ID.iam.gserviceaccount.com"

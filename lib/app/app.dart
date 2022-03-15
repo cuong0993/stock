@@ -18,7 +18,7 @@ class App extends ConsumerWidget {
     final appState = ref.watch(appProvider);
 
     return MaterialApp.router(
-      title: 'Guide Stream',
+      title: 'Stock',
       debugShowCheckedModeBanner: false,
       locale: (appState.localeName != null)
           ? Locale.fromSubtags(languageCode: appState.localeName!)

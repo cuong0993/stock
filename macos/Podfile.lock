@@ -376,7 +376,7 @@ PODS:
     - Firebase/CoreOnly (~> 8.11.0)
     - firebase_core
     - FlutterMacOS
-  - firebase_auth (3.3.9):
+  - firebase_auth (3.3.11):
     - Firebase/Auth (~> 8.11.0)
     - Firebase/CoreOnly (~> 8.11.0)
     - firebase_core
@@ -389,7 +389,7 @@ PODS:
     - Firebase/Crashlytics (~> 8.11.0)
     - firebase_core
     - FlutterMacOS
-  - firebase_messaging (11.2.8):
+  - firebase_messaging (11.2.11):
     - Firebase/CoreOnly (~> 8.11.0)
     - Firebase/Messaging (~> 8.11.0)
     - firebase_core
@@ -615,10 +615,10 @@ SPEC CHECKSUMS:
   device_info_plus_macos: 1ad388a1ef433505c4038e7dd9605aadd1e2e9c7
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   firebase_app_check: 985a6b7ed06522b3b4bf4c08f538fc2e8a77233b
-  firebase_auth: 91f5623266bd972f962686486b23d22d833d6634
+  firebase_auth: 09509665526e4e137aa4e79e5117155fc4560998
   firebase_core: 11d0b4e9fa6120706c015fbfe5f4b409758dae5d
   firebase_crashlytics: abe33970ebd5d174256000050d5e479e2539e935
-  firebase_messaging: ee30d33c6e20231b0ad2901998882e22bf21a077
+  firebase_messaging: ebfaa890ba507562f9cb8ad867bc94ac9752dda5
   firebase_storage: 81f9079d181bebf1cb405da85ada3b4cce961ff3
   FirebaseAppCheck: 533dc5089466b73349aa63ffdf468a387a67fd26
   FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b

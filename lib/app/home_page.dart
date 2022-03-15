@@ -50,7 +50,7 @@ class HomePage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Guide Stream',
+          'Stock',
         ),
         actions: [
           Consumer(

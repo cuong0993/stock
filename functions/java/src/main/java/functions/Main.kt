@@ -7,11 +7,11 @@ import com.google.firebase.FirebaseOptions
 
 val firebaseApp: FirebaseApp by lazy {
     val firebaseOption = FirebaseOptions.builder()
-            .setCredentials(GoogleCredentials.getApplicationDefault())
-            .setFirestoreOptions(
-                    FirestoreOptions.newBuilder()
-                            .build()
-            )
-            .build()
+        .setCredentials(GoogleCredentials.getApplicationDefault())
+        .setFirestoreOptions(
+            FirestoreOptions.newBuilder()
+                .build()
+        )
+        .build()
     FirebaseApp.initializeApp(firebaseOption)
 }

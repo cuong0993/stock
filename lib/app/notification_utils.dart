@@ -28,7 +28,7 @@ Future<void> initializeNotification(BuildContext context) async {
   );
   const androidNotificationChannel = AndroidNotificationChannel(
     'stock_notification_channel',
-    'Guide Stream notifications',
+    'Stock notifications',
     description: 'Channel to show the app notifications.',
     importance: Importance.max,
   );
