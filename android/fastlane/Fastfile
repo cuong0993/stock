@@ -48,4 +48,17 @@ platform :android do
       release_notes: commit[:message]
     )
   end
+
+  lane :distributeStage do
+    commit = last_git_commit
+    config = JSON.parse(File.read('../app/src/stage/google-services.json'))
+    app_id = config['client'][0]['client_info']['mobilesdk_app_id']
+    firebase_app_distribution(
+      service_credentials_file: "../terraform/sa-stage.json",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
+      app: app_id,
+      groups: "me",
+      release_notes: commit[:message]
+    )
+  end
 end

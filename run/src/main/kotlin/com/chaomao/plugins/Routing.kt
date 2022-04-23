@@ -84,6 +84,7 @@ fun Application.configureRouting() {
                                 createCell(cellIndex++).setCellValue("Close price")
                                 createCell(cellIndex++).setCellValue("Volume")
                                 createCell(cellIndex++).setCellValue("% Price")
+                                createCell(cellIndex++).setCellValue("% Price 10 days")
                                 createCell(cellIndex++).setCellValue("(H-L)/(C-L)")
                                 createCell(cellIndex++).setCellValue("Reversal Likely")
                                 createCell(cellIndex++).setCellValue("Spread price/ avg Spread price")
@@ -107,16 +108,16 @@ fun Application.configureRouting() {
 
                     val file = File("amibroker_all_data.txt")
                     val dataInputStream = if (!file.exists()) {
-                        log.debug("Analyze remote data")
+                        this@configureRouting.log.debug("Analyze remote data")
                         ZipInputStream(
                             URL("http://www.cophieu68.vn/export/metastock_all.php").openStream()
                         ).apply {
                             nextEntry.apply {
-                                log.debug("entry: ${this?.name}, ${this?.size}")
+                                this@configureRouting.log.debug("entry: ${this?.name}, ${this?.size}")
                             }
                         }
                     } else {
-                        log.debug("Analyze local data")
+                        this@configureRouting.log.debug("Analyze local data")
                         FileInputStream(file)
                     }
                     val scanner = Scanner(dataInputStream)
@@ -130,7 +131,7 @@ fun Application.configureRouting() {
                                 fillRow(analysisDate, barSeries, xssfWorkbook)
                             }
                             currentTicker = fields[0]
-                            log.debug(currentTicker)
+                            this@configureRouting.log.debug(currentTicker)
                             barSeries = BaseBarSeries(currentTicker)
                         }
                         val date = LocalDate.parse(fields[1], dateTimeFormatter).atStartOfDay(ZoneId.of("UTC"))
@@ -157,10 +158,10 @@ fun Application.configureRouting() {
                     fileOutputStream.close()
                     xssfWorkbook.close()
 
-                    val fileInputStream = FileInputStream("sa-dev.json")
+                    val credentialInputStream = System.getenv("SERVICE_ACCOUNT_JSON").byteInputStream()
                     val credential =
-                        GoogleCredentials.fromStream(fileInputStream).createScoped(listOf(DriveScopes.DRIVE))
-                    fileInputStream.close()
+                        GoogleCredentials.fromStream(credentialInputStream).createScoped(listOf(DriveScopes.DRIVE))
+                    credentialInputStream.close()
                     val service =
                         Drive.Builder(
                             GoogleNetHttpTransport.newTrustedTransport(),
@@ -171,15 +172,15 @@ fun Application.configureRouting() {
                             .build()
                     val fileMetadata = com.google.api.services.drive.model.File().apply {
                         name = fileName
-                        // FIXME Hard code folder id
-                        parents = listOf("1xuDn-FFI8tD11q-F2MNtZEd4BjW1cuWK")
+                        parents = listOf(System.getenv("DRIVE_FOLDER_ID"))
                         mimeType = "application/vnd.ms-excel"
                     }
                     val mediaContent = FileContent("application/vnd.ms-excel", File(fileName))
                     service.files().create(fileMetadata, mediaContent).execute()
                 }
+                call.respond("Done")
             } catch (e: Exception) {
-                log.debug(e.toString())
+                this@configureRouting.log.debug(e.toString())
             }
         }
 
@@ -199,8 +200,6 @@ fun Application.configureRouting() {
                     "System.getProperty(\"user.name\"): ${System.getProperty("user.name")}\n"
             )
         }
-    }
-    routing {
     }
 }
 
@@ -769,6 +768,14 @@ private fun fillRow(date: ZonedDateTime, barSeries: BaseBarSeries, xssfWorkbook:
                 cellStyle = downStyle
             }
         }
+        // HighestValueIndicator(highPrice, 10)
+        // val lowest10Days = LowestValueIndicator(closePrice, 10).getValue(index)
+        // val highest10Days = HighestValueIndicator(closePrice, 10).getValue(index)
+        row.createCell(cellIndex++).setCellValue(
+            (closePrice.getValue(index) - closePrice.getValue(index - 10)).dividedBy(
+                closePrice.getValue(index - 10)
+            ).toString()
+        )
         row.createCell(cellIndex++).setCellValue(closePriceRatio.getValue(index).toString())
         row.createCell(cellIndex++).setCellValue(isReversalLikely.getValue(index))
         row.createCell(cellIndex++).apply {

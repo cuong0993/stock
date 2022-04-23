@@ -4,6 +4,7 @@ import 'package:application/providers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -94,7 +95,7 @@ class SettingsPage extends StatelessWidget {
                   subject: '[$appName $version] Feedback',
                   to: ['chaomao.help@gmail.com'],
                 );
-                await launch('$mailtoLink');
+                await launchUrl(Uri.tryParse('$mailtoLink')!);
               },
             ),
             ListTile(

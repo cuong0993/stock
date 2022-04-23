@@ -1,8 +1,8 @@
 # Project exclude paths
 /.gradle/
 /build/
-/.idea/
+/.idea/*
+!/.idea/misc.xml
 /amibroker_all_data.txt
 /VPA-*.xlsx
-/tokens/sa-dev.json
 /sa-dev.json

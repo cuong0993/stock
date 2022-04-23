@@ -42,7 +42,23 @@ resource "google_cloud_run_service" "default" {
   template {
     spec {
       containers {
-        image = "gcr.io/${var.ENV_FIREBASE_APP_ID}/backend@sha256:9cf952f9c0ef4710622336483f58f367a442d2d1d78d33767c8a34412b6b626b"
+        // FIXME Initial image
+        image = "gcr.io/cloudrun/hello"
+        env {
+          // FIXME Hard code folder id
+          name  = "DRIVE_FOLDER_ID"
+          value = "1xuDn-FFI8tD11q-F2MNtZEd4BjW1cuWK"
+        }
+        env {
+          name  = "SERVICE_ACCOUNT_JSON"
+          value = file("${path.module}/sa-${var.ENV_FLAVOR}.json")
+        }
+        resources {
+          limits = {
+            cpu    = "1000m"
+            memory = "1Gi"
+          }
+        }
       }
     }
   }
@@ -59,14 +75,14 @@ resource "google_cloud_run_service" "default" {
 
 resource "google_cloud_scheduler_job" "job" {
   name             = "analyze-market-job"
-  description      = "Analyze Vietnam stock market every weekday at 6:00 PM"
+  description      = "Analyze Vietnam stock market every weekday at 12:00 PM and 6:00 PM"
   schedule         = "0 12,18 * * 1-5"
   time_zone        = "Asia/Ho_Chi_Minh"
   attempt_deadline = "320s"
   project          = var.ENV_FIREBASE_APP_ID
 
   retry_config {
-    retry_count = 1
+    retry_count = 0
   }
 
   http_target {

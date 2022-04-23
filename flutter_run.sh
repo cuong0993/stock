@@ -3,11 +3,11 @@
 FLUTTER_RUN="flutter run lib/main.dart"
 
 if [ -n "$1" ]; then
-	SUPPLIED_ENV_FILE="$1"
-	while IFS= read -r line; do
-		FLUTTER_RUN="$FLUTTER_RUN --dart-define=$line"
+  SUPPLIED_ENV_FILE="$1"
+  while IFS= read -r line; do
+    FLUTTER_RUN="$FLUTTER_RUN --dart-define=$line"
 
-	done <"$SUPPLIED_ENV_FILE"
+  done <"$SUPPLIED_ENV_FILE"
 fi
 
 echo "$FLUTTER_RUN"

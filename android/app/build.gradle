@@ -20,11 +20,11 @@ if (flutterRoot == null) {
 def dartEnvironmentVariables = [:]
 if (project.hasProperty('dart-defines')) {
     dartEnvironmentVariables = dartEnvironmentVariables + project.property('dart-defines')
-            .split(',')
-            .collectEntries { entry ->
-                def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
-                [(pair.first()): pair.last()]
-            }
+        .split(',')
+        .collectEntries { entry ->
+            def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+            [(pair.first()): pair.last()]
+        }
 }
 
 task copyGoogleServicesJson(type: Copy) {
@@ -66,6 +66,7 @@ android {
     defaultConfig {
         resValue "string", "app_name", "Stock" + ((dartEnvironmentVariables.ENV_FLAVOR == "prod") ? "" : (" " + dartEnvironmentVariables.ENV_FLAVOR))
         resValue "string", "facebook_app_id", dartEnvironmentVariables.ENV_FACEBOOK_APP_ID ? dartEnvironmentVariables.ENV_FACEBOOK_APP_ID : ""
+        resValue "string", "facebook_client_token", dartEnvironmentVariables.ENV_FACEBOOK_APP_SECRET ? dartEnvironmentVariables.ENV_FACEBOOK_APP_SECRET : ""
         applicationId "com.chaomao.stock"
         minSdkVersion 19
         targetSdkVersion 32
