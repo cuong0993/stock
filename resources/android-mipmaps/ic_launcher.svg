@@ -1,6 +1,6 @@
 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-    <rect width="48" height="48" fill="#fff" ry="11"/>
-    <path style="fill:green;fill-opacity:1;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke:none" d="m48 13.143-17.197 16.47-9.412-9.023a2.095 2.095 0 0 0-2.868 0L.078 38.266A10.97 10.97 0 0 0 11 48h26c6.094 0 11-4.906 11-11V13.143z"/>
+    <rect width="48" height="48" fill="green" ry="11"/>
+    <path style="fill:#006400;fill-opacity:1;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke:none" d="m48 13.143-17.197 16.47-9.412-9.023a2.095 2.095 0 0 0-2.868 0L.078 38.266A10.97 10.97 0 0 0 11 48h26c6.094 0 11-4.906 11-11V13.143z"/>
     <circle style="fill:gold;fill-opacity:1;stroke-width:0;stroke:none;stroke-miterlimit:4;stroke-dasharray:none" cx="24" cy="24" r="17"/>
     <text xml:space="preserve" style="font-style:normal;font-weight:400;font-size:30px;line-height:0;font-family:sans-serif;fill:#900caf;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none" x="13.871" y="35.169"><tspan x="13.871" y="35.169"><tspan x="13.871" y="35.169" style="font-size:30px;fill:#900caf;fill-opacity:1;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none">đ</tspan></tspan></text>
 </svg>
