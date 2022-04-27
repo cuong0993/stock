@@ -12,34 +12,7 @@ part of 'message.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MessageTearOff {
-  const _$MessageTearOff();
-
-  _Message call(
-      {required String userName,
-      required String userId,
-      required String conversationId,
-      required String userPhotoUrl,
-      required String text,
-      required DateTime createdDate,
-      required String id}) {
-    return _Message(
-      userName: userName,
-      userId: userId,
-      conversationId: conversationId,
-      userPhotoUrl: userPhotoUrl,
-      text: text,
-      createdDate: createdDate,
-      id: id,
-    );
-  }
-}
-
-/// @nodoc
-const $Message = _$MessageTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Message {
@@ -255,28 +228,28 @@ class _$_Message implements _Message {
 
 abstract class _Message implements Message {
   factory _Message(
-      {required String userName,
-      required String userId,
-      required String conversationId,
-      required String userPhotoUrl,
-      required String text,
-      required DateTime createdDate,
-      required String id}) = _$_Message;
+      {required final String userName,
+      required final String userId,
+      required final String conversationId,
+      required final String userPhotoUrl,
+      required final String text,
+      required final DateTime createdDate,
+      required final String id}) = _$_Message;
 
   @override
-  String get userName;
+  String get userName => throw _privateConstructorUsedError;
   @override
-  String get userId;
+  String get userId => throw _privateConstructorUsedError;
   @override
-  String get conversationId;
+  String get conversationId => throw _privateConstructorUsedError;
   @override
-  String get userPhotoUrl;
+  String get userPhotoUrl => throw _privateConstructorUsedError;
   @override
-  String get text;
+  String get text => throw _privateConstructorUsedError;
   @override
-  DateTime get createdDate;
+  DateTime get createdDate => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MessageCopyWith<_Message> get copyWith =>

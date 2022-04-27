@@ -12,30 +12,7 @@ part of 'user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
-
-  _User call(
-      {required String id,
-      required String name,
-      required String photoUrl,
-      required List<String> tokens,
-      required DateTime creationTime}) {
-    return _User(
-      id: id,
-      name: name,
-      photoUrl: photoUrl,
-      tokens: tokens,
-      creationTime: creationTime,
-    );
-  }
-}
-
-/// @nodoc
-const $User = _$UserTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$User {
@@ -164,8 +141,9 @@ class _$_User implements _User {
       {required this.id,
       required this.name,
       required this.photoUrl,
-      required this.tokens,
-      required this.creationTime});
+      required final List<String> tokens,
+      required this.creationTime})
+      : _tokens = tokens;
 
   @override
   final String id;
@@ -173,8 +151,13 @@ class _$_User implements _User {
   final String name;
   @override
   final String photoUrl;
+  final List<String> _tokens;
   @override
-  final List<String> tokens;
+  List<String> get tokens {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tokens);
+  }
+
   @override
   final DateTime creationTime;
 
@@ -213,22 +196,22 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {required String id,
-      required String name,
-      required String photoUrl,
-      required List<String> tokens,
-      required DateTime creationTime}) = _$_User;
+      {required final String id,
+      required final String name,
+      required final String photoUrl,
+      required final List<String> tokens,
+      required final DateTime creationTime}) = _$_User;
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get photoUrl;
+  String get photoUrl => throw _privateConstructorUsedError;
   @override
-  List<String> get tokens;
+  List<String> get tokens => throw _privateConstructorUsedError;
   @override
-  DateTime get creationTime;
+  DateTime get creationTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

@@ -12,26 +12,7 @@ part of 'conversation.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ConversationTearOff {
-  const _$ConversationTearOff();
-
-  _Conversation call(
-      {required List<String> participantIds,
-      required Map<String, int> lastViews,
-      required String id}) {
-    return _Conversation(
-      participantIds: participantIds,
-      lastViews: lastViews,
-      id: id,
-    );
-  }
-}
-
-/// @nodoc
-const $Conversation = _$ConversationTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Conversation {
@@ -132,14 +113,26 @@ class __$ConversationCopyWithImpl<$Res> extends _$ConversationCopyWithImpl<$Res>
 
 class _$_Conversation implements _Conversation {
   _$_Conversation(
-      {required this.participantIds,
-      required this.lastViews,
-      required this.id});
+      {required final List<String> participantIds,
+      required final Map<String, int> lastViews,
+      required this.id})
+      : _participantIds = participantIds,
+        _lastViews = lastViews;
 
+  final List<String> _participantIds;
   @override
-  final List<String> participantIds;
+  List<String> get participantIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_participantIds);
+  }
+
+  final Map<String, int> _lastViews;
   @override
-  final Map<String, int> lastViews;
+  Map<String, int> get lastViews {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_lastViews);
+  }
+
   @override
   final String id;
 
@@ -174,16 +167,16 @@ class _$_Conversation implements _Conversation {
 
 abstract class _Conversation implements Conversation {
   factory _Conversation(
-      {required List<String> participantIds,
-      required Map<String, int> lastViews,
-      required String id}) = _$_Conversation;
+      {required final List<String> participantIds,
+      required final Map<String, int> lastViews,
+      required final String id}) = _$_Conversation;
 
   @override
-  List<String> get participantIds;
+  List<String> get participantIds => throw _privateConstructorUsedError;
   @override
-  Map<String, int> get lastViews;
+  Map<String, int> get lastViews => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ConversationCopyWith<_Conversation> get copyWith =>

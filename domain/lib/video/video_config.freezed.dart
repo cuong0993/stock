@@ -12,26 +12,7 @@ part of 'video_config.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$VideoConfigTearOff {
-  const _$VideoConfigTearOff();
-
-  _VideoConfig call(
-      {required String meetingId,
-      required bool isVideoEnabled,
-      required bool isAudioEnabled}) {
-    return _VideoConfig(
-      meetingId: meetingId,
-      isVideoEnabled: isVideoEnabled,
-      isAudioEnabled: isAudioEnabled,
-    );
-  }
-}
-
-/// @nodoc
-const $VideoConfig = _$VideoConfigTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$VideoConfig {
@@ -173,16 +154,16 @@ class _$_VideoConfig implements _VideoConfig {
 
 abstract class _VideoConfig implements VideoConfig {
   factory _VideoConfig(
-      {required String meetingId,
-      required bool isVideoEnabled,
-      required bool isAudioEnabled}) = _$_VideoConfig;
+      {required final String meetingId,
+      required final bool isVideoEnabled,
+      required final bool isAudioEnabled}) = _$_VideoConfig;
 
   @override
-  String get meetingId;
+  String get meetingId => throw _privateConstructorUsedError;
   @override
-  bool get isVideoEnabled;
+  bool get isVideoEnabled => throw _privateConstructorUsedError;
   @override
-  bool get isAudioEnabled;
+  bool get isAudioEnabled => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$VideoConfigCopyWith<_VideoConfig> get copyWith =>

@@ -12,22 +12,7 @@ part of 'tag.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$TagTearOff {
-  const _$TagTearOff();
-
-  _Tag call({required String name, required String id}) {
-    return _Tag(
-      name: name,
-      id: id,
-    );
-  }
-}
-
-/// @nodoc
-const $Tag = _$TagTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Tag {
@@ -143,12 +128,12 @@ class _$_Tag implements _Tag {
 }
 
 abstract class _Tag implements Tag {
-  factory _Tag({required String name, required String id}) = _$_Tag;
+  factory _Tag({required final String name, required final String id}) = _$_Tag;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TagCopyWith<_Tag> get copyWith => throw _privateConstructorUsedError;

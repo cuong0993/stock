@@ -12,44 +12,7 @@ part of 'post.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PostTearOff {
-  const _$PostTearOff();
-
-  _Post call(
-      {required String userName,
-      required String userId,
-      required String userPhotoUrl,
-      required String text,
-      required String name,
-      required int commentCount,
-      required List<String> likedUserIds,
-      required List<String> tags,
-      required DateTime createdDate,
-      required List<DateTime> timeSlots,
-      required List<String> images,
-      required String id}) {
-    return _Post(
-      userName: userName,
-      userId: userId,
-      userPhotoUrl: userPhotoUrl,
-      text: text,
-      name: name,
-      commentCount: commentCount,
-      likedUserIds: likedUserIds,
-      tags: tags,
-      createdDate: createdDate,
-      timeSlots: timeSlots,
-      images: images,
-      id: id,
-    );
-  }
-}
-
-/// @nodoc
-const $Post = _$PostTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Post {
@@ -272,12 +235,16 @@ class _$_Post implements _Post {
       required this.text,
       required this.name,
       required this.commentCount,
-      required this.likedUserIds,
-      required this.tags,
+      required final List<String> likedUserIds,
+      required final List<String> tags,
       required this.createdDate,
-      required this.timeSlots,
-      required this.images,
-      required this.id});
+      required final List<DateTime> timeSlots,
+      required final List<String> images,
+      required this.id})
+      : _likedUserIds = likedUserIds,
+        _tags = tags,
+        _timeSlots = timeSlots,
+        _images = images;
 
   @override
   final String userName;
@@ -291,16 +258,36 @@ class _$_Post implements _Post {
   final String name;
   @override
   final int commentCount;
+  final List<String> _likedUserIds;
   @override
-  final List<String> likedUserIds;
+  List<String> get likedUserIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likedUserIds);
+  }
+
+  final List<String> _tags;
   @override
-  final List<String> tags;
+  List<String> get tags {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
   @override
   final DateTime createdDate;
+  final List<DateTime> _timeSlots;
   @override
-  final List<DateTime> timeSlots;
+  List<DateTime> get timeSlots {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_timeSlots);
+  }
+
+  final List<String> _images;
   @override
-  final List<String> images;
+  List<String> get images {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
+
   @override
   final String id;
 
@@ -356,43 +343,43 @@ class _$_Post implements _Post {
 
 abstract class _Post implements Post {
   factory _Post(
-      {required String userName,
-      required String userId,
-      required String userPhotoUrl,
-      required String text,
-      required String name,
-      required int commentCount,
-      required List<String> likedUserIds,
-      required List<String> tags,
-      required DateTime createdDate,
-      required List<DateTime> timeSlots,
-      required List<String> images,
-      required String id}) = _$_Post;
+      {required final String userName,
+      required final String userId,
+      required final String userPhotoUrl,
+      required final String text,
+      required final String name,
+      required final int commentCount,
+      required final List<String> likedUserIds,
+      required final List<String> tags,
+      required final DateTime createdDate,
+      required final List<DateTime> timeSlots,
+      required final List<String> images,
+      required final String id}) = _$_Post;
 
   @override
-  String get userName;
+  String get userName => throw _privateConstructorUsedError;
   @override
-  String get userId;
+  String get userId => throw _privateConstructorUsedError;
   @override
-  String get userPhotoUrl;
+  String get userPhotoUrl => throw _privateConstructorUsedError;
   @override
-  String get text;
+  String get text => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  int get commentCount;
+  int get commentCount => throw _privateConstructorUsedError;
   @override
-  List<String> get likedUserIds;
+  List<String> get likedUserIds => throw _privateConstructorUsedError;
   @override
-  List<String> get tags;
+  List<String> get tags => throw _privateConstructorUsedError;
   @override
-  DateTime get createdDate;
+  DateTime get createdDate => throw _privateConstructorUsedError;
   @override
-  List<DateTime> get timeSlots;
+  List<DateTime> get timeSlots => throw _privateConstructorUsedError;
   @override
-  List<String> get images;
+  List<String> get images => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PostCopyWith<_Post> get copyWith => throw _privateConstructorUsedError;

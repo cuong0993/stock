@@ -12,34 +12,7 @@ part of 'comment.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CommentTearOff {
-  const _$CommentTearOff();
-
-  _Comment call(
-      {required String userName,
-      required String userId,
-      required String postId,
-      required String userPhotoUrl,
-      required String text,
-      required DateTime createdDate,
-      required String id}) {
-    return _Comment(
-      userName: userName,
-      userId: userId,
-      postId: postId,
-      userPhotoUrl: userPhotoUrl,
-      text: text,
-      createdDate: createdDate,
-      id: id,
-    );
-  }
-}
-
-/// @nodoc
-const $Comment = _$CommentTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Comment {
@@ -254,28 +227,28 @@ class _$_Comment implements _Comment {
 
 abstract class _Comment implements Comment {
   factory _Comment(
-      {required String userName,
-      required String userId,
-      required String postId,
-      required String userPhotoUrl,
-      required String text,
-      required DateTime createdDate,
-      required String id}) = _$_Comment;
+      {required final String userName,
+      required final String userId,
+      required final String postId,
+      required final String userPhotoUrl,
+      required final String text,
+      required final DateTime createdDate,
+      required final String id}) = _$_Comment;
 
   @override
-  String get userName;
+  String get userName => throw _privateConstructorUsedError;
   @override
-  String get userId;
+  String get userId => throw _privateConstructorUsedError;
   @override
-  String get postId;
+  String get postId => throw _privateConstructorUsedError;
   @override
-  String get userPhotoUrl;
+  String get userPhotoUrl => throw _privateConstructorUsedError;
   @override
-  String get text;
+  String get text => throw _privateConstructorUsedError;
   @override
-  DateTime get createdDate;
+  DateTime get createdDate => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CommentCopyWith<_Comment> get copyWith =>

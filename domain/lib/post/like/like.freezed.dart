@@ -12,32 +12,7 @@ part of 'like.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LikeTearOff {
-  const _$LikeTearOff();
-
-  _Like call(
-      {required String userName,
-      required String userId,
-      required String postId,
-      required String userPhotoUrl,
-      required DateTime createdDate,
-      required String id}) {
-    return _Like(
-      userName: userName,
-      userId: userId,
-      postId: postId,
-      userPhotoUrl: userPhotoUrl,
-      createdDate: createdDate,
-      id: id,
-    );
-  }
-}
-
-/// @nodoc
-const $Like = _$LikeTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Like {
@@ -234,25 +209,25 @@ class _$_Like implements _Like {
 
 abstract class _Like implements Like {
   factory _Like(
-      {required String userName,
-      required String userId,
-      required String postId,
-      required String userPhotoUrl,
-      required DateTime createdDate,
-      required String id}) = _$_Like;
+      {required final String userName,
+      required final String userId,
+      required final String postId,
+      required final String userPhotoUrl,
+      required final DateTime createdDate,
+      required final String id}) = _$_Like;
 
   @override
-  String get userName;
+  String get userName => throw _privateConstructorUsedError;
   @override
-  String get userId;
+  String get userId => throw _privateConstructorUsedError;
   @override
-  String get postId;
+  String get postId => throw _privateConstructorUsedError;
   @override
-  String get userPhotoUrl;
+  String get userPhotoUrl => throw _privateConstructorUsedError;
   @override
-  DateTime get createdDate;
+  DateTime get createdDate => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LikeCopyWith<_Like> get copyWith => throw _privateConstructorUsedError;

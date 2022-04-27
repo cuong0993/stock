@@ -12,36 +12,7 @@ part of 'meeting.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MeetingTearOff {
-  const _$MeetingTearOff();
-
-  _Meeting call(
-      {required Map<String, bool> participantIds,
-      required Map<String, String> participantNames,
-      required Map<String, String> participantUrls,
-      required String id,
-      required String name,
-      required DateTime time,
-      required String createdUserId,
-      required int participantCount}) {
-    return _Meeting(
-      participantIds: participantIds,
-      participantNames: participantNames,
-      participantUrls: participantUrls,
-      id: id,
-      name: name,
-      time: time,
-      createdUserId: createdUserId,
-      participantCount: participantCount,
-    );
-  }
-}
-
-/// @nodoc
-const $Meeting = _$MeetingTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Meeting {
@@ -207,21 +178,39 @@ class __$MeetingCopyWithImpl<$Res> extends _$MeetingCopyWithImpl<$Res>
 
 class _$_Meeting implements _Meeting {
   _$_Meeting(
-      {required this.participantIds,
-      required this.participantNames,
-      required this.participantUrls,
+      {required final Map<String, bool> participantIds,
+      required final Map<String, String> participantNames,
+      required final Map<String, String> participantUrls,
       required this.id,
       required this.name,
       required this.time,
       required this.createdUserId,
-      required this.participantCount});
+      required this.participantCount})
+      : _participantIds = participantIds,
+        _participantNames = participantNames,
+        _participantUrls = participantUrls;
 
+  final Map<String, bool> _participantIds;
   @override
-  final Map<String, bool> participantIds;
+  Map<String, bool> get participantIds {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_participantIds);
+  }
+
+  final Map<String, String> _participantNames;
   @override
-  final Map<String, String> participantNames;
+  Map<String, String> get participantNames {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_participantNames);
+  }
+
+  final Map<String, String> _participantUrls;
   @override
-  final Map<String, String> participantUrls;
+  Map<String, String> get participantUrls {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_participantUrls);
+  }
+
   @override
   final String id;
   @override
@@ -278,31 +267,32 @@ class _$_Meeting implements _Meeting {
 
 abstract class _Meeting implements Meeting {
   factory _Meeting(
-      {required Map<String, bool> participantIds,
-      required Map<String, String> participantNames,
-      required Map<String, String> participantUrls,
-      required String id,
-      required String name,
-      required DateTime time,
-      required String createdUserId,
-      required int participantCount}) = _$_Meeting;
+      {required final Map<String, bool> participantIds,
+      required final Map<String, String> participantNames,
+      required final Map<String, String> participantUrls,
+      required final String id,
+      required final String name,
+      required final DateTime time,
+      required final String createdUserId,
+      required final int participantCount}) = _$_Meeting;
 
   @override
-  Map<String, bool> get participantIds;
+  Map<String, bool> get participantIds => throw _privateConstructorUsedError;
   @override
-  Map<String, String> get participantNames;
+  Map<String, String> get participantNames =>
+      throw _privateConstructorUsedError;
   @override
-  Map<String, String> get participantUrls;
+  Map<String, String> get participantUrls => throw _privateConstructorUsedError;
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  DateTime get time;
+  DateTime get time => throw _privateConstructorUsedError;
   @override
-  String get createdUserId;
+  String get createdUserId => throw _privateConstructorUsedError;
   @override
-  int get participantCount;
+  int get participantCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MeetingCopyWith<_Meeting> get copyWith =>

@@ -12,28 +12,7 @@ part of 'video_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$VideoStateTearOff {
-  const _$VideoStateTearOff();
-
-  _VideoState call(
-      {required List<int> users,
-      required List<String> infoStrings,
-      required bool isVideoEnabled,
-      required bool isAudioEnabled}) {
-    return _VideoState(
-      users: users,
-      infoStrings: infoStrings,
-      isVideoEnabled: isVideoEnabled,
-      isAudioEnabled: isAudioEnabled,
-    );
-  }
-}
-
-/// @nodoc
-const $VideoState = _$VideoStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$VideoState {
@@ -150,15 +129,27 @@ class __$VideoStateCopyWithImpl<$Res> extends _$VideoStateCopyWithImpl<$Res>
 
 class _$_VideoState implements _VideoState {
   _$_VideoState(
-      {required this.users,
-      required this.infoStrings,
+      {required final List<int> users,
+      required final List<String> infoStrings,
       required this.isVideoEnabled,
-      required this.isAudioEnabled});
+      required this.isAudioEnabled})
+      : _users = users,
+        _infoStrings = infoStrings;
 
+  final List<int> _users;
   @override
-  final List<int> users;
+  List<int> get users {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_users);
+  }
+
+  final List<String> _infoStrings;
   @override
-  final List<String> infoStrings;
+  List<String> get infoStrings {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_infoStrings);
+  }
+
   @override
   final bool isVideoEnabled;
   @override
@@ -199,19 +190,19 @@ class _$_VideoState implements _VideoState {
 
 abstract class _VideoState implements VideoState {
   factory _VideoState(
-      {required List<int> users,
-      required List<String> infoStrings,
-      required bool isVideoEnabled,
-      required bool isAudioEnabled}) = _$_VideoState;
+      {required final List<int> users,
+      required final List<String> infoStrings,
+      required final bool isVideoEnabled,
+      required final bool isAudioEnabled}) = _$_VideoState;
 
   @override
-  List<int> get users;
+  List<int> get users => throw _privateConstructorUsedError;
   @override
-  List<String> get infoStrings;
+  List<String> get infoStrings => throw _privateConstructorUsedError;
   @override
-  bool get isVideoEnabled;
+  bool get isVideoEnabled => throw _privateConstructorUsedError;
   @override
-  bool get isAudioEnabled;
+  bool get isAudioEnabled => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$VideoStateCopyWith<_VideoState> get copyWith =>

@@ -12,23 +12,7 @@ part of 'edit_user_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$EditUserStateTearOff {
-  const _$EditUserStateTearOff();
-
-  _EditUserState call(
-      {required String? newProfileImagePath, required User user}) {
-    return _EditUserState(
-      newProfileImagePath: newProfileImagePath,
-      user: user,
-    );
-  }
-}
-
-/// @nodoc
-const $EditUserState = _$EditUserStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$EditUserState {
@@ -165,13 +149,13 @@ class _$_EditUserState implements _EditUserState {
 
 abstract class _EditUserState implements EditUserState {
   factory _EditUserState(
-      {required String? newProfileImagePath,
-      required User user}) = _$_EditUserState;
+      {required final String? newProfileImagePath,
+      required final User user}) = _$_EditUserState;
 
   @override
-  String? get newProfileImagePath;
+  String? get newProfileImagePath => throw _privateConstructorUsedError;
   @override
-  User get user;
+  User get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$EditUserStateCopyWith<_EditUserState> get copyWith =>

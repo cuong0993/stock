@@ -12,22 +12,7 @@ part of 'app_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AppStateTearOff {
-  const _$AppStateTearOff();
-
-  _AppState call({required String? themeName, required String? localeName}) {
-    return _AppState(
-      themeName: themeName,
-      localeName: localeName,
-    );
-  }
-}
-
-/// @nodoc
-const $AppState = _$AppStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AppState {
@@ -145,13 +130,14 @@ class _$_AppState implements _AppState {
 }
 
 abstract class _AppState implements AppState {
-  factory _AppState({required String? themeName, required String? localeName}) =
-      _$_AppState;
+  factory _AppState(
+      {required final String? themeName,
+      required final String? localeName}) = _$_AppState;
 
   @override
-  String? get themeName;
+  String? get themeName => throw _privateConstructorUsedError;
   @override
-  String? get localeName;
+  String? get localeName => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

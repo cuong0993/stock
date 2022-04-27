@@ -12,30 +12,7 @@ part of 'create_post_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CreatePostStateTearOff {
-  const _$CreatePostStateTearOff();
-
-  _CreatePostState call(
-      {required List<String> imageUrls,
-      required List<String> tags,
-      required String text,
-      required String name,
-      required List<DateTime> timeSlots}) {
-    return _CreatePostState(
-      imageUrls: imageUrls,
-      tags: tags,
-      text: text,
-      name: name,
-      timeSlots: timeSlots,
-    );
-  }
-}
-
-/// @nodoc
-const $CreatePostState = _$CreatePostStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CreatePostState {
@@ -168,22 +145,39 @@ class __$CreatePostStateCopyWithImpl<$Res>
 
 class _$_CreatePostState implements _CreatePostState {
   _$_CreatePostState(
-      {required this.imageUrls,
-      required this.tags,
+      {required final List<String> imageUrls,
+      required final List<String> tags,
       required this.text,
       required this.name,
-      required this.timeSlots});
+      required final List<DateTime> timeSlots})
+      : _imageUrls = imageUrls,
+        _tags = tags,
+        _timeSlots = timeSlots;
 
+  final List<String> _imageUrls;
   @override
-  final List<String> imageUrls;
+  List<String> get imageUrls {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_imageUrls);
+  }
+
+  final List<String> _tags;
   @override
-  final List<String> tags;
+  List<String> get tags {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
   @override
   final String text;
   @override
   final String name;
+  final List<DateTime> _timeSlots;
   @override
-  final List<DateTime> timeSlots;
+  List<DateTime> get timeSlots {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_timeSlots);
+  }
 
   @override
   String toString() {
@@ -219,22 +213,22 @@ class _$_CreatePostState implements _CreatePostState {
 
 abstract class _CreatePostState implements CreatePostState {
   factory _CreatePostState(
-      {required List<String> imageUrls,
-      required List<String> tags,
-      required String text,
-      required String name,
-      required List<DateTime> timeSlots}) = _$_CreatePostState;
+      {required final List<String> imageUrls,
+      required final List<String> tags,
+      required final String text,
+      required final String name,
+      required final List<DateTime> timeSlots}) = _$_CreatePostState;
 
   @override
-  List<String> get imageUrls;
+  List<String> get imageUrls => throw _privateConstructorUsedError;
   @override
-  List<String> get tags;
+  List<String> get tags => throw _privateConstructorUsedError;
   @override
-  String get text;
+  String get text => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  List<DateTime> get timeSlots;
+  List<DateTime> get timeSlots => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CreatePostStateCopyWith<_CreatePostState> get copyWith =>

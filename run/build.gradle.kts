@@ -55,7 +55,7 @@ dependencies {
     implementation("org.ta4j:ta4j-core:0.14")
     implementation("org.apache.poi:poi-ooxml:5.2.2")
     implementation("com.google.auth:google-auth-library-oauth2-http:1.6.0")
-    implementation("com.google.apis:google-api-services-drive:v3-rev20220214-1.32.1")
+    implementation("com.google.apis:google-api-services-drive:v3-rev20220417-1.32.1")
 }
 
 jib {

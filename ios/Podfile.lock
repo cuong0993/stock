@@ -614,14 +614,14 @@ PODS:
     - Flutter
   - device_info_plus (0.0.1):
     - Flutter
-  - FBAEMKit (13.1.0):
-    - FBSDKCoreKit_Basics (= 13.1.0)
-  - FBSDKCoreKit (13.1.0):
-    - FBAEMKit (= 13.1.0)
-    - FBSDKCoreKit_Basics (= 13.1.0)
-  - FBSDKCoreKit_Basics (13.1.0)
-  - FBSDKLoginKit (13.1.0):
-    - FBSDKCoreKit (= 13.1.0)
+  - FBAEMKit (13.2.0):
+    - FBSDKCoreKit_Basics (= 13.2.0)
+  - FBSDKCoreKit (13.2.0):
+    - FBAEMKit (= 13.2.0)
+    - FBSDKCoreKit_Basics (= 13.2.0)
+  - FBSDKCoreKit_Basics (13.2.0)
+  - FBSDKLoginKit (13.2.0):
+    - FBSDKCoreKit (= 13.2.0)
   - Firebase/Auth (8.15.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.15.0)
@@ -644,22 +644,22 @@ PODS:
     - firebase_core
     - FirebaseAppCheck (~> 8.15.0-beta)
     - Flutter
-  - firebase_auth (3.3.15):
+  - firebase_auth (3.3.16):
     - Firebase/Auth (= 8.15.0)
     - firebase_core
     - Flutter
   - firebase_core (1.15.0):
     - Firebase/CoreOnly (= 8.15.0)
     - Flutter
-  - firebase_crashlytics (2.6.3):
+  - firebase_crashlytics (2.7.1):
     - Firebase/Crashlytics (= 8.15.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (11.2.14):
+  - firebase_messaging (11.2.15):
     - Firebase/Messaging (= 8.15.0)
     - firebase_core
     - Flutter
-  - firebase_storage (10.2.13):
+  - firebase_storage (10.2.14):
     - Firebase/Storage (= 8.15.0)
     - firebase_core
     - Flutter
@@ -812,7 +812,7 @@ PODS:
   - GTMAppAuth (1.2.3):
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - GTMSessionFetcher/Core (1.7.1)
+  - GTMSessionFetcher/Core (1.7.2)
   - image_picker_ios (0.0.1):
     - Flutter
   - in_app_review (0.2.0):
@@ -949,17 +949,17 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   cloud_firestore: a7a94d8f25b77b84533eb8bd5627437a0cdb49f0
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
-  FBAEMKit: 9ce89760a23f03ffecd907c8e1f3201160f2dcc7
-  FBSDKCoreKit: eff97dea778dbe6cc4498959cffb619c75675102
-  FBSDKCoreKit_Basics: c151609a1cf6976a5958febcf0043266a8fd5151
-  FBSDKLoginKit: 42932c7ad6f6b91854fc0a6bcc79b7e807bcde4b
+  FBAEMKit: c2b2895363b7e57192013d1dc49fdf498b28624c
+  FBSDKCoreKit: 58139803d861e72c7661dc875611a759352a55ac
+  FBSDKCoreKit_Basics: 1ffc68326a5ece051d85574f02a0adcf27c2a5f2
+  FBSDKLoginKit: 19e2a878556c2ee4f20486dc406e582783cd7578
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
   firebase_app_check: a05593dd6ce5bc828de4f57c733a758ce37d7053
-  firebase_auth: 0624c0e2e1c0732209286f99cdacfe2b985a3c61
+  firebase_auth: 4f80bfd9e8814edc0dc6a135f9c4d5e1b1d67347
   firebase_core: fa19947d8db1c0a62d8872c45039b3113829cd2e
-  firebase_crashlytics: bf47208bdd39b16c90a0beed3fed09786081bcba
-  firebase_messaging: 16a1bcf72818ff3cb9d77c1bbfabb67997fbda47
-  firebase_storage: e66af08f2f440d0582731c800d93065092edc517
+  firebase_crashlytics: 5a0fd2de31fb603460f7937cd6b6038dc5a0ac4c
+  firebase_messaging: 20522334f609978f782cff8c141f294bb2ca39c7
+  firebase_storage: 4a44819c634c80214d685192033925c220e429dd
   FirebaseAppCheck: 59853f959315579e696877692e7558a68bd9ee86
   FirebaseAuth: 3e73bf8abf4fbb40f8b421f361f4cc48ee57388c
   FirebaseCore: 5743c5785c074a794d35f2fff7ecc254a91e08b1
@@ -981,7 +981,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMAppAuth: 987526d41b07efb1bedda5e936fe0cb718a03113
-  GTMSessionFetcher: 4577a4cc914a5a07c40a8a0ad0acc22080418c2d
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   in_app_review: 4a97249f7a2f539a0f294c2d9196b7fe35e49541
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
