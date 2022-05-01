@@ -1,12 +1,11 @@
 package com.chaomao
 
 import com.chaomao.plugins.configureRouting
-import io.ktor.server.application.Application
+import io.ktor.server.cio.CIO
+import io.ktor.server.engine.embeddedServer
 
-fun main(args: Array<String>): Unit =
-    io.ktor.server.netty.EngineMain.main(args)
-
-@Suppress("unused") // application.conf references the main function.
-fun Application.module() {
-    configureRouting()
+fun main() {
+    embeddedServer(CIO, port = 8080) {
+        configureRouting()
+    }.start(wait = true)
 }

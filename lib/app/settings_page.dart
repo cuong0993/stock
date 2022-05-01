@@ -103,8 +103,8 @@ class SettingsPage extends StatelessWidget {
                 L10n.of(context)!.about_rate,
               ),
               onTap: () async {
-                final _inAppReview = InAppReview.instance;
-                await _inAppReview.openStoreListing(
+                final inAppReview = InAppReview.instance;
+                await inAppReview.openStoreListing(
                   appStoreId: '_appStoreId',
                   microsoftStoreId: '_microsoftStoreId',
                 );

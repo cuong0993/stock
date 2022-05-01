@@ -12,8 +12,8 @@ class FirebaseHttpFileService extends HttpFileService {
     Map<String, String>? headers = const {},
   }) async {
     final ref = _firebaseStorage.ref().child(url);
-    final _url = await ref.getDownloadURL();
+    final downloadUrl = await ref.getDownloadURL();
 
-    return super.get(_url);
+    return super.get(downloadUrl);
   }
 }

@@ -9,6 +9,7 @@ analyzer:
     unused_element: error
     unused_field: error
     unused_local_variable: error
+    included_file_warning: ignore
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
@@ -20,31 +21,15 @@ analyzer:
     - 'lib/generated_plugin_registrant.dart'
 linter:
   rules:
-
-    # too verbose
     prefer_final_parameters: false
-
-    # Too verbose with little value, and this is taken care of by the Flutter devtool anyway.
     diagnostic_describe_all_properties: false
-
-    # Conflicts with `prefer_single_quotes`
-    # Single quotes are easier to type and don't compromise on readability.
     prefer_double_quotes: false
-
-    # This project doesn't use Flutter-style todos
+    always_specify_types: false
+    unnecessary_final: false
     flutter_style_todos: false
-
-    # Boring as it sometimes force a line of 81 characters to be split in two.
-    # As long as we try to respect that 80 characters limit, going slightly
-    # above is fine.
     lines_longer_than_80_chars: false
-
-    # Conflicts with disabling `implicit-dynamic`
     avoid_annotating_with_dynamic: false
-
-    # conflicts with `prefer_relative_imports`
     always_use_package_imports: false
-
     public_member_api_docs: false
 
 dart_code_metrics:

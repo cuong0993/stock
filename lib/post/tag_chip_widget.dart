@@ -8,7 +8,7 @@ class TagChipWidget extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
           color: Theme.of(context).chipTheme.backgroundColor,
           borderRadius: BorderRadius.circular(16),

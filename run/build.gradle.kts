@@ -6,25 +6,16 @@ plugins {
     application
     kotlin("jvm") version "1.6.21"
     id("com.google.cloud.tools.jib") version "3.2.1"
+    id("com.palantir.graal") version "0.10.0"
 }
 
 group = "com.chaomao"
 version = "0.0.1"
 application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
+    mainClass.set("com.chaomao.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
-    applicationDefaultJvmArgs = listOf(
-        "-server",
-        "-XX:+UseG1GC",
-        "-Dfile.encoding=UTF-8",
-        "-XX:+UnlockExperimentalVMOptions",
-        "-XX:+UseCGroupMemoryLimitForHeap",
-        "-XX:+UseContainerSupport",
-        "-XX:MaxRAMPercentage=80.0",
-        "-XX:InitialRAMPercentage=80.0",
-        "-Dio.ktor.development=$isDevelopment"
-    )
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
 repositories {
@@ -48,7 +39,7 @@ tasks {
 
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
-    implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-cio-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
@@ -66,6 +57,25 @@ jib {
         ports = listOf("8080")
         mainClass = mainClass
     }
+}
+
+graal {
+    outputName("run")
+    graalVersion("22.1.0")
+    mainClass(application.mainClass.get())
+    javaVersion("17")
+    option("--verbose")
+    option("--no-fallback")
+    option("--report-unsupported-elements-at-runtime")
+    option("--install-exit-handlers")
+    option("--enable-url-protocols=http")
+    // option("--link-at-build-time")
+    option("--initialize-at-build-time=io.ktor,kotlinx,kotlin")
+    option("-H:+ReportUnsupportedElementsAtRuntime")
+    option("-H:+ReportExceptionStackTraces")
+    option("-H:+PrintClassInitialization")
+    option("-H:+AddAllCharsets")
+    option("-H:ConfigurationFileDirectories=src/graal")
 }
 
 if (project.hasProperty("gcp_project")) {

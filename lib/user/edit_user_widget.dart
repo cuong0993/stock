@@ -40,7 +40,7 @@ class EditUserWidget extends HookConsumerWidget {
           Center(
             child: Stack(
               children: <Widget>[
-                Container(
+                DecoratedBox(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
