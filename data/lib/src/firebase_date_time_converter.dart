@@ -7,7 +7,7 @@ class FirebaseDateTimeConverter implements JsonConverter<DateTime, Object> {
   @override
   DateTime fromJson(Object json) => (json as Timestamp).toDate();
 
-  // ignore: no-object-declaration
   @override
+  // ignore: no-object-declaration
   Object toJson(Object object) => FieldValue.serverTimestamp();
 }

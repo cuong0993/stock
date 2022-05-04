@@ -13,6 +13,7 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) => CachedNetworkImage(
         imageUrl: imageUrl,
         cacheManager: getIt.get(),
+        // ignore: avoid-dynamic
         errorWidget: (context, url, dynamic error) =>
             const Icon(Icons.warning_rounded),
         progressIndicatorBuilder: (context, url, progress) =>

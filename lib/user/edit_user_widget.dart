@@ -41,17 +41,16 @@ class EditUserWidget extends HookConsumerWidget {
             child: Stack(
               children: <Widget>[
                 DecoratedBox(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
+                    border: Border.fromBorderSide(
+                      BorderSide(color: Colors.white, width: 2),
                     ),
                   ),
                   child: CircleAvatar(
                     radius: 65,
                     backgroundImage:
-                        editUserController.newProfileImagePath != null
+                        (editUserController.newProfileImagePath != null
                             ? FileImage(
                                 File(
                                   editUserController.newProfileImagePath!,
@@ -59,7 +58,7 @@ class EditUserWidget extends HookConsumerWidget {
                               )
                             : NetworkImage(
                                 editUserController.user.photoUrl,
-                              ) as ImageProvider,
+                              )) as ImageProvider,
                   ),
                 ),
                 Positioned(

@@ -8,7 +8,7 @@ class EditUserController extends StateNotifier<EditUserState> {
       : super(EditUserState(user: user, newProfileImagePath: null));
 
   void editUser() {
-    // TODO
+    // TODO .
   }
 
   void setImage(String path) {
@@ -16,10 +16,10 @@ class EditUserController extends StateNotifier<EditUserState> {
   }
 
   void setBio(String _) {
-    // TODO
+    // TODO .
   }
 
   void setUsername(String _) {
-    // TODO
+    // TODO .
   }
 }

@@ -40,16 +40,15 @@ Future<void> initializeNotification(BuildContext context) async {
       );
   FirebaseMessaging.onBackgroundMessage(onBackgroundMessage);
   await FirebaseMessaging.instance.requestPermission();
-  await FirebaseMessaging.instance.getInitialMessage().then((message) async {
-    if (message != null) {
-      debugPrint(
-        'FirebaseMessaging.instance.getInitialMessage ${message.data}',
-      );
-      await plugin.cancelAll();
-      // ignore: use_build_context_synchronously
-      await _handleMessageData(context, message.data);
-    }
-  });
+  final message = await FirebaseMessaging.instance.getInitialMessage();
+  if (message != null) {
+    debugPrint(
+      'FirebaseMessaging.instance.getInitialMessage ${message.data}',
+    );
+    await plugin.cancelAll();
+    // ignore: use_build_context_synchronously
+    await _handleMessageData(context, message.data);
+  }
 
   FirebaseMessaging.onMessageOpenedApp.listen((message) async {
     debugPrint(
@@ -82,7 +81,7 @@ Future<void> _handleMessageData(
         );
         break;
       case 'meeting':
-        // TODO Meeting detail screen
+        // TODO Meeting detail screen.
         break;
       case 'conversation':
         await AutoRouter.of(context).push(

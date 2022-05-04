@@ -22,6 +22,7 @@ class ViewImage extends StatelessWidget {
             progressIndicatorBuilder: (context, url, progress) => Center(
               child: CircularProgressIndicator(value: progress.progress),
             ),
+            // ignore: avoid-dynamic
             errorWidget: (context, url, dynamic error) =>
                 const Icon(Icons.warning_rounded),
             fit: BoxFit.cover,

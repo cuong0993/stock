@@ -164,7 +164,7 @@ class MessagePage extends HookConsumerWidget {
               },
             );
           } else if (snapshot.hasError) {
-            // TODO
+            // TODO .
             return const SizedBox();
           } else {
             return const Center(child: CircularProgressIndicator());

@@ -60,17 +60,15 @@ class SearchTagDelegate extends SearchDelegate<void> {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: selectedTags.length,
-                  itemBuilder: (context, index) => Padding(
+                  itemBuilder: (context, index) => InputChip(
                     padding: const EdgeInsets.all(4),
-                    child: InputChip(
-                      label: Text(selectedTags[index]),
-                      onDeleted: () {
-                        ref
-                            .read(createPostControllerProvider.notifier)
-                            .removeTag(selectedTags[index]);
-                      },
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
+                    label: Text(selectedTags[index]),
+                    onDeleted: () {
+                      ref
+                          .read(createPostControllerProvider.notifier)
+                          .removeTag(selectedTags[index]);
+                    },
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                 ),
               ),

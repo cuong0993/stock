@@ -4,7 +4,7 @@ import 'package:logging/logging.dart';
 class LogProviderObserver extends ProviderObserver {
   @override
   void didAddProvider(
-    ProviderBase<dynamic> provider,
+    ProviderBase provider,
     Object? value,
     ProviderContainer container,
   ) {
@@ -20,7 +20,7 @@ Add
 
   @override
   void didUpdateProvider(
-    ProviderBase<dynamic> provider,
+    ProviderBase provider,
     Object? previousValue,
     Object? newValue,
     ProviderContainer container,
@@ -37,7 +37,7 @@ Update
 
   @override
   void didDisposeProvider(
-    ProviderBase<dynamic> provider,
+    ProviderBase provider,
     ProviderContainer containers,
   ) {
     Logger.root.info(

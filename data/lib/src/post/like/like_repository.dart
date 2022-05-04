@@ -40,7 +40,7 @@ class LikeRepository extends domain.LikeRepository {
         )
         ..update(
           postDoc.reference,
-          <String, dynamic>{
+          <String, FieldValue>{
             'likedUserIds': FieldValue.arrayUnion(<String>[like.userId]),
           },
         );
@@ -62,7 +62,7 @@ class LikeRepository extends domain.LikeRepository {
         ..delete(likeDoc.reference)
         ..update(
           postDoc.reference,
-          <String, dynamic>{
+          <String, FieldValue>{
             'likedUserIds': FieldValue.arrayRemove(<String>[like.userId]),
           },
         );

@@ -40,7 +40,7 @@ class UserRepository extends domain.UserRepository {
   @override
   Future<Either<Failure, Unit>> addToken(String userId, String token) async {
     try {
-      await usersRef.doc(userId).reference.update(<String, dynamic>{
+      await usersRef.doc(userId).reference.update(<String, FieldValue>{
         'tokens': FieldValue.arrayUnion(<String>[token]),
       });
 

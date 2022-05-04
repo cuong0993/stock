@@ -64,7 +64,7 @@ class CommentRepository extends domain.CommentRepository {
         )
         ..update(
           postDoc.reference,
-          <String, dynamic>{'commentCount': FieldValue.increment(1)},
+          <String, FieldValue>{'commentCount': FieldValue.increment(1)},
         );
       await batch.commit();
 

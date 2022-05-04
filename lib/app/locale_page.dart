@@ -1,13 +1,17 @@
 import 'package:application/providers.dart';
 import 'package:flutter/material.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 const localeStrings = {
   'en': 'English',
+  // ignore: avoid-non-ascii-symbols
   'ko': '한국어',
+  // ignore: avoid-non-ascii-symbols
   'vi': 'Tiếng Việt',
+  // ignore: avoid-non-ascii-symbols
   'zh': '汉语',
 };
 

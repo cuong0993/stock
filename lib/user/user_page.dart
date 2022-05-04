@@ -67,7 +67,7 @@ class UserPage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              // TODO Log out
+              // TODO Log out.
             },
             child: Text(
               L10n.of(context)!.log_out,

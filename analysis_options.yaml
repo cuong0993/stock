@@ -44,24 +44,60 @@ dart_code_metrics:
   metrics-exclude:
     - test/**
   rules:
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-dynamic
+    - avoid-global-state
     # - avoid-ignoring-return-values
-    # - avoid-late-keyword
+    - avoid-late-keyword
+    - avoid-missing-enum-constant-in-map
     # - avoid-nested-conditional-expressions
+    - avoid-non-ascii-symbols
+    # - avoid-non-null-assertion
+    - avoid-throw-in-catch-block
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
     - avoid-unused-parameters
+    - ban-name
     - binary-expression-operand-order
     - double-literal-format
+    - format-comment
+    # - member-ordering
+    - member-ordering-extended:
+        alphabetize: false
+        order:
+          - constructors
+          - public-fields
+          - private-fields
     - newline-before-return
     - no-boolean-literal-compare
     - no-empty-block
     # - no-equal-arguments
     - no-equal-then-else
+    # - no-magic-number
     - no-object-declaration
+    - prefer-async-await
+    # - prefer-commenting-analyzer-ignores
     - prefer-conditional-expressions
-    - prefer-correct-identifier-length
+    - prefer-correct-identifier-length:
+        min-identifier-length: 2
     - prefer-correct-type-name
-    # - prefer-first
+    - prefer-first
+    - prefer-immediate-return
     - prefer-last
     - prefer-match-file-name
     - prefer-trailing-comma
-    - prefer-correct-identifier-length:
-        min-identifier-length: 2
+    - tag-name
+    - always-remove-listener
+    - avoid-border-all
+    - avoid-returning-widgets
+    - avoid-unnecessary-setstate
+    - avoid-wrapping-in-padding
+    - prefer-const-border-radius
+    # - prefer-extracting-callbacks
+    - prefer-single-widget-per-file
+    - prefer-intl-name
+    - provide-correct-intl-args
+    - avoid-preserve-whitespace-false
+    - component-annotation-arguments-ordering
+    - prefer-on-push-cd-strategy

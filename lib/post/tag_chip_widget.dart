@@ -11,7 +11,7 @@ class TagChipWidget extends StatelessWidget {
   Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
           color: Theme.of(context).chipTheme.backgroundColor,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
         ),
         child: Padding(
           padding: const EdgeInsets.all(4),
