@@ -69,6 +69,7 @@ graal {
     option("--report-unsupported-elements-at-runtime")
     option("--install-exit-handlers")
     option("--enable-url-protocols=http")
+    option("--enable-url-protocols=https")
     // option("--link-at-build-time")
     option("--initialize-at-build-time=io.ktor,kotlinx,kotlin")
     option("-H:+ReportUnsupportedElementsAtRuntime")

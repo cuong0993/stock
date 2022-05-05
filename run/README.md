@@ -4,7 +4,6 @@ Generate GraalVM Configs:
 - gu install native-image
 - ./gradlew extractGraalTooling
 - ./gradlew install
-  JAVA_HOME=~/.sdkman/candidates/java/current \
-  JAVA_OPTS=-agentlib:native-image-agent=config-output-dir=src/graal \
-  build/install/run/bin/run
+- export SERVICE_ACCOUNT_JSON=$(cat sa-dev.json); export DRIVE_FOLDER_ID="1xuDn-FFI8tD11q-F2MNtZEd4BjW1cuWK"; export
+  JAVA_HOME=~/.sdkman/candidates/java/current; export JAVA_OPTS=-agentlib:native-image-agent=config-output-dir=src/graal; build/install/run/bin/run
 - ./gradlew nativeImage
