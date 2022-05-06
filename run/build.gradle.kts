@@ -6,7 +6,7 @@ plugins {
     application
     kotlin("jvm") version "1.6.21"
     id("com.google.cloud.tools.jib") version "3.2.1"
-    id("com.palantir.graal") version "0.10.0"
+    id("org.graalvm.buildtools.native") version "0.9.11"
 }
 
 group = "com.chaomao"
@@ -59,24 +59,27 @@ jib {
     }
 }
 
-graal {
-    outputName("run")
-    graalVersion("22.1.0")
-    mainClass(application.mainClass.get())
-    javaVersion("17")
-    option("--verbose")
-    option("--no-fallback")
-    option("--report-unsupported-elements-at-runtime")
-    option("--install-exit-handlers")
-    option("--enable-url-protocols=http")
-    option("--enable-url-protocols=https")
-    // option("--link-at-build-time")
-    option("--initialize-at-build-time=io.ktor,kotlinx,kotlin")
-    option("-H:+ReportUnsupportedElementsAtRuntime")
-    option("-H:+ReportExceptionStackTraces")
-    option("-H:+PrintClassInitialization")
-    option("-H:+AddAllCharsets")
-    option("-H:ConfigurationFileDirectories=src/graal")
+graalvmNative {
+    binaries {
+        named("main") {
+            imageName.set("run")
+            mainClass.set(application.mainClass.get())
+            verbose.set(true)
+            fallback.set(false)
+            buildArgs.add("--report-unsupported-elements-at-runtime")
+            buildArgs.add("--install-exit-handlers")
+            buildArgs.add("--enable-http")
+            buildArgs.add("--enable-https")
+            //buildArgs.add("--link-at-build-time")
+            buildArgs.add("--initialize-at-build-time=io.ktor,kotlinx,kotlin")
+            buildArgs.add("-H:+ReportUnsupportedElementsAtRuntime")
+            buildArgs.add("-H:+ReportExceptionStackTraces")
+            buildArgs.add("-H:+PrintClassInitialization")
+            buildArgs.add("-H:+AddAllCharsets")
+            configurationFileDirectories.from(file("META-INF/native-image"))
+            useFatJar.set(true)
+        }
+    }
 }
 
 if (project.hasProperty("gcp_project")) {
