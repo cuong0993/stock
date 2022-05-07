@@ -10,13 +10,8 @@ RUN ./gradlew nativeBuild
 FROM debian:11.3-slim
 LABEL version="1.0"
 
-COPY --from=builder /source/build/native/nativeCompile/run /app/
-#COPY --from=builder /opt/graalvm-ce-java11-20.3.0/lib/libsunec.so /
+COPY --from=builder /source/build/native/nativeCompile/app /app/
 
-#COPY --from=debian:10.2 /usr/lib/x86_64-linux-gnu/libz* /usr/lib/x86_64-linux-gnu/
-#COPY --from=debian:10.2 /lib/x86_64-linux-gnu/libz* /lib/x86_64-linux-gnu/
-
-#RUN chmod +x /run
 WORKDIR /app
-ENTRYPOINT ["./run"]
+ENTRYPOINT ["./app"]
 EXPOSE 8080

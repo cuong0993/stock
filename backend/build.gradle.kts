@@ -62,7 +62,7 @@ jib {
 graalvmNative {
     binaries {
         named("main") {
-            imageName.set("run")
+            imageName.set("app")
             mainClass.set(application.mainClass.get())
             verbose.set(true)
             fallback.set(false)
@@ -84,5 +84,5 @@ graalvmNative {
 
 if (project.hasProperty("gcp_project")) {
     val gcp_project: String by project
-    jib.to.image = "gcr.io/$gcp_project/backend"
+    jib.to.image = "gcr.io/$gcp_project/app"
 }
