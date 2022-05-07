@@ -70,7 +70,6 @@ graalvmNative {
             buildArgs.add("--install-exit-handlers")
             buildArgs.add("--enable-http")
             buildArgs.add("--enable-https")
-            //buildArgs.add("--link-at-build-time")
             buildArgs.add("--initialize-at-build-time=io.ktor,kotlinx,kotlin")
             buildArgs.add("-H:+ReportUnsupportedElementsAtRuntime")
             buildArgs.add("-H:+ReportExceptionStackTraces")
