@@ -1,0 +1,9 @@
+.gcloudignore
+.git
+.gitignore
+*.sh
+*.md
+.gradle
+build
+.idea
+.run
