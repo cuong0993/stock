@@ -20,4 +20,3 @@ COPY --from=builder /source/build/native/nativeCompile/run /app/
 WORKDIR /app
 ENTRYPOINT ["./run"]
 EXPOSE 8080
-CMD ["Hello World from GraalVM native inside Docker."]
