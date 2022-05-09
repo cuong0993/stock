@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/widgets.dart';
 
 import '../authentication/authentication_page.dart';
 import '../authentication/require_authentication_page.dart';
@@ -18,38 +17,38 @@ export 'root_router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       initial: true,
       page: SplashPage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: HomePage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: CreatePostPage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: DetailPostPage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: AuthenticationPage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: UserPage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: LocalePage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: ThemePage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: SettingsPage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: MessagePage,
     ),
-    AutoRoute<Widget>(
+    AutoRoute<void>(
       page: RequireAuthenticationPage,
     ),
   ],

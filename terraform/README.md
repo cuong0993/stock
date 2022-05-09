@@ -2,7 +2,7 @@
 - Save service_account json file sa-$ENV_FLAVOR.json
 - Run make
 - Enable Firebase authentication by click get started in the web client
-- Enable Google sign-in, change public-facing name
+- Enable Google sign-in, change public-facing name for signing in with iOS
 - Run config_firebase.sh
 - Enable Apple Push Notification https://firebase.flutter.dev/docs/messaging/apple-integration, key file in private_keys/APN
 - Run database/restore-firestore.sh
