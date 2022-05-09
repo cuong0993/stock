@@ -45,3 +45,8 @@ repos:
         name: Run kotlin check
         entry: bash -c "ktlint"
         language: system
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.2.0
+    hooks:
+      - id: detect-secrets
+        args: [ '--baseline', '.secrets.baseline' ]
