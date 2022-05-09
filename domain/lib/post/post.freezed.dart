@@ -129,9 +129,9 @@ class _$PostCopyWithImpl<$Res> implements $PostCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PostCopyWith<$Res> implements $PostCopyWith<$Res> {
-  factory _$PostCopyWith(_Post value, $Res Function(_Post) then) =
-      __$PostCopyWithImpl<$Res>;
+abstract class _$$_PostCopyWith<$Res> implements $PostCopyWith<$Res> {
+  factory _$$_PostCopyWith(_$_Post value, $Res Function(_$_Post) then) =
+      __$$_PostCopyWithImpl<$Res>;
   @override
   $Res call(
       {String userName,
@@ -149,13 +149,13 @@ abstract class _$PostCopyWith<$Res> implements $PostCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
-    implements _$PostCopyWith<$Res> {
-  __$PostCopyWithImpl(_Post _value, $Res Function(_Post) _then)
-      : super(_value, (v) => _then(v as _Post));
+class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
+    implements _$$_PostCopyWith<$Res> {
+  __$$_PostCopyWithImpl(_$_Post _value, $Res Function(_$_Post) _then)
+      : super(_value, (v) => _then(v as _$_Post));
 
   @override
-  _Post get _value => super._value as _Post;
+  _$_Post get _value => super._value as _$_Post;
 
   @override
   $Res call({
@@ -172,7 +172,7 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
     Object? images = freezed,
     Object? id = freezed,
   }) {
-    return _then(_Post(
+    return _then(_$_Post(
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -198,11 +198,11 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
           : commentCount // ignore: cast_nullable_to_non_nullable
               as int,
       likedUserIds: likedUserIds == freezed
-          ? _value.likedUserIds
+          ? _value._likedUserIds
           : likedUserIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       tags: tags == freezed
-          ? _value.tags
+          ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
       createdDate: createdDate == freezed
@@ -210,11 +210,11 @@ class __$PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res>
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       timeSlots: timeSlots == freezed
-          ? _value.timeSlots
+          ? _value._timeSlots
           : timeSlots // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
       images: images == freezed
-          ? _value.images
+          ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
       id: id == freezed
@@ -300,7 +300,7 @@ class _$_Post implements _Post {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Post &&
+            other is _$_Post &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality()
@@ -310,12 +310,13 @@ class _$_Post implements _Post {
             const DeepCollectionEquality()
                 .equals(other.commentCount, commentCount) &&
             const DeepCollectionEquality()
-                .equals(other.likedUserIds, likedUserIds) &&
-            const DeepCollectionEquality().equals(other.tags, tags) &&
+                .equals(other._likedUserIds, _likedUserIds) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality()
                 .equals(other.createdDate, createdDate) &&
-            const DeepCollectionEquality().equals(other.timeSlots, timeSlots) &&
-            const DeepCollectionEquality().equals(other.images, images) &&
+            const DeepCollectionEquality()
+                .equals(other._timeSlots, _timeSlots) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
             const DeepCollectionEquality().equals(other.id, id));
   }
 
@@ -328,17 +329,17 @@ class _$_Post implements _Post {
       const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(commentCount),
-      const DeepCollectionEquality().hash(likedUserIds),
-      const DeepCollectionEquality().hash(tags),
+      const DeepCollectionEquality().hash(_likedUserIds),
+      const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(createdDate),
-      const DeepCollectionEquality().hash(timeSlots),
-      const DeepCollectionEquality().hash(images),
+      const DeepCollectionEquality().hash(_timeSlots),
+      const DeepCollectionEquality().hash(_images),
       const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
-  _$PostCopyWith<_Post> get copyWith =>
-      __$PostCopyWithImpl<_Post>(this, _$identity);
+  _$$_PostCopyWith<_$_Post> get copyWith =>
+      __$$_PostCopyWithImpl<_$_Post>(this, _$identity);
 }
 
 abstract class _Post implements Post {
@@ -382,5 +383,5 @@ abstract class _Post implements Post {
   String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PostCopyWith<_Post> get copyWith => throw _privateConstructorUsedError;
+  _$$_PostCopyWith<_$_Post> get copyWith => throw _privateConstructorUsedError;
 }

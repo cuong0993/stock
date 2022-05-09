@@ -87,9 +87,9 @@ class _$LikeCopyWithImpl<$Res> implements $LikeCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LikeCopyWith<$Res> implements $LikeCopyWith<$Res> {
-  factory _$LikeCopyWith(_Like value, $Res Function(_Like) then) =
-      __$LikeCopyWithImpl<$Res>;
+abstract class _$$_LikeCopyWith<$Res> implements $LikeCopyWith<$Res> {
+  factory _$$_LikeCopyWith(_$_Like value, $Res Function(_$_Like) then) =
+      __$$_LikeCopyWithImpl<$Res>;
   @override
   $Res call(
       {String userName,
@@ -101,13 +101,13 @@ abstract class _$LikeCopyWith<$Res> implements $LikeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LikeCopyWithImpl<$Res> extends _$LikeCopyWithImpl<$Res>
-    implements _$LikeCopyWith<$Res> {
-  __$LikeCopyWithImpl(_Like _value, $Res Function(_Like) _then)
-      : super(_value, (v) => _then(v as _Like));
+class __$$_LikeCopyWithImpl<$Res> extends _$LikeCopyWithImpl<$Res>
+    implements _$$_LikeCopyWith<$Res> {
+  __$$_LikeCopyWithImpl(_$_Like _value, $Res Function(_$_Like) _then)
+      : super(_value, (v) => _then(v as _$_Like));
 
   @override
-  _Like get _value => super._value as _Like;
+  _$_Like get _value => super._value as _$_Like;
 
   @override
   $Res call({
@@ -118,7 +118,7 @@ class __$LikeCopyWithImpl<$Res> extends _$LikeCopyWithImpl<$Res>
     Object? createdDate = freezed,
     Object? id = freezed,
   }) {
-    return _then(_Like(
+    return _then(_$_Like(
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ class _$_Like implements _Like {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Like &&
+            other is _$_Like &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.postId, postId) &&
@@ -203,8 +203,8 @@ class _$_Like implements _Like {
 
   @JsonKey(ignore: true)
   @override
-  _$LikeCopyWith<_Like> get copyWith =>
-      __$LikeCopyWithImpl<_Like>(this, _$identity);
+  _$$_LikeCopyWith<_$_Like> get copyWith =>
+      __$$_LikeCopyWithImpl<_$_Like>(this, _$identity);
 }
 
 abstract class _Like implements Like {
@@ -230,5 +230,5 @@ abstract class _Like implements Like {
   String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LikeCopyWith<_Like> get copyWith => throw _privateConstructorUsedError;
+  _$$_LikeCopyWith<_$_Like> get copyWith => throw _privateConstructorUsedError;
 }

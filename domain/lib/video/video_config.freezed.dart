@@ -65,24 +65,24 @@ class _$VideoConfigCopyWithImpl<$Res> implements $VideoConfigCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$VideoConfigCopyWith<$Res>
+abstract class _$$_VideoConfigCopyWith<$Res>
     implements $VideoConfigCopyWith<$Res> {
-  factory _$VideoConfigCopyWith(
-          _VideoConfig value, $Res Function(_VideoConfig) then) =
-      __$VideoConfigCopyWithImpl<$Res>;
+  factory _$$_VideoConfigCopyWith(
+          _$_VideoConfig value, $Res Function(_$_VideoConfig) then) =
+      __$$_VideoConfigCopyWithImpl<$Res>;
   @override
   $Res call({String meetingId, bool isVideoEnabled, bool isAudioEnabled});
 }
 
 /// @nodoc
-class __$VideoConfigCopyWithImpl<$Res> extends _$VideoConfigCopyWithImpl<$Res>
-    implements _$VideoConfigCopyWith<$Res> {
-  __$VideoConfigCopyWithImpl(
-      _VideoConfig _value, $Res Function(_VideoConfig) _then)
-      : super(_value, (v) => _then(v as _VideoConfig));
+class __$$_VideoConfigCopyWithImpl<$Res> extends _$VideoConfigCopyWithImpl<$Res>
+    implements _$$_VideoConfigCopyWith<$Res> {
+  __$$_VideoConfigCopyWithImpl(
+      _$_VideoConfig _value, $Res Function(_$_VideoConfig) _then)
+      : super(_value, (v) => _then(v as _$_VideoConfig));
 
   @override
-  _VideoConfig get _value => super._value as _VideoConfig;
+  _$_VideoConfig get _value => super._value as _$_VideoConfig;
 
   @override
   $Res call({
@@ -90,7 +90,7 @@ class __$VideoConfigCopyWithImpl<$Res> extends _$VideoConfigCopyWithImpl<$Res>
     Object? isVideoEnabled = freezed,
     Object? isAudioEnabled = freezed,
   }) {
-    return _then(_VideoConfig(
+    return _then(_$_VideoConfig(
       meetingId: meetingId == freezed
           ? _value.meetingId
           : meetingId // ignore: cast_nullable_to_non_nullable
@@ -131,7 +131,7 @@ class _$_VideoConfig implements _VideoConfig {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _VideoConfig &&
+            other is _$_VideoConfig &&
             const DeepCollectionEquality().equals(other.meetingId, meetingId) &&
             const DeepCollectionEquality()
                 .equals(other.isVideoEnabled, isVideoEnabled) &&
@@ -148,8 +148,8 @@ class _$_VideoConfig implements _VideoConfig {
 
   @JsonKey(ignore: true)
   @override
-  _$VideoConfigCopyWith<_VideoConfig> get copyWith =>
-      __$VideoConfigCopyWithImpl<_VideoConfig>(this, _$identity);
+  _$$_VideoConfigCopyWith<_$_VideoConfig> get copyWith =>
+      __$$_VideoConfigCopyWithImpl<_$_VideoConfig>(this, _$identity);
 }
 
 abstract class _VideoConfig implements VideoConfig {
@@ -166,6 +166,6 @@ abstract class _VideoConfig implements VideoConfig {
   bool get isAudioEnabled => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$VideoConfigCopyWith<_VideoConfig> get copyWith =>
+  _$$_VideoConfigCopyWith<_$_VideoConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }

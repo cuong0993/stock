@@ -75,10 +75,11 @@ class _$VideoStateCopyWithImpl<$Res> implements $VideoStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$VideoStateCopyWith<$Res> implements $VideoStateCopyWith<$Res> {
-  factory _$VideoStateCopyWith(
-          _VideoState value, $Res Function(_VideoState) then) =
-      __$VideoStateCopyWithImpl<$Res>;
+abstract class _$$_VideoStateCopyWith<$Res>
+    implements $VideoStateCopyWith<$Res> {
+  factory _$$_VideoStateCopyWith(
+          _$_VideoState value, $Res Function(_$_VideoState) then) =
+      __$$_VideoStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<int> users,
@@ -88,14 +89,14 @@ abstract class _$VideoStateCopyWith<$Res> implements $VideoStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$VideoStateCopyWithImpl<$Res> extends _$VideoStateCopyWithImpl<$Res>
-    implements _$VideoStateCopyWith<$Res> {
-  __$VideoStateCopyWithImpl(
-      _VideoState _value, $Res Function(_VideoState) _then)
-      : super(_value, (v) => _then(v as _VideoState));
+class __$$_VideoStateCopyWithImpl<$Res> extends _$VideoStateCopyWithImpl<$Res>
+    implements _$$_VideoStateCopyWith<$Res> {
+  __$$_VideoStateCopyWithImpl(
+      _$_VideoState _value, $Res Function(_$_VideoState) _then)
+      : super(_value, (v) => _then(v as _$_VideoState));
 
   @override
-  _VideoState get _value => super._value as _VideoState;
+  _$_VideoState get _value => super._value as _$_VideoState;
 
   @override
   $Res call({
@@ -104,13 +105,13 @@ class __$VideoStateCopyWithImpl<$Res> extends _$VideoStateCopyWithImpl<$Res>
     Object? isVideoEnabled = freezed,
     Object? isAudioEnabled = freezed,
   }) {
-    return _then(_VideoState(
+    return _then(_$_VideoState(
       users: users == freezed
-          ? _value.users
+          ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
               as List<int>,
       infoStrings: infoStrings == freezed
-          ? _value.infoStrings
+          ? _value._infoStrings
           : infoStrings // ignore: cast_nullable_to_non_nullable
               as List<String>,
       isVideoEnabled: isVideoEnabled == freezed
@@ -164,10 +165,10 @@ class _$_VideoState implements _VideoState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _VideoState &&
-            const DeepCollectionEquality().equals(other.users, users) &&
+            other is _$_VideoState &&
+            const DeepCollectionEquality().equals(other._users, _users) &&
             const DeepCollectionEquality()
-                .equals(other.infoStrings, infoStrings) &&
+                .equals(other._infoStrings, _infoStrings) &&
             const DeepCollectionEquality()
                 .equals(other.isVideoEnabled, isVideoEnabled) &&
             const DeepCollectionEquality()
@@ -177,15 +178,15 @@ class _$_VideoState implements _VideoState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(users),
-      const DeepCollectionEquality().hash(infoStrings),
+      const DeepCollectionEquality().hash(_users),
+      const DeepCollectionEquality().hash(_infoStrings),
       const DeepCollectionEquality().hash(isVideoEnabled),
       const DeepCollectionEquality().hash(isAudioEnabled));
 
   @JsonKey(ignore: true)
   @override
-  _$VideoStateCopyWith<_VideoState> get copyWith =>
-      __$VideoStateCopyWithImpl<_VideoState>(this, _$identity);
+  _$$_VideoStateCopyWith<_$_VideoState> get copyWith =>
+      __$$_VideoStateCopyWithImpl<_$_VideoState>(this, _$identity);
 }
 
 abstract class _VideoState implements VideoState {
@@ -205,6 +206,6 @@ abstract class _VideoState implements VideoState {
   bool get isAudioEnabled => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$VideoStateCopyWith<_VideoState> get copyWith =>
+  _$$_VideoStateCopyWith<_$_VideoState> get copyWith =>
       throw _privateConstructorUsedError;
 }

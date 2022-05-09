@@ -94,9 +94,10 @@ class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
-  factory _$CommentCopyWith(_Comment value, $Res Function(_Comment) then) =
-      __$CommentCopyWithImpl<$Res>;
+abstract class _$$_CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
+  factory _$$_CommentCopyWith(
+          _$_Comment value, $Res Function(_$_Comment) then) =
+      __$$_CommentCopyWithImpl<$Res>;
   @override
   $Res call(
       {String userName,
@@ -109,13 +110,13 @@ abstract class _$CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
-    implements _$CommentCopyWith<$Res> {
-  __$CommentCopyWithImpl(_Comment _value, $Res Function(_Comment) _then)
-      : super(_value, (v) => _then(v as _Comment));
+class __$$_CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
+    implements _$$_CommentCopyWith<$Res> {
+  __$$_CommentCopyWithImpl(_$_Comment _value, $Res Function(_$_Comment) _then)
+      : super(_value, (v) => _then(v as _$_Comment));
 
   @override
-  _Comment get _value => super._value as _Comment;
+  _$_Comment get _value => super._value as _$_Comment;
 
   @override
   $Res call({
@@ -127,7 +128,7 @@ class __$CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
     Object? createdDate = freezed,
     Object? id = freezed,
   }) {
-    return _then(_Comment(
+    return _then(_$_Comment(
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -196,7 +197,7 @@ class _$_Comment implements _Comment {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Comment &&
+            other is _$_Comment &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.postId, postId) &&
@@ -221,8 +222,8 @@ class _$_Comment implements _Comment {
 
   @JsonKey(ignore: true)
   @override
-  _$CommentCopyWith<_Comment> get copyWith =>
-      __$CommentCopyWithImpl<_Comment>(this, _$identity);
+  _$$_CommentCopyWith<_$_Comment> get copyWith =>
+      __$$_CommentCopyWithImpl<_$_Comment>(this, _$identity);
 }
 
 abstract class _Comment implements Comment {
@@ -251,6 +252,6 @@ abstract class _Comment implements Comment {
   String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CommentCopyWith<_Comment> get copyWith =>
+  _$$_CommentCopyWith<_$_Comment> get copyWith =>
       throw _privateConstructorUsedError;
 }

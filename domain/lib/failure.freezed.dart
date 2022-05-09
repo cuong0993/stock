@@ -66,22 +66,22 @@ class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$FailureServerErrorCopyWith<$Res> {
-  factory _$FailureServerErrorCopyWith(
-          _FailureServerError value, $Res Function(_FailureServerError) then) =
-      __$FailureServerErrorCopyWithImpl<$Res>;
+abstract class _$$_FailureServerErrorCopyWith<$Res> {
+  factory _$$_FailureServerErrorCopyWith(_$_FailureServerError value,
+          $Res Function(_$_FailureServerError) then) =
+      __$$_FailureServerErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FailureServerErrorCopyWithImpl<$Res>
+class __$$_FailureServerErrorCopyWithImpl<$Res>
     extends _$FailureCopyWithImpl<$Res>
-    implements _$FailureServerErrorCopyWith<$Res> {
-  __$FailureServerErrorCopyWithImpl(
-      _FailureServerError _value, $Res Function(_FailureServerError) _then)
-      : super(_value, (v) => _then(v as _FailureServerError));
+    implements _$$_FailureServerErrorCopyWith<$Res> {
+  __$$_FailureServerErrorCopyWithImpl(
+      _$_FailureServerError _value, $Res Function(_$_FailureServerError) _then)
+      : super(_value, (v) => _then(v as _$_FailureServerError));
 
   @override
-  _FailureServerError get _value => super._value as _FailureServerError;
+  _$_FailureServerError get _value => super._value as _$_FailureServerError;
 }
 
 /// @nodoc
@@ -97,7 +97,7 @@ class _$_FailureServerError implements _FailureServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FailureServerError);
+        (other.runtimeType == runtimeType && other is _$_FailureServerError);
   }
 
   @override

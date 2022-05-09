@@ -66,25 +66,26 @@ class _$ConversationCopyWithImpl<$Res> implements $ConversationCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ConversationCopyWith<$Res>
+abstract class _$$_ConversationCopyWith<$Res>
     implements $ConversationCopyWith<$Res> {
-  factory _$ConversationCopyWith(
-          _Conversation value, $Res Function(_Conversation) then) =
-      __$ConversationCopyWithImpl<$Res>;
+  factory _$$_ConversationCopyWith(
+          _$_Conversation value, $Res Function(_$_Conversation) then) =
+      __$$_ConversationCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<String> participantIds, Map<String, int> lastViews, String id});
 }
 
 /// @nodoc
-class __$ConversationCopyWithImpl<$Res> extends _$ConversationCopyWithImpl<$Res>
-    implements _$ConversationCopyWith<$Res> {
-  __$ConversationCopyWithImpl(
-      _Conversation _value, $Res Function(_Conversation) _then)
-      : super(_value, (v) => _then(v as _Conversation));
+class __$$_ConversationCopyWithImpl<$Res>
+    extends _$ConversationCopyWithImpl<$Res>
+    implements _$$_ConversationCopyWith<$Res> {
+  __$$_ConversationCopyWithImpl(
+      _$_Conversation _value, $Res Function(_$_Conversation) _then)
+      : super(_value, (v) => _then(v as _$_Conversation));
 
   @override
-  _Conversation get _value => super._value as _Conversation;
+  _$_Conversation get _value => super._value as _$_Conversation;
 
   @override
   $Res call({
@@ -92,13 +93,13 @@ class __$ConversationCopyWithImpl<$Res> extends _$ConversationCopyWithImpl<$Res>
     Object? lastViews = freezed,
     Object? id = freezed,
   }) {
-    return _then(_Conversation(
+    return _then(_$_Conversation(
       participantIds: participantIds == freezed
-          ? _value.participantIds
+          ? _value._participantIds
           : participantIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       lastViews: lastViews == freezed
-          ? _value.lastViews
+          ? _value._lastViews
           : lastViews // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
       id: id == freezed
@@ -145,24 +146,25 @@ class _$_Conversation implements _Conversation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Conversation &&
+            other is _$_Conversation &&
             const DeepCollectionEquality()
-                .equals(other.participantIds, participantIds) &&
-            const DeepCollectionEquality().equals(other.lastViews, lastViews) &&
+                .equals(other._participantIds, _participantIds) &&
+            const DeepCollectionEquality()
+                .equals(other._lastViews, _lastViews) &&
             const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(participantIds),
-      const DeepCollectionEquality().hash(lastViews),
+      const DeepCollectionEquality().hash(_participantIds),
+      const DeepCollectionEquality().hash(_lastViews),
       const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
-  _$ConversationCopyWith<_Conversation> get copyWith =>
-      __$ConversationCopyWithImpl<_Conversation>(this, _$identity);
+  _$$_ConversationCopyWith<_$_Conversation> get copyWith =>
+      __$$_ConversationCopyWithImpl<_$_Conversation>(this, _$identity);
 }
 
 abstract class _Conversation implements Conversation {
@@ -179,6 +181,6 @@ abstract class _Conversation implements Conversation {
   String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ConversationCopyWith<_Conversation> get copyWith =>
+  _$$_ConversationCopyWith<_$_Conversation> get copyWith =>
       throw _privateConstructorUsedError;
 }

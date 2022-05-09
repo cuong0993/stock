@@ -102,9 +102,10 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
-  factory _$MeetingCopyWith(_Meeting value, $Res Function(_Meeting) then) =
-      __$MeetingCopyWithImpl<$Res>;
+abstract class _$$_MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
+  factory _$$_MeetingCopyWith(
+          _$_Meeting value, $Res Function(_$_Meeting) then) =
+      __$$_MeetingCopyWithImpl<$Res>;
   @override
   $Res call(
       {Map<String, bool> participantIds,
@@ -118,13 +119,13 @@ abstract class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MeetingCopyWithImpl<$Res> extends _$MeetingCopyWithImpl<$Res>
-    implements _$MeetingCopyWith<$Res> {
-  __$MeetingCopyWithImpl(_Meeting _value, $Res Function(_Meeting) _then)
-      : super(_value, (v) => _then(v as _Meeting));
+class __$$_MeetingCopyWithImpl<$Res> extends _$MeetingCopyWithImpl<$Res>
+    implements _$$_MeetingCopyWith<$Res> {
+  __$$_MeetingCopyWithImpl(_$_Meeting _value, $Res Function(_$_Meeting) _then)
+      : super(_value, (v) => _then(v as _$_Meeting));
 
   @override
-  _Meeting get _value => super._value as _Meeting;
+  _$_Meeting get _value => super._value as _$_Meeting;
 
   @override
   $Res call({
@@ -137,17 +138,17 @@ class __$MeetingCopyWithImpl<$Res> extends _$MeetingCopyWithImpl<$Res>
     Object? createdUserId = freezed,
     Object? participantCount = freezed,
   }) {
-    return _then(_Meeting(
+    return _then(_$_Meeting(
       participantIds: participantIds == freezed
-          ? _value.participantIds
+          ? _value._participantIds
           : participantIds // ignore: cast_nullable_to_non_nullable
               as Map<String, bool>,
       participantNames: participantNames == freezed
-          ? _value.participantNames
+          ? _value._participantNames
           : participantNames // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
       participantUrls: participantUrls == freezed
-          ? _value.participantUrls
+          ? _value._participantUrls
           : participantUrls // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
       id: id == freezed
@@ -231,13 +232,13 @@ class _$_Meeting implements _Meeting {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Meeting &&
+            other is _$_Meeting &&
             const DeepCollectionEquality()
-                .equals(other.participantIds, participantIds) &&
+                .equals(other._participantIds, _participantIds) &&
             const DeepCollectionEquality()
-                .equals(other.participantNames, participantNames) &&
+                .equals(other._participantNames, _participantNames) &&
             const DeepCollectionEquality()
-                .equals(other.participantUrls, participantUrls) &&
+                .equals(other._participantUrls, _participantUrls) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.time, time) &&
@@ -250,9 +251,9 @@ class _$_Meeting implements _Meeting {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(participantIds),
-      const DeepCollectionEquality().hash(participantNames),
-      const DeepCollectionEquality().hash(participantUrls),
+      const DeepCollectionEquality().hash(_participantIds),
+      const DeepCollectionEquality().hash(_participantNames),
+      const DeepCollectionEquality().hash(_participantUrls),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(time),
@@ -261,8 +262,8 @@ class _$_Meeting implements _Meeting {
 
   @JsonKey(ignore: true)
   @override
-  _$MeetingCopyWith<_Meeting> get copyWith =>
-      __$MeetingCopyWithImpl<_Meeting>(this, _$identity);
+  _$$_MeetingCopyWith<_$_Meeting> get copyWith =>
+      __$$_MeetingCopyWithImpl<_$_Meeting>(this, _$identity);
 }
 
 abstract class _Meeting implements Meeting {
@@ -295,6 +296,6 @@ abstract class _Meeting implements Meeting {
   int get participantCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MeetingCopyWith<_Meeting> get copyWith =>
+  _$$_MeetingCopyWith<_$_Meeting> get copyWith =>
       throw _privateConstructorUsedError;
 }

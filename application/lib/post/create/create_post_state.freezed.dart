@@ -83,11 +83,11 @@ class _$CreatePostStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CreatePostStateCopyWith<$Res>
+abstract class _$$_CreatePostStateCopyWith<$Res>
     implements $CreatePostStateCopyWith<$Res> {
-  factory _$CreatePostStateCopyWith(
-          _CreatePostState value, $Res Function(_CreatePostState) then) =
-      __$CreatePostStateCopyWithImpl<$Res>;
+  factory _$$_CreatePostStateCopyWith(
+          _$_CreatePostState value, $Res Function(_$_CreatePostState) then) =
+      __$$_CreatePostStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<String> imageUrls,
@@ -98,15 +98,15 @@ abstract class _$CreatePostStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CreatePostStateCopyWithImpl<$Res>
+class __$$_CreatePostStateCopyWithImpl<$Res>
     extends _$CreatePostStateCopyWithImpl<$Res>
-    implements _$CreatePostStateCopyWith<$Res> {
-  __$CreatePostStateCopyWithImpl(
-      _CreatePostState _value, $Res Function(_CreatePostState) _then)
-      : super(_value, (v) => _then(v as _CreatePostState));
+    implements _$$_CreatePostStateCopyWith<$Res> {
+  __$$_CreatePostStateCopyWithImpl(
+      _$_CreatePostState _value, $Res Function(_$_CreatePostState) _then)
+      : super(_value, (v) => _then(v as _$_CreatePostState));
 
   @override
-  _CreatePostState get _value => super._value as _CreatePostState;
+  _$_CreatePostState get _value => super._value as _$_CreatePostState;
 
   @override
   $Res call({
@@ -116,13 +116,13 @@ class __$CreatePostStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? timeSlots = freezed,
   }) {
-    return _then(_CreatePostState(
+    return _then(_$_CreatePostState(
       imageUrls: imageUrls == freezed
-          ? _value.imageUrls
+          ? _value._imageUrls
           : imageUrls // ignore: cast_nullable_to_non_nullable
               as List<String>,
       tags: tags == freezed
-          ? _value.tags
+          ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
       text: text == freezed
@@ -134,7 +134,7 @@ class __$CreatePostStateCopyWithImpl<$Res>
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       timeSlots: timeSlots == freezed
-          ? _value.timeSlots
+          ? _value._timeSlots
           : timeSlots // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
     ));
@@ -188,27 +188,29 @@ class _$_CreatePostState implements _CreatePostState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CreatePostState &&
-            const DeepCollectionEquality().equals(other.imageUrls, imageUrls) &&
-            const DeepCollectionEquality().equals(other.tags, tags) &&
+            other is _$_CreatePostState &&
+            const DeepCollectionEquality()
+                .equals(other._imageUrls, _imageUrls) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.timeSlots, timeSlots));
+            const DeepCollectionEquality()
+                .equals(other._timeSlots, _timeSlots));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(imageUrls),
-      const DeepCollectionEquality().hash(tags),
+      const DeepCollectionEquality().hash(_imageUrls),
+      const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(timeSlots));
+      const DeepCollectionEquality().hash(_timeSlots));
 
   @JsonKey(ignore: true)
   @override
-  _$CreatePostStateCopyWith<_CreatePostState> get copyWith =>
-      __$CreatePostStateCopyWithImpl<_CreatePostState>(this, _$identity);
+  _$$_CreatePostStateCopyWith<_$_CreatePostState> get copyWith =>
+      __$$_CreatePostStateCopyWithImpl<_$_CreatePostState>(this, _$identity);
 }
 
 abstract class _CreatePostState implements CreatePostState {
@@ -231,6 +233,6 @@ abstract class _CreatePostState implements CreatePostState {
   List<DateTime> get timeSlots => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CreatePostStateCopyWith<_CreatePostState> get copyWith =>
+  _$$_CreatePostStateCopyWith<_$_CreatePostState> get copyWith =>
       throw _privateConstructorUsedError;
 }

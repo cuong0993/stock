@@ -82,23 +82,25 @@ class _$AuthenticationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $AuthenticationStateLoadingCopyWith<$Res> {
-  factory $AuthenticationStateLoadingCopyWith(AuthenticationStateLoading value,
-          $Res Function(AuthenticationStateLoading) then) =
-      _$AuthenticationStateLoadingCopyWithImpl<$Res>;
+abstract class _$$AuthenticationStateLoadingCopyWith<$Res> {
+  factory _$$AuthenticationStateLoadingCopyWith(
+          _$AuthenticationStateLoading value,
+          $Res Function(_$AuthenticationStateLoading) then) =
+      __$$AuthenticationStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthenticationStateLoadingCopyWithImpl<$Res>
+class __$$AuthenticationStateLoadingCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements $AuthenticationStateLoadingCopyWith<$Res> {
-  _$AuthenticationStateLoadingCopyWithImpl(AuthenticationStateLoading _value,
-      $Res Function(AuthenticationStateLoading) _then)
-      : super(_value, (v) => _then(v as AuthenticationStateLoading));
+    implements _$$AuthenticationStateLoadingCopyWith<$Res> {
+  __$$AuthenticationStateLoadingCopyWithImpl(
+      _$AuthenticationStateLoading _value,
+      $Res Function(_$AuthenticationStateLoading) _then)
+      : super(_value, (v) => _then(v as _$AuthenticationStateLoading));
 
   @override
-  AuthenticationStateLoading get _value =>
-      super._value as AuthenticationStateLoading;
+  _$AuthenticationStateLoading get _value =>
+      super._value as _$AuthenticationStateLoading;
 }
 
 /// @nodoc
@@ -115,7 +117,7 @@ class _$AuthenticationStateLoading implements AuthenticationStateLoading {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AuthenticationStateLoading);
+            other is _$AuthenticationStateLoading);
   }
 
   @override
@@ -197,25 +199,25 @@ abstract class AuthenticationStateLoading implements AuthenticationState {
 }
 
 /// @nodoc
-abstract class $AuthenticationStateAuthenticatedCopyWith<$Res> {
-  factory $AuthenticationStateAuthenticatedCopyWith(
-          AuthenticationStateAuthenticated value,
-          $Res Function(AuthenticationStateAuthenticated) then) =
-      _$AuthenticationStateAuthenticatedCopyWithImpl<$Res>;
+abstract class _$$AuthenticationStateAuthenticatedCopyWith<$Res> {
+  factory _$$AuthenticationStateAuthenticatedCopyWith(
+          _$AuthenticationStateAuthenticated value,
+          $Res Function(_$AuthenticationStateAuthenticated) then) =
+      __$$AuthenticationStateAuthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthenticationStateAuthenticatedCopyWithImpl<$Res>
+class __$$AuthenticationStateAuthenticatedCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements $AuthenticationStateAuthenticatedCopyWith<$Res> {
-  _$AuthenticationStateAuthenticatedCopyWithImpl(
-      AuthenticationStateAuthenticated _value,
-      $Res Function(AuthenticationStateAuthenticated) _then)
-      : super(_value, (v) => _then(v as AuthenticationStateAuthenticated));
+    implements _$$AuthenticationStateAuthenticatedCopyWith<$Res> {
+  __$$AuthenticationStateAuthenticatedCopyWithImpl(
+      _$AuthenticationStateAuthenticated _value,
+      $Res Function(_$AuthenticationStateAuthenticated) _then)
+      : super(_value, (v) => _then(v as _$AuthenticationStateAuthenticated));
 
   @override
-  AuthenticationStateAuthenticated get _value =>
-      super._value as AuthenticationStateAuthenticated;
+  _$AuthenticationStateAuthenticated get _value =>
+      super._value as _$AuthenticationStateAuthenticated;
 }
 
 /// @nodoc
@@ -233,7 +235,7 @@ class _$AuthenticationStateAuthenticated
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AuthenticationStateAuthenticated);
+            other is _$AuthenticationStateAuthenticated);
   }
 
   @override
@@ -316,25 +318,25 @@ abstract class AuthenticationStateAuthenticated implements AuthenticationState {
 }
 
 /// @nodoc
-abstract class $AuthenticationStateUnauthenticatedCopyWith<$Res> {
-  factory $AuthenticationStateUnauthenticatedCopyWith(
-          AuthenticationStateUnauthenticated value,
-          $Res Function(AuthenticationStateUnauthenticated) then) =
-      _$AuthenticationStateUnauthenticatedCopyWithImpl<$Res>;
+abstract class _$$AuthenticationStateUnauthenticatedCopyWith<$Res> {
+  factory _$$AuthenticationStateUnauthenticatedCopyWith(
+          _$AuthenticationStateUnauthenticated value,
+          $Res Function(_$AuthenticationStateUnauthenticated) then) =
+      __$$AuthenticationStateUnauthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthenticationStateUnauthenticatedCopyWithImpl<$Res>
+class __$$AuthenticationStateUnauthenticatedCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
-    implements $AuthenticationStateUnauthenticatedCopyWith<$Res> {
-  _$AuthenticationStateUnauthenticatedCopyWithImpl(
-      AuthenticationStateUnauthenticated _value,
-      $Res Function(AuthenticationStateUnauthenticated) _then)
-      : super(_value, (v) => _then(v as AuthenticationStateUnauthenticated));
+    implements _$$AuthenticationStateUnauthenticatedCopyWith<$Res> {
+  __$$AuthenticationStateUnauthenticatedCopyWithImpl(
+      _$AuthenticationStateUnauthenticated _value,
+      $Res Function(_$AuthenticationStateUnauthenticated) _then)
+      : super(_value, (v) => _then(v as _$AuthenticationStateUnauthenticated));
 
   @override
-  AuthenticationStateUnauthenticated get _value =>
-      super._value as AuthenticationStateUnauthenticated;
+  _$AuthenticationStateUnauthenticated get _value =>
+      super._value as _$AuthenticationStateUnauthenticated;
 }
 
 /// @nodoc
@@ -352,7 +354,7 @@ class _$AuthenticationStateUnauthenticated
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AuthenticationStateUnauthenticated);
+            other is _$AuthenticationStateUnauthenticated);
   }
 
   @override

@@ -73,23 +73,25 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $AuthFailureCancelledByUserCopyWith<$Res> {
-  factory $AuthFailureCancelledByUserCopyWith(AuthFailureCancelledByUser value,
-          $Res Function(AuthFailureCancelledByUser) then) =
-      _$AuthFailureCancelledByUserCopyWithImpl<$Res>;
+abstract class _$$AuthFailureCancelledByUserCopyWith<$Res> {
+  factory _$$AuthFailureCancelledByUserCopyWith(
+          _$AuthFailureCancelledByUser value,
+          $Res Function(_$AuthFailureCancelledByUser) then) =
+      __$$AuthFailureCancelledByUserCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthFailureCancelledByUserCopyWithImpl<$Res>
+class __$$AuthFailureCancelledByUserCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
-    implements $AuthFailureCancelledByUserCopyWith<$Res> {
-  _$AuthFailureCancelledByUserCopyWithImpl(AuthFailureCancelledByUser _value,
-      $Res Function(AuthFailureCancelledByUser) _then)
-      : super(_value, (v) => _then(v as AuthFailureCancelledByUser));
+    implements _$$AuthFailureCancelledByUserCopyWith<$Res> {
+  __$$AuthFailureCancelledByUserCopyWithImpl(
+      _$AuthFailureCancelledByUser _value,
+      $Res Function(_$AuthFailureCancelledByUser) _then)
+      : super(_value, (v) => _then(v as _$AuthFailureCancelledByUser));
 
   @override
-  AuthFailureCancelledByUser get _value =>
-      super._value as AuthFailureCancelledByUser;
+  _$AuthFailureCancelledByUser get _value =>
+      super._value as _$AuthFailureCancelledByUser;
 }
 
 /// @nodoc
@@ -106,7 +108,7 @@ class _$AuthFailureCancelledByUser implements AuthFailureCancelledByUser {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AuthFailureCancelledByUser);
+            other is _$AuthFailureCancelledByUser);
   }
 
   @override
@@ -180,22 +182,23 @@ abstract class AuthFailureCancelledByUser implements AuthFailure {
 }
 
 /// @nodoc
-abstract class $AuthFailureServerErrorCopyWith<$Res> {
-  factory $AuthFailureServerErrorCopyWith(AuthFailureServerError value,
-          $Res Function(AuthFailureServerError) then) =
-      _$AuthFailureServerErrorCopyWithImpl<$Res>;
+abstract class _$$AuthFailureServerErrorCopyWith<$Res> {
+  factory _$$AuthFailureServerErrorCopyWith(_$AuthFailureServerError value,
+          $Res Function(_$AuthFailureServerError) then) =
+      __$$AuthFailureServerErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthFailureServerErrorCopyWithImpl<$Res>
+class __$$AuthFailureServerErrorCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
-    implements $AuthFailureServerErrorCopyWith<$Res> {
-  _$AuthFailureServerErrorCopyWithImpl(AuthFailureServerError _value,
-      $Res Function(AuthFailureServerError) _then)
-      : super(_value, (v) => _then(v as AuthFailureServerError));
+    implements _$$AuthFailureServerErrorCopyWith<$Res> {
+  __$$AuthFailureServerErrorCopyWithImpl(_$AuthFailureServerError _value,
+      $Res Function(_$AuthFailureServerError) _then)
+      : super(_value, (v) => _then(v as _$AuthFailureServerError));
 
   @override
-  AuthFailureServerError get _value => super._value as AuthFailureServerError;
+  _$AuthFailureServerError get _value =>
+      super._value as _$AuthFailureServerError;
 }
 
 /// @nodoc
@@ -211,7 +214,7 @@ class _$AuthFailureServerError implements AuthFailureServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AuthFailureServerError);
+        (other.runtimeType == runtimeType && other is _$AuthFailureServerError);
   }
 
   @override

@@ -69,11 +69,11 @@ class _$EditUserStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$EditUserStateCopyWith<$Res>
+abstract class _$$_EditUserStateCopyWith<$Res>
     implements $EditUserStateCopyWith<$Res> {
-  factory _$EditUserStateCopyWith(
-          _EditUserState value, $Res Function(_EditUserState) then) =
-      __$EditUserStateCopyWithImpl<$Res>;
+  factory _$$_EditUserStateCopyWith(
+          _$_EditUserState value, $Res Function(_$_EditUserState) then) =
+      __$$_EditUserStateCopyWithImpl<$Res>;
   @override
   $Res call({String? newProfileImagePath, User user});
 
@@ -82,22 +82,22 @@ abstract class _$EditUserStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$EditUserStateCopyWithImpl<$Res>
+class __$$_EditUserStateCopyWithImpl<$Res>
     extends _$EditUserStateCopyWithImpl<$Res>
-    implements _$EditUserStateCopyWith<$Res> {
-  __$EditUserStateCopyWithImpl(
-      _EditUserState _value, $Res Function(_EditUserState) _then)
-      : super(_value, (v) => _then(v as _EditUserState));
+    implements _$$_EditUserStateCopyWith<$Res> {
+  __$$_EditUserStateCopyWithImpl(
+      _$_EditUserState _value, $Res Function(_$_EditUserState) _then)
+      : super(_value, (v) => _then(v as _$_EditUserState));
 
   @override
-  _EditUserState get _value => super._value as _EditUserState;
+  _$_EditUserState get _value => super._value as _$_EditUserState;
 
   @override
   $Res call({
     Object? newProfileImagePath = freezed,
     Object? user = freezed,
   }) {
-    return _then(_EditUserState(
+    return _then(_$_EditUserState(
       newProfileImagePath: newProfileImagePath == freezed
           ? _value.newProfileImagePath
           : newProfileImagePath // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ class _$_EditUserState implements _EditUserState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _EditUserState &&
+            other is _$_EditUserState &&
             const DeepCollectionEquality()
                 .equals(other.newProfileImagePath, newProfileImagePath) &&
             const DeepCollectionEquality().equals(other.user, user));
@@ -143,8 +143,8 @@ class _$_EditUserState implements _EditUserState {
 
   @JsonKey(ignore: true)
   @override
-  _$EditUserStateCopyWith<_EditUserState> get copyWith =>
-      __$EditUserStateCopyWithImpl<_EditUserState>(this, _$identity);
+  _$$_EditUserStateCopyWith<_$_EditUserState> get copyWith =>
+      __$$_EditUserStateCopyWithImpl<_$_EditUserState>(this, _$identity);
 }
 
 abstract class _EditUserState implements EditUserState {
@@ -158,6 +158,6 @@ abstract class _EditUserState implements EditUserState {
   User get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$EditUserStateCopyWith<_EditUserState> get copyWith =>
+  _$$_EditUserStateCopyWith<_$_EditUserState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -94,9 +94,10 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
-  factory _$MessageCopyWith(_Message value, $Res Function(_Message) then) =
-      __$MessageCopyWithImpl<$Res>;
+abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
+  factory _$$_MessageCopyWith(
+          _$_Message value, $Res Function(_$_Message) then) =
+      __$$_MessageCopyWithImpl<$Res>;
   @override
   $Res call(
       {String userName,
@@ -109,13 +110,13 @@ abstract class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
-    implements _$MessageCopyWith<$Res> {
-  __$MessageCopyWithImpl(_Message _value, $Res Function(_Message) _then)
-      : super(_value, (v) => _then(v as _Message));
+class __$$_MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
+    implements _$$_MessageCopyWith<$Res> {
+  __$$_MessageCopyWithImpl(_$_Message _value, $Res Function(_$_Message) _then)
+      : super(_value, (v) => _then(v as _$_Message));
 
   @override
-  _Message get _value => super._value as _Message;
+  _$_Message get _value => super._value as _$_Message;
 
   @override
   $Res call({
@@ -127,7 +128,7 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
     Object? createdDate = freezed,
     Object? id = freezed,
   }) {
-    return _then(_Message(
+    return _then(_$_Message(
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -196,7 +197,7 @@ class _$_Message implements _Message {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Message &&
+            other is _$_Message &&
             const DeepCollectionEquality().equals(other.userName, userName) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality()
@@ -222,8 +223,8 @@ class _$_Message implements _Message {
 
   @JsonKey(ignore: true)
   @override
-  _$MessageCopyWith<_Message> get copyWith =>
-      __$MessageCopyWithImpl<_Message>(this, _$identity);
+  _$$_MessageCopyWith<_$_Message> get copyWith =>
+      __$$_MessageCopyWithImpl<_$_Message>(this, _$identity);
 }
 
 abstract class _Message implements Message {
@@ -252,6 +253,6 @@ abstract class _Message implements Message {
   String get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MessageCopyWith<_Message> get copyWith =>
+  _$$_MessageCopyWith<_$_Message> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,6 +12,7 @@
 
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/widgets.dart' as _i14;
 
 import '../authentication/authentication_page.dart' as _i5;
 import '../authentication/require_authentication_page.dart' as _i11;
@@ -32,20 +33,20 @@ class RootRouter extends _i12.RootStackRouter {
   @override
   final Map<String, _i12.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i1.SplashPage());
     },
     HomeRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i2.HomePage());
     },
     CreatePostRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i3.CreatePostPage());
     },
     DetailPostRoute.name: (routeData) {
       final args = routeData.argsAs<DetailPostRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData,
           child: _i4.DetailPostPage(
               postId: args.postId,
@@ -53,30 +54,30 @@ class RootRouter extends _i12.RootStackRouter {
               key: args.key));
     },
     AuthenticationRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i5.AuthenticationPage());
     },
     UserRoute.name: (routeData) {
       final args = routeData.argsAs<UserRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData,
           child: _i6.UserPage(userId: args.userId, key: args.key));
     },
     LocaleRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i7.LocalePage());
     },
     ThemeRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i8.ThemePage());
     },
     SettingsRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i9.SettingsPage());
     },
     MessageRoute.name: (routeData) {
       final args = routeData.argsAs<MessageRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData,
           child: _i10.MessagePage(
               conversationId: args.conversationId,
@@ -85,7 +86,7 @@ class RootRouter extends _i12.RootStackRouter {
               key: args.key));
     },
     RequireAuthenticationRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<_i14.Widget>(
           routeData: routeData, child: const _i11.RequireAuthenticationPage());
     }
   };
@@ -137,7 +138,7 @@ class CreatePostRoute extends _i12.PageRouteInfo<void> {
 /// [_i4.DetailPostPage]
 class DetailPostRoute extends _i12.PageRouteInfo<DetailPostRouteArgs> {
   DetailPostRoute(
-      {required String postId, required bool isGoingToComment, _i13.Key? key})
+      {required String postId, required bool isGoingToComment, _i14.Key? key})
       : super(DetailPostRoute.name,
             path: '/detail-post-page',
             args: DetailPostRouteArgs(
@@ -154,7 +155,7 @@ class DetailPostRouteArgs {
 
   final bool isGoingToComment;
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -174,7 +175,7 @@ class AuthenticationRoute extends _i12.PageRouteInfo<void> {
 /// generated route for
 /// [_i6.UserPage]
 class UserRoute extends _i12.PageRouteInfo<UserRouteArgs> {
-  UserRoute({required String userId, _i13.Key? key})
+  UserRoute({required String userId, _i14.Key? key})
       : super(UserRoute.name,
             path: '/user-page', args: UserRouteArgs(userId: userId, key: key));
 
@@ -186,7 +187,7 @@ class UserRouteArgs {
 
   final String userId;
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -225,7 +226,7 @@ class MessageRoute extends _i12.PageRouteInfo<MessageRouteArgs> {
       {required String? conversationId,
       required bool isGoingToMessage,
       required List<String> userIds,
-      _i13.Key? key})
+      _i14.Key? key})
       : super(MessageRoute.name,
             path: '/message-page',
             args: MessageRouteArgs(
@@ -250,7 +251,7 @@ class MessageRouteArgs {
 
   final List<String> userIds;
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
