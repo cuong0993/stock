@@ -19,7 +19,7 @@ class ThemePage extends ConsumerWidget {
             final themeName = ref.watch(appProvider).themeName;
 
             return Scrollbar(
-              isAlwaysShown: true,
+              thumbVisibility: true,
               child: ListView.builder(
                 itemCount: ThemeMode.values.length,
                 itemBuilder: (context, index) => RadioListTile<ThemeMode>(

@@ -38,7 +38,7 @@ class SelectTimesWidget extends HookWidget {
           AppBar(title: const Text('Time')),
           Expanded(
             child: Scrollbar(
-              isAlwaysShown: true,
+              thumbVisibility: true,
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: timeOfDays.length,

@@ -1,13 +1,7 @@
-name: stock
-
-environment:
-  sdk: '>=2.15.0 <3.0.0'
-
 dependencies:
   animations: any
   application:
     path: ./application
-  auto_route: any
   cached_network_image: any
   data:
     path: ./data
@@ -23,6 +17,7 @@ dependencies:
     sdk: flutter
   flutter_staggered_grid_view: any
   flutter_svg: any
+  go_router: any
   hooks_riverpod: any
   image_picker: any
   in_app_review: any
@@ -37,33 +32,31 @@ dependencies:
   url_launcher: any
   window_size:
     git:
-      url: https://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
-
+      url: https://github.com/google/flutter-desktop-embedding.git
 dev_dependencies:
-  auto_route_generator: any
   build_runner: any
   dart_code_metrics: any
   dependency_validator: any
   flutter_launcher_icons: any
   flutter_native_splash: any
-  # golden_toolkit: any
-
-flutter_icons:
-  image_path_android: assets/blank.png
-  image_path_ios: assets/blank.png
-  android: true
-  ios: true
-  adaptive_icon_background: assets/blank.png
-  adaptive_icon_foreground: assets/blank.png
-
-flutter_native_splash:
-  color: '#000000'
-  image: assets/blank.png
-  fullscreen: true
-
+  go_router_builder: any
+environment:
+  sdk: '>=2.17.0 <3.0.0'
 flutter:
   assets:
     - assets/images/
   generate: true
   uses-material-design: true
+flutter_icons:
+  adaptive_icon_background: assets/blank.png
+  adaptive_icon_foreground: assets/blank.png
+  android: true
+  image_path_android: assets/blank.png
+  image_path_ios: assets/blank.png
+  ios: true
+flutter_native_splash:
+  color: "#000000"
+  fullscreen: true
+  image: assets/blank.png
+name: stock

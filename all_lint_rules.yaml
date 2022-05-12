@@ -1,4 +1,3 @@
-# Copy from https://raw.githubusercontent.com/dart-lang/linter/master/example/all.yaml
 linter:
   rules:
     - always_declare_return_types

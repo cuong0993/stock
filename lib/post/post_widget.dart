@@ -1,5 +1,4 @@
 import 'package:application/providers.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/post/like/like.dart';
 import 'package:domain/post/post.dart';
@@ -8,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:readmore/readmore.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../app/root_router.dart';
+import '../app/routes.dart';
 import 'post_images_grid_widget.dart';
 import 'tag_chip_widget.dart';
 
@@ -25,14 +24,12 @@ class PostWidget extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 2),
         child: GestureDetector(
-          onTap: () => AutoRouter.of(context)
-              .push(DetailPostRoute(postId: post.id, isGoingToComment: false)),
+          onTap: () => DetailPostRoute(postId: post.id).go(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () =>
-                    AutoRouter.of(context).push(UserRoute(userId: post.userId)),
+                onTap: () => UserRoute(userId: post.userId).go(context),
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Row(
@@ -164,12 +161,9 @@ class PostWidget extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.comment),
-                          onPressed: () => AutoRouter.of(context).push(
-                            DetailPostRoute(
-                              postId: post.id,
-                              isGoingToComment: true,
-                            ),
-                          ),
+                          onPressed: () => DetailPostRoute(
+                            postId: post.id,
+                          ).go(context),
                         ),
                         const SizedBox(width: 8),
                         Visibility(

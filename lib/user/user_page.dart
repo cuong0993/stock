@@ -1,5 +1,4 @@
 import 'package:application/providers.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:domain/user/user.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -7,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../app/root_router.dart';
+import '../app/routes.dart';
 import 'edit_user_widget.dart';
 
 class UserPage extends StatelessWidget {
@@ -142,15 +141,7 @@ class UserPage extends StatelessWidget {
                                         ],
                                       ),
                                       IconButton(
-                                        onPressed: () {
-                                          AutoRouter.of(context).push(
-                                            MessageRoute(
-                                              isGoingToMessage: true,
-                                              conversationId: null,
-                                              userIds: [userId],
-                                            ),
-                                          );
-                                        },
+                                        onPressed: () {},
                                         icon: const Icon(
                                           Icons.notifications,
                                         ),
@@ -158,9 +149,7 @@ class UserPage extends StatelessWidget {
                                       if (isMe)
                                         IconButton(
                                           onPressed: () {
-                                            AutoRouter.of(context).push(
-                                              const SettingsRoute(),
-                                            );
+                                            SettingsRoute().go(context);
                                           },
                                           icon: const Icon(
                                             Icons.settings,
@@ -168,15 +157,7 @@ class UserPage extends StatelessWidget {
                                         )
                                       else
                                         IconButton(
-                                          onPressed: () {
-                                            AutoRouter.of(context).push(
-                                              MessageRoute(
-                                                isGoingToMessage: true,
-                                                conversationId: null,
-                                                userIds: [userId],
-                                              ),
-                                            );
-                                          },
+                                          onPressed: () {},
                                           icon: const Icon(
                                             Icons.chat_bubble,
                                           ),

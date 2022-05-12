@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:application/providers.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'locale_page.dart';
-import 'root_router.dart';
+import 'routes.dart';
 import 'theme_page.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -37,7 +36,7 @@ class SettingsPage extends StatelessWidget {
                 localeStrings[Localizations.localeOf(context).languageCode]!,
               ),
               onTap: () {
-                AutoRouter.of(context).push(const LocaleRoute());
+                LocaleRoute().go(context);
               },
             ),
             ListTile(
@@ -54,7 +53,7 @@ class SettingsPage extends StatelessWidget {
                 },
               ),
               onTap: () {
-                AutoRouter.of(context).push(const ThemeRoute());
+                ThemeRoute().go(context);
               },
             ),
             ListTile(

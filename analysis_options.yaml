@@ -1,37 +1,23 @@
-include: all_lint_rules.yaml
 analyzer:
-  plugins:
-    - dart_code_metrics
   errors:
+    include_file_not_found: error
+    included_file_warning: ignore
     missing_required_param: error
     omit_local_variable_types: error
-    include_file_not_found: error
     unused_element: error
     unused_field: error
     unused_local_variable: error
-    included_file_warning: ignore
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.freezed.dart"
+    - "**/*.config.dart"
+    - lib/generated_plugin_registrant.dart
+  plugins:
+    - dart_code_metrics
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
-  exclude:
-    - '**/*.g.dart'
-    - '**/*.gr.dart'
-    - '**/*.freezed.dart'
-    - '**/*.config.dart'
-    - 'lib/generated_plugin_registrant.dart'
-linter:
-  rules:
-    prefer_final_parameters: false
-    diagnostic_describe_all_properties: false
-    prefer_double_quotes: false
-    always_specify_types: false
-    unnecessary_final: false
-    flutter_style_todos: false
-    lines_longer_than_80_chars: false
-    avoid_annotating_with_dynamic: false
-    always_use_package_imports: false
-    public_member_api_docs: false
-
 dart_code_metrics:
   anti-patterns:
     - long-method
@@ -47,12 +33,9 @@ dart_code_metrics:
     - avoid-collection-methods-with-unrelated-types
     - avoid-dynamic
     - avoid-global-state
-    # - avoid-ignoring-return-values
     - avoid-late-keyword
     - avoid-missing-enum-constant-in-map
-    # - avoid-nested-conditional-expressions
     - avoid-non-ascii-symbols
-    # - avoid-non-null-assertion
     - avoid-throw-in-catch-block
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
@@ -62,7 +45,6 @@ dart_code_metrics:
     - binary-expression-operand-order
     - double-literal-format
     - format-comment
-    # - member-ordering
     - member-ordering-extended:
         alphabetize: false
         order:
@@ -72,12 +54,9 @@ dart_code_metrics:
     - newline-before-return
     - no-boolean-literal-compare
     - no-empty-block
-    # - no-equal-arguments
     - no-equal-then-else
-    # - no-magic-number
     - no-object-declaration
     - prefer-async-await
-    # - prefer-commenting-analyzer-ignores
     - prefer-conditional-expressions
     - prefer-correct-identifier-length:
         min-identifier-length: 2
@@ -94,10 +73,23 @@ dart_code_metrics:
     - avoid-unnecessary-setstate
     - avoid-wrapping-in-padding
     - prefer-const-border-radius
-    # - prefer-extracting-callbacks
     - prefer-single-widget-per-file
     - prefer-intl-name
     - provide-correct-intl-args
     - avoid-preserve-whitespace-false
     - component-annotation-arguments-ordering
     - prefer-on-push-cd-strategy
+include: all_lint_rules.yaml
+linter:
+  rules:
+    always_specify_types: false
+    always_use_package_imports: false
+    avoid_annotating_with_dynamic: false
+    diagnostic_describe_all_properties: false
+    flutter_style_todos: false
+    lines_longer_than_80_chars: false
+    prefer_double_quotes: false
+    prefer_final_parameters: false
+    public_member_api_docs: false
+    unnecessary_final: false
+    use_super_parameters: false

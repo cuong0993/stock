@@ -47,7 +47,7 @@ class MessagePage extends HookConsumerWidget {
                 return Scaffold(
                   appBar: AppBar(),
                   body: Scrollbar(
-                    isAlwaysShown: true,
+                    thumbVisibility: true,
                     child: messages.when(
                       data: (comments) => ListView.builder(
                         shrinkWrap: true,

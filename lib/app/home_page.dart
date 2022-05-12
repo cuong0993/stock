@@ -1,5 +1,4 @@
 import 'package:application/providers.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,7 +7,7 @@ import '../conversation/conversations_widget.dart';
 import '../meeting/meetings_widget.dart';
 import '../post/posts_widget.dart';
 import 'notification_utils.dart';
-import 'root_router.dart';
+import 'routes.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -66,14 +65,12 @@ class HomePage extends HookConsumerWidget {
                           const Icon(Icons.account_circle_rounded),
                     ),
                   ),
-                  onPressed: () =>
-                      AutoRouter.of(context).push(UserRoute(userId: user.id)),
+                  onPressed: () => UserRoute(userId: user.id).go(context),
                 ),
                 loading: () => const Icon(Icons.account_circle_rounded),
                 error: (_, __) => IconButton(
                   icon: const Icon(Icons.account_circle_rounded),
-                  onPressed: () =>
-                      AutoRouter.of(context).push(const AuthenticationRoute()),
+                  onPressed: () => AuthenticationRoute().go(context),
                 ),
               );
             },
@@ -91,9 +88,9 @@ class HomePage extends HookConsumerWidget {
           if (tabs.keys.toList()[index].label == 'Add') {
             final user = ref.read(myUserProvider).asData?.value;
             if (user != null) {
-              AutoRouter.of(context).push(const CreatePostRoute());
+              CreatePostRoute().go(context);
             } else {
-              AutoRouter.of(context).push(const RequireAuthenticationRoute());
+              RequireAuthenticationRoute().go(context);
             }
           } else {
             tabState.value = index;

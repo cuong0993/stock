@@ -44,7 +44,7 @@ class ScheduleMeetingWidget extends HookWidget {
         ),
         Expanded(
           child: Scrollbar(
-            isAlwaysShown: true,
+            thumbVisibility: true,
             child: ListView.builder(
               itemCount: post.timeSlots.length,
               itemBuilder: (context, index) => RadioListTile<DateTime>(

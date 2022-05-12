@@ -1,6 +1,5 @@
 import 'package:animations/animations.dart';
 import 'package:application/providers.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/post/comment/comment.dart';
 import 'package:domain/post/like/like.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../app/root_router.dart';
 import 'custom_image.dart';
 import 'schedule_meeting_widget.dart';
 import 'tag_chip_widget.dart';
@@ -35,7 +33,7 @@ class DetailPostPage extends HookConsumerWidget {
     useEffect(
       () {
         if (isGoingToComment) {
-          SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+          SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
             focusNode.requestFocus();
           });
         }
@@ -49,8 +47,6 @@ class DetailPostPage extends HookConsumerWidget {
       data: (post) => Scaffold(
         appBar: AppBar(
           title: GestureDetector(
-            onTap: () =>
-                AutoRouter.of(context).push(UserRoute(userId: post.userId)),
             child: Row(
               children: [
                 if (post.userPhotoUrl.isNotEmpty)
@@ -86,7 +82,7 @@ class DetailPostPage extends HookConsumerWidget {
           ),
         ),
         body: Scrollbar(
-          isAlwaysShown: true,
+          thumbVisibility: true,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

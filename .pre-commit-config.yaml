@@ -1,52 +1,62 @@
 repos:
-  - repo: local
-    hooks:
-      - id: format_flutter
+  - hooks:
+      - entry: bash -c "flutter format ."
+        id: format_flutter
+        language: system
         name: Run flutter format
-        entry: bash -c "flutter format ."
+      - entry: bash -c "flutter analyze ."
+        id: analyze_flutter
         language: system
-      - id: analyze_flutter
         name: Run flutter analyze
-        entry: bash -c "flutter analyze ."
+      - entry: bash -c "svgo --pretty -r -f ./"
+        id: format_svg
         language: system
-      - id: format_svg
         name: Run format svg
-        entry: bash -c "svgo --pretty -r -f ./"
+      - entry: bash -c "flutter pub upgrade"
+        id: flutter_pub_upgrade
         language: system
-      - id: flutter_pub_upgrade
         name: Run flutter pub upgrade
-        entry: bash -c "flutter pub upgrade"
+      - entry: bash -c "cd domain; flutter pub upgrade"
+        id: flutter_pub_upgrade
         language: system
-      - id: flutter_pub_upgrade
         name: Run flutter pub upgrade
-        entry: bash -c "cd domain; flutter pub upgrade"
+      - entry: bash -c "cd data; flutter pub upgrade"
+        id: flutter_pub_upgrade
         language: system
-      - id: flutter_pub_upgrade
         name: Run flutter pub upgrade
-        entry: bash -c "cd data; flutter pub upgrade"
+      - entry: bash -c "cd application; flutter pub upgrade"
+        id: flutter_pub_upgrade
         language: system
-      - id: flutter_pub_upgrade
         name: Run flutter pub upgrade
-        entry: bash -c "cd application; flutter pub upgrade"
+      - entry: bash -c "cd terraform; terraform init; terraform fmt; terraform validate"
+        id: terraform_check
         language: system
-      - id: terraform_check
         name: Run terraform fmt
-        entry: bash -c "cd terraform; terraform init; terraform fmt; terraform validate"
+      - entry: 'bash -c "shfmt -w **/*.sh; shellcheck -e SC1090,SC1091,SC2154 **/*.sh"'
+        id: shellscript_check
         language: system
-      - id: shellscript_check
         name: Run shellscript check
-        entry: bash -c "shfmt -w **/*.sh; shellcheck -e SC1090,SC1091,SC2154 **/*.sh"
+      - entry: bash -c "yapf --in-place --recursive **/*.py"
+        id: python_check
         language: system
-      - id: python_check
         name: Run python check
-        entry: bash -c "yapf --in-place --recursive **/*.py"
+      - entry: bash -c "ktlint"
+        id: kotlin_check
         language: system
-      - id: kotlin_check
         name: Run kotlin check
-        entry: bash -c "ktlint"
+      - entry: bash -c "yamllint ."
+        id: yaml_check
         language: system
-  - repo: https://github.com/Yelp/detect-secrets
+        name: Run yaml check
+      - entry: 'bash -c ''find . -name "*.yaml" -exec python3 -m pyaml -r {} \;'''
+        id: yaml_format
+        language: system
+        name: Run yaml format
+    repo: local
+  - hooks:
+      - args:
+          - --baseline
+          - .secrets.baseline
+        id: detect-secrets
+    repo: https://github.com/Yelp/detect-secrets
     rev: v1.2.0
-    hooks:
-      - id: detect-secrets
-        args: [ '--baseline', '.secrets.baseline' ]
