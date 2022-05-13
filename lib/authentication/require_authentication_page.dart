@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+
 import '../app/routes.dart';
 
 class RequireAuthenticationPage extends StatelessWidget {
@@ -15,7 +17,7 @@ class RequireAuthenticationPage extends StatelessWidget {
         ),
         body: TextButton(
           onPressed: () {
-            AuthenticationRoute().go(context);
+            context.push(AuthenticationRoute().location);
           },
           child: Text(L10n.of(context)!.login),
         ),

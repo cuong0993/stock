@@ -71,6 +71,10 @@ class _$TagCollectionReference extends _$TagQuery
 
   @override
   TagDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return TagDocumentReference(
       reference.doc(id),
     );

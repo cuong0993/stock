@@ -73,6 +73,10 @@ class _$MeetingCollectionReference extends _$MeetingQuery
 
   @override
   MeetingDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return MeetingDocumentReference(
       reference.doc(id),
     );

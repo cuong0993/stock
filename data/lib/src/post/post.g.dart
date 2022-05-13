@@ -71,6 +71,10 @@ class _$PostCollectionReference extends _$PostQuery
 
   @override
   PostDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return PostDocumentReference(
       reference.doc(id),
     );
@@ -129,7 +133,6 @@ abstract class PostDocumentReference
     String name,
     List<String> tags,
     List<String> images,
-    List<DateTime> timeSlots,
     int commentCount,
     List<String> likedUserIds,
     String id,
@@ -192,7 +195,6 @@ class _$PostDocumentReference
     Object? name = _sentinel,
     Object? tags = _sentinel,
     Object? images = _sentinel,
-    Object? timeSlots = _sentinel,
     Object? commentCount = _sentinel,
     Object? likedUserIds = _sentinel,
     Object? id = _sentinel,
@@ -205,7 +207,6 @@ class _$PostDocumentReference
       if (name != _sentinel) "name": name as String,
       if (tags != _sentinel) "tags": tags as List<String>,
       if (images != _sentinel) "images": images as List<String>,
-      if (timeSlots != _sentinel) "timeSlots": timeSlots as List<DateTime>,
       if (commentCount != _sentinel) "commentCount": commentCount as int,
       if (likedUserIds != _sentinel)
         "likedUserIds": likedUserIds as List<String>,
@@ -333,16 +334,6 @@ abstract class PostQuery implements QueryReference<PostQuerySnapshot> {
     bool? isNull,
     List<String>? arrayContainsAny,
   });
-  PostQuery whereTimeSlots({
-    List<DateTime>? isEqualTo,
-    List<DateTime>? isNotEqualTo,
-    List<DateTime>? isLessThan,
-    List<DateTime>? isLessThanOrEqualTo,
-    List<DateTime>? isGreaterThan,
-    List<DateTime>? isGreaterThanOrEqualTo,
-    bool? isNull,
-    List<DateTime>? arrayContainsAny,
-  });
   PostQuery whereCommentCount({
     int? isEqualTo,
     int? isNotEqualTo,
@@ -454,18 +445,6 @@ abstract class PostQuery implements QueryReference<PostQuerySnapshot> {
     List<String> startAfter,
     List<String> endAt,
     List<String> endBefore,
-    PostDocumentSnapshot? startAtDocument,
-    PostDocumentSnapshot? endAtDocument,
-    PostDocumentSnapshot? endBeforeDocument,
-    PostDocumentSnapshot? startAfterDocument,
-  });
-
-  PostQuery orderByTimeSlots({
-    bool descending = false,
-    List<DateTime> startAt,
-    List<DateTime> startAfter,
-    List<DateTime> endAt,
-    List<DateTime> endBefore,
     PostDocumentSnapshot? startAtDocument,
     PostDocumentSnapshot? endAtDocument,
     PostDocumentSnapshot? endBeforeDocument,
@@ -749,32 +728,6 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     return _$PostQuery(
       reference.where(
         'images',
-        isEqualTo: isEqualTo,
-        isNotEqualTo: isNotEqualTo,
-        isLessThan: isLessThan,
-        isLessThanOrEqualTo: isLessThanOrEqualTo,
-        isGreaterThan: isGreaterThan,
-        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
-        isNull: isNull,
-        arrayContainsAny: arrayContainsAny,
-      ),
-      _collection,
-    );
-  }
-
-  PostQuery whereTimeSlots({
-    List<DateTime>? isEqualTo,
-    List<DateTime>? isNotEqualTo,
-    List<DateTime>? isLessThan,
-    List<DateTime>? isLessThanOrEqualTo,
-    List<DateTime>? isGreaterThan,
-    List<DateTime>? isGreaterThanOrEqualTo,
-    bool? isNull,
-    List<DateTime>? arrayContainsAny,
-  }) {
-    return _$PostQuery(
-      reference.where(
-        'timeSlots',
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -1164,48 +1117,6 @@ class _$PostQuery extends QueryReference<PostQuerySnapshot>
     return _$PostQuery(query, _collection);
   }
 
-  PostQuery orderByTimeSlots({
-    bool descending = false,
-    Object? startAt = _sentinel,
-    Object? startAfter = _sentinel,
-    Object? endAt = _sentinel,
-    Object? endBefore = _sentinel,
-    PostDocumentSnapshot? startAtDocument,
-    PostDocumentSnapshot? endAtDocument,
-    PostDocumentSnapshot? endBeforeDocument,
-    PostDocumentSnapshot? startAfterDocument,
-  }) {
-    var query = reference.orderBy('timeSlots', descending: descending);
-
-    if (startAtDocument != null) {
-      query = query.startAtDocument(startAtDocument.snapshot);
-    }
-    if (startAfterDocument != null) {
-      query = query.startAfterDocument(startAfterDocument.snapshot);
-    }
-    if (endAtDocument != null) {
-      query = query.endAtDocument(endAtDocument.snapshot);
-    }
-    if (endBeforeDocument != null) {
-      query = query.endBeforeDocument(endBeforeDocument.snapshot);
-    }
-
-    if (startAt != _sentinel) {
-      query = query.startAt([startAt]);
-    }
-    if (startAfter != _sentinel) {
-      query = query.startAfter([startAfter]);
-    }
-    if (endAt != _sentinel) {
-      query = query.endAt([endAt]);
-    }
-    if (endBefore != _sentinel) {
-      query = query.endBefore([endBefore]);
-    }
-
-    return _$PostQuery(query, _collection);
-  }
-
   PostQuery orderByCommentCount({
     bool descending = false,
     Object? startAt = _sentinel,
@@ -1440,6 +1351,10 @@ class _$LikeCollectionReference extends _$LikeQuery
 
   @override
   LikeDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return LikeDocumentReference(
       reference.doc(id),
     );
@@ -2240,6 +2155,10 @@ class _$CommentCollectionReference extends _$CommentQuery
 
   @override
   CommentDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return CommentDocumentReference(
       reference.doc(id),
     );

@@ -1,6 +1,7 @@
 import 'package:application/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../conversation/conversations_widget.dart';
@@ -70,7 +71,7 @@ class HomePage extends HookConsumerWidget {
                 loading: () => const Icon(Icons.account_circle_rounded),
                 error: (_, __) => IconButton(
                   icon: const Icon(Icons.account_circle_rounded),
-                  onPressed: () => AuthenticationRoute().go(context),
+                  onPressed: () => context.push(AuthenticationRoute().location),
                 ),
               );
             },
@@ -88,9 +89,9 @@ class HomePage extends HookConsumerWidget {
           if (tabs.keys.toList()[index].label == 'Add') {
             final user = ref.read(myUserProvider).asData?.value;
             if (user != null) {
-              CreatePostRoute().go(context);
+              context.push(CreatePostRoute().location);
             } else {
-              RequireAuthenticationRoute().go(context);
+              context.push(RequireAuthenticationRoute().location);
             }
           } else {
             tabState.value = index;

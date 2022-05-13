@@ -1,6 +1,5 @@
 import 'package:application/providers.dart';
 import 'package:flutter/material.dart';
-
 // ignore: depend_on_referenced_packages
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

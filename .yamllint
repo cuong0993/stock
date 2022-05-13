@@ -1,5 +1,5 @@
+extends: default
+ignore: /build/
 rules:
-  document-start:
-     present: false
-  line-length:
-     max: 180
+  document-start: disable
+  line-length: disable

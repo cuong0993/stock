@@ -73,6 +73,10 @@ class _$ConversationCollectionReference extends _$ConversationQuery
 
   @override
   ConversationDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return ConversationDocumentReference(
       reference.doc(id),
     );
@@ -588,6 +592,10 @@ class _$MessageCollectionReference extends _$MessageQuery
 
   @override
   MessageDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return MessageDocumentReference(
       reference.doc(id),
     );

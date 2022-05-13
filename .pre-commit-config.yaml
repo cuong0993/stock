@@ -28,10 +28,10 @@ repos:
         id: flutter_pub_upgrade
         language: system
         name: Run flutter pub upgrade
-      - entry: bash -c "cd terraform; terraform init; terraform fmt; terraform validate"
-        id: terraform_check
+      - entry: bash -c "cd terraform; terraform fmt"
+        id: terraform_format
         language: system
-        name: Run terraform fmt
+        name: Run terraform format
       - entry: 'bash -c "shfmt -w **/*.sh; shellcheck -e SC1090,SC1091,SC2154 **/*.sh"'
         id: shellscript_check
         language: system

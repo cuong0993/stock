@@ -71,6 +71,10 @@ class _$UserCollectionReference extends _$UserQuery
 
   @override
   UserDocumentReference doc([String? id]) {
+    assert(
+      id == null || id.split('/').length == 1,
+      'The document ID cannot be from a different collection',
+    );
     return UserDocumentReference(
       reference.doc(id),
     );
