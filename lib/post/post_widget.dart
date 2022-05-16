@@ -54,11 +54,11 @@ class PostWidget extends StatelessWidget {
                           Text(
                             post.userName,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.bodyText1,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           Text(
                             timeago.format(post.createdDate),
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
                       ),
@@ -70,14 +70,14 @@ class PostWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: Text(
                   post.name,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: ReadMoreText(
                   post.text,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodyMedium,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: 'more',
                   trimExpandedText: '',

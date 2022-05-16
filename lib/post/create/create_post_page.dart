@@ -64,9 +64,9 @@ class CreatePostPage extends ConsumerWidget {
                 TextField(
                   decoration: InputDecoration(
                     hintText: "What's the problem?",
-                    hintStyle: Theme.of(context).textTheme.headline5,
+                    hintStyle: Theme.of(context).textTheme.titleLarge,
                   ),
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.titleLarge,
                   maxLength: 50,
                   onChanged: (text) {
                     ref.read(createPostControllerProvider.notifier).name(text);

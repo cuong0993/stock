@@ -103,9 +103,9 @@ class EditUserWidget extends HookConsumerWidget {
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Display name',
-                  hintStyle: Theme.of(context).textTheme.headline5,
+                  hintStyle: Theme.of(context).textTheme.titleLarge,
                 ),
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.titleLarge,
                 maxLength: 30,
                 onChanged: (text) {
                   ref

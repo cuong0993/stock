@@ -67,13 +67,13 @@ class MessagePage extends HookConsumerWidget {
                               ),
                               title: Text(
                                 comments[index].userName,
-                                style: Theme.of(context).textTheme.bodyText1,
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                               subtitle: Text(
                                 timeago.format(
                                   comments[index].createdDate,
                                 ),
-                                style: Theme.of(context).textTheme.bodyText2,
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
                             Padding(

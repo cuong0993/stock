@@ -69,11 +69,11 @@ class DetailPostPage extends HookConsumerWidget {
                     Text(
                       post.userName,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     Text(
                       timeago.format(post.createdDate),
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
                 ),
@@ -91,7 +91,7 @@ class DetailPostPage extends HookConsumerWidget {
                   padding: const EdgeInsets.all(8),
                   child: Text(
                     post.name,
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
                 Padding(
@@ -265,11 +265,11 @@ class DetailPostPage extends HookConsumerWidget {
                           ),
                           title: Text(
                             comments[index].userName,
-                            style: Theme.of(context).textTheme.bodyText1,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           subtitle: Text(
                             timeago.format(comments[index].createdDate),
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                         Padding(
