@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class MeetingWidget extends ConsumerWidget {
   const MeetingWidget({
     required this.meeting,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final Meeting meeting;
 
   @override

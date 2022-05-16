@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'post_widget.dart';
 
 class PostsWidget extends ConsumerWidget {
-  const PostsWidget({Key? key}) : super(key: key);
+  const PostsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

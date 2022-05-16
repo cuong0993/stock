@@ -15,7 +15,7 @@ const localeStrings = {
 };
 
 class LocalePage extends ConsumerWidget {
-  const LocalePage({Key? key}) : super(key: key);
+  const LocalePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(

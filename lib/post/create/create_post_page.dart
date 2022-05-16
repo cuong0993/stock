@@ -12,7 +12,7 @@ import 'select_image_source_dialog.dart';
 import 'select_times_widget.dart';
 
 class CreatePostPage extends ConsumerWidget {
-  const CreatePostPage({Key? key}) : super(key: key);
+  const CreatePostPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

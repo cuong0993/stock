@@ -6,8 +6,8 @@ import 'time_of_day_extension.dart';
 class SelectTimesWidget extends HookWidget {
   const SelectTimesWidget({
     required this.timeSlots,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final List<DateTime> timeSlots;
 

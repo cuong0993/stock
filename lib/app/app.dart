@@ -9,7 +9,7 @@ import 'routes.dart';
 import 'theme.dart';
 
 class App extends ConsumerWidget {
-  App({Key? key}) : super(key: key);
+  App({super.key});
 
   final _router = GoRouter(
     routes: $appRoutes,

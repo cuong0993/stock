@@ -11,8 +11,8 @@ class MessagePage extends HookConsumerWidget {
     required this.conversationId,
     required this.isGoingToMessage,
     required this.userIds,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final bool isGoingToMessage;
   final String? conversationId;
   final List<String> userIds;

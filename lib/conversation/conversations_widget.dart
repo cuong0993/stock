@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'conversation_widget.dart';
 
 class ConversationsWidget extends ConsumerWidget {
-  const ConversationsWidget({Key? key}) : super(key: key);
+  const ConversationsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

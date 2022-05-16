@@ -4,8 +4,8 @@ import 'package:image_picker/image_picker.dart';
 class SelectImageSourceDialog extends StatelessWidget {
   const SelectImageSourceDialog({
     required this.onImageSourceSelected,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final ValueSetter<ImageSource> onImageSourceSelected;
 
   @override

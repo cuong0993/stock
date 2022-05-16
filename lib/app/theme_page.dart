@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ThemePage extends ConsumerWidget {
-  const ThemePage({Key? key}) : super(key: key);
+  const ThemePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(

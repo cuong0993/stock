@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class ConversationWidget extends StatelessWidget {
   const ConversationWidget({
     required this.conversation,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final Conversation conversation;
 
   @override

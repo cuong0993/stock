@@ -11,8 +11,8 @@ import '../post/create/select_image_source_dialog.dart';
 class EditUserWidget extends HookConsumerWidget {
   const EditUserWidget({
     required this.user,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final User user;
 
   @override

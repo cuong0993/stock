@@ -15,8 +15,8 @@ class PostWidget extends StatelessWidget {
   const PostWidget({
     required this.liked,
     required this.post,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final bool liked;
   final Post post;
 

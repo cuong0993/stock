@@ -9,8 +9,8 @@ import 'view_image.dart';
 class PostImagesGridWidget extends StatelessWidget {
   const PostImagesGridWidget({
     required this.post,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static const maxAxisCount = 6;
   static const halfAxisCount = maxAxisCount ~/ 2;

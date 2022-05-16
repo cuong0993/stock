@@ -7,8 +7,8 @@ class ViewImage extends StatelessWidget {
   const ViewImage({
     required this.post,
     required this.index,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final Post post;
   final int index;
 

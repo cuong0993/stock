@@ -9,8 +9,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ScheduleMeetingWidget extends HookWidget {
   const ScheduleMeetingWidget({
     required this.post,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Post post;
 

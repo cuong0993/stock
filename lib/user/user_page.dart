@@ -13,8 +13,8 @@ import 'edit_user_widget.dart';
 class UserPage extends StatelessWidget {
   const UserPage({
     required this.userId,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String userId;
 
   @override

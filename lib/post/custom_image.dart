@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class CustomImage extends StatelessWidget {
   const CustomImage({
     required this.imageUrl,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String imageUrl;
 
   @override

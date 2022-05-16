@@ -18,8 +18,8 @@ class DetailPostPage extends HookConsumerWidget {
   const DetailPostPage({
     required this.postId,
     required this.isGoingToComment,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String postId;
   final bool isGoingToComment;
 

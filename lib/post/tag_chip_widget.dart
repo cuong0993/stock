@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class TagChipWidget extends StatelessWidget {
   const TagChipWidget({
     required this.text,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String text;
 
   @override

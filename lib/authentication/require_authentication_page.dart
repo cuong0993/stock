@@ -7,8 +7,8 @@ import '../app/routes.dart';
 
 class RequireAuthenticationPage extends StatelessWidget {
   const RequireAuthenticationPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Scaffold(
