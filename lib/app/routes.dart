@@ -18,6 +18,7 @@ part 'routes.g.dart';
   path: '/',
 )
 @immutable
+// ignore: prefer-match-file-name
 class SplashRoute extends GoRouteData {
   @override
   Widget build(BuildContext context) => const SplashPage();

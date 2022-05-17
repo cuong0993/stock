@@ -1,6 +1,9 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:go_router/go_router.dart';
+
+import 'routes.dart';
 
 // onBackgroundMessage handler must be top-level function
 // https://github.com/FirebaseExtended/flutterfire/issues/4888
@@ -70,12 +73,8 @@ Future<void> _handleMessageData(
   if (data['type'] != null) {
     switch (data['type']) {
       case 'post':
-        // await AutoRouter.of(context).push(
-        //   DetailPostRoute(
-        //     postId: data['id'] as String,
-        //     isGoingToComment: false,
-        //   ),
-        // );
+        // TODO.
+        context.push(SettingsRoute().location);
         break;
       case 'meeting':
         // TODO Meeting detail screen.

@@ -142,7 +142,10 @@ class UserPage extends StatelessWidget {
                                         ],
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          context
+                                              .push(SettingsRoute().location);
+                                        },
                                         icon: const Icon(
                                           Icons.notifications,
                                         ),
@@ -159,7 +162,10 @@ class UserPage extends StatelessWidget {
                                         )
                                       else
                                         IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            context
+                                                .push(SettingsRoute().location);
+                                          },
                                           icon: const Icon(
                                             Icons.chat_bubble,
                                           ),
