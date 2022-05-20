@@ -30,10 +30,6 @@ dependencies:
   syncfusion_flutter_charts: any
   timeago: any
   url_launcher: any
-  window_size:
-    git:
-      path: plugins/window_size
-      url: https://github.com/google/flutter-desktop-embedding.git
 dev_dependencies:
   build_runner: any
   dart_code_metrics: any

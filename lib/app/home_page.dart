@@ -36,12 +36,6 @@ class HomePage extends HookConsumerWidget {
           label: 'Search',
           selectedIcon: Icon(Icons.search),
         ): const MeetingsWidget(),
-        const NavigationDestination(
-          tooltip: '',
-          icon: Icon(Icons.add_box_outlined),
-          label: 'Add',
-          selectedIcon: Icon(Icons.add_box),
-        ): const SizedBox.shrink(),
       },
     );
     final tabState = useState(0);
@@ -65,7 +59,8 @@ class HomePage extends HookConsumerWidget {
                           const Icon(Icons.account_circle_rounded),
                     ),
                   ),
-                  onPressed: () => UserRoute(userId: user.id).go(context),
+                  onPressed: () =>
+                      context.push(UserRoute(userId: user.id).location),
                 ),
                 loading: () => const Icon(Icons.account_circle_rounded),
                 error: (_, __) => IconButton(
@@ -82,16 +77,7 @@ class HomePage extends HookConsumerWidget {
         selectedIndex: tabState.value,
         destinations: tabs.keys.toList(),
         onDestinationSelected: (index) {
-          if (tabs.keys.toList()[index].label == 'Add') {
-            final user = ref.read(myUserProvider).asData?.value;
-            if (user != null) {
-              context.push(CreatePostRoute().location);
-            } else {
-              context.push(RequireAuthenticationRoute().location);
-            }
-          } else {
-            tabState.value = index;
-          }
+          tabState.value = index;
         },
       ),
     );

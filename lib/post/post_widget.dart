@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/post/like/like.dart';
 import 'package:domain/post/post.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:readmore/readmore.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -17,6 +18,7 @@ class PostWidget extends StatelessWidget {
     required this.post,
     super.key,
   });
+
   final bool liked;
   final Post post;
 
@@ -24,12 +26,13 @@ class PostWidget extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 2),
         child: GestureDetector(
-          onTap: () => DetailPostRoute(postId: post.id).go(context),
+          onTap: () => context.push(DetailPostRoute(postId: post.id).location),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () => UserRoute(userId: post.userId).go(context),
+                onTap: () =>
+                    context.push(UserRoute(userId: post.userId).location),
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Row(
@@ -161,9 +164,11 @@ class PostWidget extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.comment),
-                          onPressed: () => DetailPostRoute(
-                            postId: post.id,
-                          ).go(context),
+                          onPressed: () => context.push(
+                            DetailPostRoute(
+                              postId: post.id,
+                            ).location,
+                          ),
                         ),
                         const SizedBox(width: 8),
                         Visibility(

@@ -319,7 +319,7 @@ class DetailPostPage extends HookConsumerWidget {
 
                     return enabled
                         ? IconButton(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).colorScheme.primary,
                             icon: const Icon(Icons.send_rounded),
                             onPressed: () async {
                               final user =
@@ -344,9 +344,8 @@ class DetailPostPage extends HookConsumerWidget {
                               }
                             },
                           )
-                        : IconButton(
-                            color: Theme.of(context).disabledColor,
-                            icon: const Icon(Icons.send_rounded),
+                        : const IconButton(
+                            icon: Icon(Icons.send_rounded),
                             onPressed: null,
                           );
                   },

@@ -12,7 +12,7 @@ class MeetingWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => Container(
         padding: const EdgeInsets.symmetric(vertical: 4),
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).colorScheme.surface,
         child: Text(meeting.name),
       );
 }

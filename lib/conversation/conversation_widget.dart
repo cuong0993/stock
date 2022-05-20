@@ -13,7 +13,7 @@ class ConversationWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: GestureDetector(
           child: ColoredBox(
-            color: Theme.of(context).cardColor,
+            color: Theme.of(context).colorScheme.surface,
             child: Text('${conversation.participantIds}'),
           ),
         ),
