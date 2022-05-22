@@ -15,49 +15,16 @@ class UserPage extends StatelessWidget {
     required this.userId,
     super.key,
   });
+
   final String userId;
 
   @override
   Widget build(BuildContext context) {
     final tabs = <String, Widget Function(User user)>{
-      L10n.of(context)!.posts: (user) => Consumer(
-            builder: (context, ref, child) {
-              final posts = ref.watch(postsOfUserProvider(user));
-
-              return posts.when(
-                data: (posts) => ListView.builder(
-                  itemCount: posts.length,
-                  itemBuilder: (context, index) {
-                    final comment = posts[index];
-
-                    return Text(comment.text);
-                  },
-                ),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (_, __) =>
-                    const Center(child: CircularProgressIndicator()),
-              );
-            },
-          ),
-      L10n.of(context)!.comments: (user) => Consumer(
-            builder: (context, ref, child) {
-              final comments = ref.watch(commentsOfUserProvider(user));
-
-              return comments.when(
-                data: (comments) => ListView.builder(
-                  itemCount: comments.length,
-                  itemBuilder: (context, index) {
-                    final comment = comments[index];
-
-                    return Text(comment.text);
-                  },
-                ),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (_, __) =>
-                    const Center(child: CircularProgressIndicator()),
-              );
-            },
-          ),
+      L10n.of(context)!.posts: (user) =>
+          const Center(child: CircularProgressIndicator()),
+      L10n.of(context)!.comments: (user) =>
+          const Center(child: CircularProgressIndicator()),
     };
 
     return Scaffold(

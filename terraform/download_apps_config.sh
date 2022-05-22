@@ -24,3 +24,10 @@ tidy -xml -iq -wrap -m "../ios/Runner/$ENV_FLAVOR/GoogleService-Info.plist"
 
 mkdir -p "../macos/Runner/$ENV_FLAVOR"
 cp "../ios/Runner/$ENV_FLAVOR/GoogleService-Info.plist" "../macos/Runner/$ENV_FLAVOR/GoogleService-Info.plist"
+
+mkdir -p "../web/$ENV_FLAVOR"
+WEB_APP_ID=$(curl -X GET "https://firebase.googleapis.com/v1beta1/projects/$ENV_FIREBASE_APP_ID/webApps" \
+  -H "Authorization: Bearer $TOKEN" | (jq '.apps[].appId' | sed 's/"//g'))
+CONFIG=$(curl -X GET "https://firebase.googleapis.com/v1beta1/projects/$ENV_FIREBASE_APP_ID/webApps/$WEB_APP_ID/config" \
+  -H "Authorization: Bearer $TOKEN")
+echo "const firebaseConfig = ${CONFIG}; export default firebaseConfig;" >"../web/firebaseConfig.js"

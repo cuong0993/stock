@@ -9,8 +9,6 @@ part of 'routes.dart';
 List<GoRoute> get $appRoutes => [
       $splashRoute,
       $homeRoute,
-      $createPostRoute,
-      $detailPostRoute,
       $authenticationRoute,
       $userRoute,
       $localeRoute,
@@ -44,38 +42,6 @@ extension $HomeRouteExtension on HomeRoute {
 
   String get location => GoRouteData.$location(
         '/home',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-}
-
-GoRoute get $createPostRoute => GoRouteData.$route(
-      path: '/create-post',
-      factory: $CreatePostRouteExtension._fromState,
-    );
-
-extension $CreatePostRouteExtension on CreatePostRoute {
-  static CreatePostRoute _fromState(GoRouterState state) => CreatePostRoute();
-
-  String get location => GoRouteData.$location(
-        '/create-post',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-}
-
-GoRoute get $detailPostRoute => GoRouteData.$route(
-      path: '/detail-post/:postId',
-      factory: $DetailPostRouteExtension._fromState,
-    );
-
-extension $DetailPostRouteExtension on DetailPostRoute {
-  static DetailPostRoute _fromState(GoRouterState state) => DetailPostRoute(
-        postId: state.params['postId']!,
-      );
-
-  String get location => GoRouteData.$location(
-        '/detail-post/${Uri.encodeComponent(postId)}',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

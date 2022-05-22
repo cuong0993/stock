@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../post/create/select_image_source_dialog.dart';
+import 'select_image_source_dialog.dart';
 
 class EditUserWidget extends HookConsumerWidget {
   const EditUserWidget({
     required this.user,
     super.key,
   });
+
   final User user;
 
   @override

@@ -40,9 +40,12 @@ abstract class FirebaseModule {
 
   @preResolve
   Future<FirebaseAppCheck> getFirebaseAppCheck() async {
-    await FirebaseAppCheck.instance.activate(
-      webRecaptchaSiteKey: 'TODO',
-    );
+    // TODO https://github.com/firebase/flutterfire/issues/8019.
+    try {
+      await FirebaseAppCheck.instance.activate(
+        webRecaptchaSiteKey: 'TODO',
+      );
+    } on Exception catch (_) {}
 
     return FirebaseAppCheck.instance;
   }

@@ -60,3 +60,5 @@ private_keys/
 /macos/Flutter/GeneratedPluginRegistrant.swift
 /macos/Flutter/Environment.xcconfig
 /.env.*
+
+/web/firebaseConfig.js
