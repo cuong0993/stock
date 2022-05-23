@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../meeting/meetings_widget.dart';
-import '../post/posts_widget.dart';
+import '../market/market_widget.dart';
+import '../wallet/wallet_widget.dart';
 import 'notification_utils.dart';
 import 'routes.dart';
 
@@ -26,16 +26,16 @@ class HomePage extends HookConsumerWidget {
       () => <NavigationDestination, Widget>{
         const NavigationDestination(
           tooltip: '',
-          icon: Icon(Icons.home_outlined),
-          label: 'Posts',
-          selectedIcon: Icon(Icons.home),
-        ): const PostsWidget(),
+          icon: Icon(Icons.storefront_outlined),
+          label: 'Market',
+          selectedIcon: Icon(Icons.storefront),
+        ): const MarketWidget(),
         const NavigationDestination(
           tooltip: '',
-          icon: Icon(Icons.search_outlined),
-          label: 'Search',
-          selectedIcon: Icon(Icons.search),
-        ): const MeetingsWidget(),
+          icon: Icon(Icons.wallet),
+          label: 'Wallet',
+          selectedIcon: Icon(Icons.wallet_outlined),
+        ): const WalletWidget(),
       },
     );
     final tabState = useState(0);
