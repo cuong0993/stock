@@ -21,7 +21,7 @@ class SplashPage extends ConsumerWidget {
     return Scaffold(
       body: Center(
         child: SvgPicture.asset(
-          'assets/images/img_app_icon.svg',
+          'assets/images/app_icon.svg',
         ),
       ),
     );

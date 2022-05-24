@@ -14,16 +14,30 @@ List<GoRoute> get $appRoutes => [
       $localeRoute,
       $themeRoute,
       $settingsRoute,
-      $requireAuthenticationRoute,
     ];
 
 GoRoute get $splashRoute => GoRouteData.$route(
-      path: '/',
+      path: '/splash',
       factory: $SplashRouteExtension._fromState,
     );
 
 extension $SplashRouteExtension on SplashRoute {
   static SplashRoute _fromState(GoRouterState state) => SplashRoute();
+
+  String get location => GoRouteData.$location(
+        '/splash',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: this);
+}
+
+GoRoute get $homeRoute => GoRouteData.$route(
+      path: '/',
+      factory: $HomeRouteExtension._fromState,
+    );
+
+extension $HomeRouteExtension on HomeRoute {
+  static HomeRoute _fromState(GoRouterState state) => HomeRoute();
 
   String get location => GoRouteData.$location(
         '/',
@@ -32,23 +46,8 @@ extension $SplashRouteExtension on SplashRoute {
   void go(BuildContext context) => context.go(location, extra: this);
 }
 
-GoRoute get $homeRoute => GoRouteData.$route(
-      path: '/home',
-      factory: $HomeRouteExtension._fromState,
-    );
-
-extension $HomeRouteExtension on HomeRoute {
-  static HomeRoute _fromState(GoRouterState state) => HomeRoute();
-
-  String get location => GoRouteData.$location(
-        '/home',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-}
-
 GoRoute get $authenticationRoute => GoRouteData.$route(
-      path: '/authentication',
+      path: '/signin',
       factory: $AuthenticationRouteExtension._fromState,
     );
 
@@ -57,7 +56,7 @@ extension $AuthenticationRouteExtension on AuthenticationRoute {
       AuthenticationRoute();
 
   String get location => GoRouteData.$location(
-        '/authentication',
+        '/signin',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
@@ -120,22 +119,6 @@ extension $SettingsRouteExtension on SettingsRoute {
 
   String get location => GoRouteData.$location(
         '/settings',
-      );
-
-  void go(BuildContext context) => context.go(location, extra: this);
-}
-
-GoRoute get $requireAuthenticationRoute => GoRouteData.$route(
-      path: '/require-authentication',
-      factory: $RequireAuthenticationRouteExtension._fromState,
-    );
-
-extension $RequireAuthenticationRouteExtension on RequireAuthenticationRoute {
-  static RequireAuthenticationRoute _fromState(GoRouterState state) =>
-      RequireAuthenticationRoute();
-
-  String get location => GoRouteData.$location(
-        '/require-authentication',
       );
 
   void go(BuildContext context) => context.go(location, extra: this);

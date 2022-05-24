@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:application/providers.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -58,7 +57,7 @@ class SettingsPage extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                L10n.of(context)!.button_feedback,
+                L10n.of(context)!.feedback,
               ),
               onTap: () async {
                 final packageInfo = await PackageInfo.fromPlatform();

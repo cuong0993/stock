@@ -1,4 +1,4 @@
-// ignore_for_file: do_not_use_environment, avoid_redundant_argument_values, prefer-match-file-name
+// ignore_for_file: do_not_use_environment, prefer-match-file-name
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
@@ -17,8 +18,19 @@ abstract class AuthenticationModule {
   @lazySingleton
   GoogleSignIn get googleSignIn => GoogleSignIn();
 
-  @lazySingleton
-  FacebookAuth get facebookAuth => FacebookAuth.instance;
+  @preResolve
+  Future<FacebookAuth> getFacebookAuth() async {
+    if (kIsWeb) {
+      await FacebookAuth.i.webInitialize(
+        appId: const String.fromEnvironment('ENV_FACEBOOK_APP_ID'),
+        cookie: true,
+        xfbml: true,
+        version: 'v13.0',
+      );
+    }
+
+    return FacebookAuth.instance;
+  }
 }
 
 @module

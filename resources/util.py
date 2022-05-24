@@ -4,7 +4,7 @@ import re
 
 
 def grep(regex, base_dir, extension, skip_files=[]):
-    used_resources = set()
+    ret = list()
     for root, _, files in os.walk(base_dir):
         for file in files:
             if file.lower().endswith(extension):
@@ -18,8 +18,8 @@ def grep(regex, base_dir, extension, skip_files=[]):
                         match_list = re.findall(regex, content)
                         if match_list:
                             for i in match_list:
-                                used_resources.add(i)
+                                ret.append(i)
                 except UnicodeDecodeError:
                     print('Cannot read {0} as text'.format(
                         os.path.join(root, file)))
-    return used_resources
+    return ret

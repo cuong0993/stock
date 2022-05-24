@@ -62,3 +62,4 @@ private_keys/
 /.env.*
 
 /web/firebaseConfig.js
+/.firebase

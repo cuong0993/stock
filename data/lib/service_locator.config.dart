@@ -37,7 +37,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   final firebaseModule = _$FirebaseModule();
   final flutterModule = _$FlutterModule();
   final networkModule = _$NetworkModule();
-  gh.lazySingleton<_i3.FacebookAuth>(() => authenticationModule.facebookAuth);
+  await gh.factoryAsync<_i3.FacebookAuth>(
+      () => authenticationModule.getFacebookAuth(),
+      preResolve: true);
   await gh.factoryAsync<_i4.FirebaseApp>(() => firebaseModule.firebaseApp,
       preResolve: true);
   await gh.factoryAsync<_i5.FirebaseAppCheck>(

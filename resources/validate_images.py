@@ -2,12 +2,9 @@ import os
 
 from util import grep
 
-used_textures = list(
-    map(lambda x: x.replace('\'', '').replace('.png', ''),
-        sorted(grep("img_.*\'", "../lib", '.dart'))))
-texture_files = list(
-    map(lambda x: x.replace('.svg', ''), sorted(os.listdir('images'))))
-diff = [item for item in texture_files if item not in used_textures
-        ] + [item for item in used_textures if item not in texture_files]
+used_images = list(sorted(set(grep("\w+\.svg(?=')", "../lib", '.dart'))))
+images = list(sorted(os.listdir('../assets/images')))
+diff = [item for item in images if item not in used_images
+        ] + [item for item in used_images if item not in images]
 if len(diff) != 0:
     raise Exception(diff)

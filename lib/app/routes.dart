@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../authentication/authentication_page.dart';
-import '../authentication/require_authentication_page.dart';
 import '../user/user_page.dart';
 import 'home_page.dart';
 import 'locale_page.dart';
@@ -13,7 +12,7 @@ import 'theme_page.dart';
 part 'routes.g.dart';
 
 @TypedGoRoute<SplashRoute>(
-  path: '/',
+  path: '/splash',
 )
 @immutable
 // ignore: prefer-match-file-name
@@ -23,7 +22,7 @@ class SplashRoute extends GoRouteData {
 }
 
 @TypedGoRoute<HomeRoute>(
-  path: '/home',
+  path: '/',
 )
 @immutable
 class HomeRoute extends GoRouteData {
@@ -32,7 +31,7 @@ class HomeRoute extends GoRouteData {
 }
 
 @TypedGoRoute<AuthenticationRoute>(
-  path: '/authentication',
+  path: '/signin',
 )
 @immutable
 class AuthenticationRoute extends GoRouteData {
@@ -82,13 +81,4 @@ class ThemeRoute extends GoRouteData {
 class SettingsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context) => const SettingsPage();
-}
-
-@TypedGoRoute<RequireAuthenticationRoute>(
-  path: '/require-authentication',
-)
-@immutable
-class RequireAuthenticationRoute extends GoRouteData {
-  @override
-  Widget build(BuildContext context) => const RequireAuthenticationPage();
 }
