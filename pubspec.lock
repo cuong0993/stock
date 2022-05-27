@@ -624,14 +624,14 @@ packages:
       name: go_router
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.1.1"
   go_router_builder:
     dependency: "direct dev"
     description:
       name: go_router_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   google_sign_in:
     dependency: transitive
     description:
@@ -974,7 +974,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.7"
   path_to_regexp:
     dependency: transitive
     description:

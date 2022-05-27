@@ -29,6 +29,8 @@ extension $SplashRouteExtension on SplashRoute {
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 GoRoute get $homeRoute => GoRouteData.$route(
@@ -44,6 +46,8 @@ extension $HomeRouteExtension on HomeRoute {
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 GoRoute get $authenticationRoute => GoRouteData.$route(
@@ -60,6 +64,8 @@ extension $AuthenticationRouteExtension on AuthenticationRoute {
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 GoRoute get $userRoute => GoRouteData.$route(
@@ -77,6 +83,8 @@ extension $UserRouteExtension on UserRoute {
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 GoRoute get $localeRoute => GoRouteData.$route(
@@ -92,6 +100,8 @@ extension $LocaleRouteExtension on LocaleRoute {
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 GoRoute get $themeRoute => GoRouteData.$route(
@@ -107,6 +117,8 @@ extension $ThemeRouteExtension on ThemeRoute {
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 GoRoute get $settingsRoute => GoRouteData.$route(
@@ -122,4 +134,6 @@ extension $SettingsRouteExtension on SettingsRoute {
       );
 
   void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }

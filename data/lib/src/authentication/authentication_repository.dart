@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/authentication/auth_failure.dart';
 import 'package:domain/authentication/authentication_repository.dart' as domain;
+import 'package:domain/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -73,10 +74,17 @@ class AuthenticationRepository implements domain.AuthenticationRepository {
   Option<String> getUserId() => optionOf(_firebaseAuth.currentUser?.uid);
 
   @override
-  Future<Option<String>> getDeviceToken() async {
-    final token = await _firebaseMessaging.getToken();
+  Future<Either<Failure, String?>> getDeviceToken() async {
+    try {
+      final token = await _firebaseMessaging.getToken(
+        // ignore: do_not_use_environment
+        vapidKey: const String.fromEnvironment('ENV_VAPID_KEY'),
+      );
 
-    return optionOf(token);
+      return right(token);
+    } on Exception catch (_) {
+      return left(const Failure.serverError());
+    }
   }
 
   @override

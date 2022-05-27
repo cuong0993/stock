@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 
+import '../failure.dart';
 import 'auth_failure.dart';
 
 abstract class AuthenticationRepository {
@@ -11,5 +12,5 @@ abstract class AuthenticationRepository {
 
   Option<String> getUserId();
 
-  Future<Option<String>> getDeviceToken();
+  Future<Either<Failure, String?>> getDeviceToken();
 }

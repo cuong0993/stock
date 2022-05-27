@@ -21,8 +21,8 @@ class AuthenticatedUserController extends StateNotifier<AsyncValue<User>> {
               _userRepository.watchUser(userId).listen((user) async {
             await user.fold((_) => null, (data) async {
               await (await _authenticationRepository.getDeviceToken())
-                  .fold(() => null, (token) async {
-                if (!data.tokens.contains(token)) {
+                  .fold((_) => null, (token) async {
+                if (token != null && !data.tokens.contains(token)) {
                   await _userRepository.addToken(data.id, token);
                 }
                 state = AsyncValue.data(data);

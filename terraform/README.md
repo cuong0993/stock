@@ -4,7 +4,8 @@
 - Enable Firebase authentication by click get started in the web client
 - Enable Google sign-in, change public-facing name for signing in with iOS
 - Run config_firebase.sh
-- Enable Apple Push Notification https://firebase.flutter.dev/docs/messaging/apple-integration, key file in private_keys/APN
+- Enable Apple Notification https://firebase.google.com/docs/cloud-messaging/flutter/client#ios, key file in private_keys/APN
+- Enable Web Notification https://firebase.google.com/docs/cloud-messaging/flutter/client#web, key file in private_keys/vapid_key.json
 - Run database/restore-firestore.sh
 - Run functions/deploy_functions_and_rules.sh
 - Run download_apps_config.sh to get google-services.json and GoogleService-Info.plist configuration files
