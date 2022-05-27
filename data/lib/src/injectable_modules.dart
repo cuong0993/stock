@@ -21,8 +21,9 @@ abstract class AuthenticationModule {
   @preResolve
   Future<FacebookAuth> getFacebookAuth() async {
     if (kIsWeb) {
-      await FacebookAuth.i.webInitialize(
-        appId: const String.fromEnvironment('ENV_FACEBOOK_APP_ID'),
+      print('AAAAAAAAAAA');
+      await FacebookAuth.instance.webInitialize(
+        appId: '1936841556524655',
         cookie: true,
         xfbml: true,
         version: 'v13.0',
