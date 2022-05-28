@@ -4,7 +4,6 @@ import 'package:application/providers.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:mailto/mailto.dart';
@@ -35,7 +34,7 @@ class SettingsPage extends StatelessWidget {
                 localeStrings[Localizations.localeOf(context).languageCode]!,
               ),
               onTap: () {
-                context.push(LocaleRoute().location);
+                LocaleRoute().push(context);
               },
             ),
             ListTile(
@@ -52,7 +51,7 @@ class SettingsPage extends StatelessWidget {
                 },
               ),
               onTap: () {
-                context.push(ThemeRoute().location);
+                ThemeRoute().push(context);
               },
             ),
             ListTile(

@@ -2,7 +2,6 @@ import 'package:application/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../market/market_widget.dart';
@@ -60,13 +59,12 @@ class HomePage extends HookConsumerWidget {
                           const Icon(Icons.account_circle_rounded),
                     ),
                   ),
-                  onPressed: () =>
-                      context.push(UserRoute(userId: user.id).location),
+                  onPressed: () => UserRoute(userId: user.id).push(context),
                 ),
                 loading: () => const Icon(Icons.account_circle_rounded),
                 error: (_, __) => IconButton(
                   icon: const Icon(Icons.account_circle_rounded),
-                  onPressed: () => context.push(AuthenticationRoute().location),
+                  onPressed: () => AuthenticationRoute().push(context),
                 ),
               );
             },

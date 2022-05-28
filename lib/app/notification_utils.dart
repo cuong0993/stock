@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:go_router/go_router.dart';
 
 import 'routes.dart';
 
@@ -74,7 +73,7 @@ Future<void> _handleMessageData(
     switch (data['type']) {
       case 'post':
         // TODO.
-        context.push(SettingsRoute().location);
+        SettingsRoute().push(context);
         break;
       case 'meeting':
         // TODO Meeting detail screen.
