@@ -14,4 +14,7 @@
 .gitignore
 
 node_modules
+.run
+.idea
+.sdkmanrc
 #!include:.gitignore

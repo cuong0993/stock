@@ -1,5 +1,5 @@
 provider "google" {
-  region      = var.ENV_FIREBASE_APP_REGION
+  region      = var.ENV_GCP_PROJECT_REGION
   credentials = file("${path.module}/sa-${var.ENV_FLAVOR}.json")
 }
 
@@ -9,13 +9,13 @@ terraform {
 }
 
 resource "google_project_service" "resourcemanager" {
-  project            = var.ENV_FIREBASE_APP_ID
+  project            = var.ENV_GCP_PROJECT_ID
   service            = "cloudresourcemanager.googleapis.com"
   disable_on_destroy = false
 }
 
 resource "google_project_service" "services" {
-  project = var.ENV_FIREBASE_APP_ID
+  project = var.ENV_GCP_PROJECT_ID
   for_each = toset([
     "firebase.googleapis.com",
     "appengine.googleapis.com",
@@ -36,8 +36,8 @@ resource "google_project_service" "services" {
 
 resource "google_cloud_run_service" "default" {
   name     = "analyze-market-service"
-  project  = var.ENV_FIREBASE_APP_ID
-  location = var.ENV_FIREBASE_APP_REGION
+  project  = var.ENV_GCP_PROJECT_ID
+  location = var.ENV_GCP_PROJECT_REGION
 
   template {
     spec {
@@ -79,7 +79,7 @@ resource "google_cloud_scheduler_job" "job" {
   schedule         = "0 12,18 * * 1-5"
   time_zone        = "Asia/Ho_Chi_Minh"
   attempt_deadline = "320s"
-  project          = var.ENV_FIREBASE_APP_ID
+  project          = var.ENV_GCP_PROJECT_ID
 
   retry_config {
     retry_count = 0
@@ -89,7 +89,7 @@ resource "google_cloud_scheduler_job" "job" {
     http_method = "GET"
     uri         = google_cloud_run_service.default.status[0].url
     oidc_token {
-      service_account_email = "sa-dev@${var.ENV_FIREBASE_APP_ID}.iam.gserviceaccount.com"
+      service_account_email = "sa-dev@${var.ENV_GCP_PROJECT_ID}.iam.gserviceaccount.com"
     }
   }
 

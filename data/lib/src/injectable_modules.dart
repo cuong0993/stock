@@ -76,7 +76,7 @@ abstract class NetworkModule {
   Dio getDio(FirebaseApp firebaseApp) => Dio(
         BaseOptions(
           baseUrl:
-              'https://${const String.fromEnvironment('ENV_FIREBASE_APP_REGION')}-${firebaseApp.options.projectId}.cloudfunctions.net',
+              'https://${const String.fromEnvironment('ENV_GCP_PROJECT_REGION')}-${firebaseApp.options.projectId}.cloudfunctions.net',
         ),
       );
 }

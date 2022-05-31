@@ -11,7 +11,7 @@ check:
 
 .PHONY: init
 init:
-	${load_envs} && terraform init -backend-config="bucket=tf-state-$${ENV_FIREBASE_APP_ID}"
+	${load_envs} && terraform init -backend-config="bucket=tf-state-$${ENV_GCP_PROJECT_ID}"
 
 .PHONY: apply
 apply:

@@ -2,7 +2,6 @@ package functions
 
 import com.google.cloud.functions.Context
 import com.google.cloud.functions.RawBackgroundFunction
-import com.google.firebase.cloud.FirestoreClient
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import java.util.logging.Logger
@@ -12,7 +11,6 @@ class OnUserDeleted : RawBackgroundFunction {
     override fun accept(json: String, context: Context) {
         val body = gson.fromJson(json, JsonObject::class.java)
         if (body != null && body.has("uid")) {
-            val db = FirestoreClient.getFirestore(firebaseApp)
             val uid = body["uid"].asString
             val docRef = db.collection("users").document(uid)
             val userSnapshot = docRef.get().get()
