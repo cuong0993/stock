@@ -48,7 +48,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -69,7 +69,7 @@ android {
         resValue "string", "facebook_client_token", dartEnvironmentVariables.ENV_FACEBOOK_APP_SECRET ? dartEnvironmentVariables.ENV_FACEBOOK_APP_SECRET : ""
         applicationId "com.chaomao.stock"
         minSdkVersion 19
-        targetSdkVersion 32
+        targetSdkVersion 33
         multiDexEnabled true
         versionCode 4
         versionName "1.0.0"

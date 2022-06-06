@@ -44,7 +44,7 @@ repos:
         id: kotlin_check
         language: system
         name: Run kotlin check
-      - entry: bash -c "yamllint ."
+      - entry: bash -c "python3 -m yamllint ."
         id: yaml_check
         language: system
         name: Run yaml check

@@ -4,7 +4,7 @@ val logbackVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.0"
     id("com.google.cloud.tools.jib") version "3.2.1"
     id("org.graalvm.buildtools.native") version "0.9.11"
     id("com.github.ben-manes.versions") version "0.42.0"
@@ -27,8 +27,6 @@ tasks {
     val javaVersion = JavaVersion.VERSION_17.toString()
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        sourceCompatibility = javaVersion
-        targetCompatibility = javaVersion
         kotlinOptions.jvmTarget = javaVersion
     }
 
