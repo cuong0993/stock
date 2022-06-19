@@ -40,7 +40,7 @@ repos:
         id: python_check
         language: system
         name: Run python check
-      - entry: bash -c "ktlint"
+      - entry: bash -c "ktlint --format"
         id: kotlin_check
         language: system
         name: Run kotlin check

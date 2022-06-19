@@ -6,14 +6,14 @@ plugins {
     application
     kotlin("jvm") version "1.7.0"
     id("com.google.cloud.tools.jib") version "3.2.1"
-    id("org.graalvm.buildtools.native") version "0.9.11"
+    id("org.graalvm.buildtools.native") version "0.9.12"
     id("com.github.ben-manes.versions") version "0.42.0"
 }
 
 group = "com.chaomao"
 version = "0.0.1"
 application {
-    mainClass.set("com.chaomao.ApplicationKt")
+    mainClass.set("com.chaomao.configurations.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -47,6 +47,7 @@ dependencies {
     implementation("com.google.auth:google-auth-library-oauth2-http:1.7.0")
     implementation("com.google.apis:google-api-services-drive:v3-rev20220508-1.32.1")
     implementation("com.google.cloud:google-cloud-firestore:3.2.0")
+    implementation("io.insert-koin:koin-ktor:3.2.0")
 }
 
 jib {

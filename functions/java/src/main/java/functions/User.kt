@@ -7,5 +7,5 @@ data class User(
     val name: String = "",
     val photoUrl: String = "",
     val tokens: List<String> = listOf(),
-    val creationTime: Date = Date(),
+    val creationTime: Date = Date()
 )

@@ -1,4 +1,4 @@
-package com.chaomao
+package com.chaomao.modules.analyze
 
 import org.ta4j.core.BarSeries
 import org.ta4j.core.indicators.CachedIndicator

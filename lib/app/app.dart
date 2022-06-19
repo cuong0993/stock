@@ -33,6 +33,7 @@ class App extends ConsumerWidget {
       ),
       theme: lightTheme,
       darkTheme: darkTheme,
+      routeInformationProvider: _router.routeInformationProvider,
       routerDelegate: _router.routerDelegate,
       routeInformationParser: _router.routeInformationParser,
     );

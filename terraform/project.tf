@@ -87,7 +87,7 @@ resource "google_cloud_scheduler_job" "job" {
 
   http_target {
     http_method = "GET"
-    uri         = google_cloud_run_service.default.status[0].url
+    uri         = "${google_cloud_run_service.default.status[0].url}/analyze"
     oidc_token {
       service_account_email = "sa-dev@${var.ENV_GCP_PROJECT_ID}.iam.gserviceaccount.com"
     }

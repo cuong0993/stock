@@ -1,4 +1,4 @@
-package com.chaomao
+package com.chaomao.modules.analyze
 
 data class Company(
     val CatID: Int = -1,
@@ -8,5 +8,5 @@ data class Company(
     val IndustryName: String = "",
     val Name: String = "",
     val TotalShares: Long = -1,
-    val URL: String = "",
+    val URL: String = ""
 )
