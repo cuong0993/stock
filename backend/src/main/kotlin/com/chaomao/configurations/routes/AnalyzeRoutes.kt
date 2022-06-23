@@ -1,32 +1,47 @@
 package com.chaomao.configurations.routes
 
 import com.chaomao.modules.analyze.AnalyzeController
+import com.papsign.ktor.openapigen.annotations.parameters.QueryParam
+import com.papsign.ktor.openapigen.route.info
+import com.papsign.ktor.openapigen.route.path.normal.NormalOpenAPIRoute
+import com.papsign.ktor.openapigen.route.path.normal.get
+import com.papsign.ktor.openapigen.route.response.respond
+import com.papsign.ktor.openapigen.route.route
+import com.papsign.ktor.openapigen.route.throws
 import io.ktor.http.HttpStatusCode
-import io.ktor.server.application.call
-import io.ktor.server.response.respondText
-import io.ktor.server.routing.Route
-import io.ktor.server.routing.Routing
-import io.ktor.server.routing.get
-import org.koin.ktor.ext.inject
+import org.koin.java.KoinJavaComponent
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun Routing.analyze() {
+const val ANALYZE = "/analyze"
+
+fun NormalOpenAPIRoute.analyze() {
     getAnalyze()
 }
 
-fun Route.getAnalyze() {
-    val controller: AnalyzeController by inject()
+data class AnalyzeParam(
+    @QueryParam("Date") val date: String?
+)
 
-    get("/analyze") {
-        val date = if (call.request.queryParameters["date"] != null) {
-            SimpleDateFormat("yyyy-MM-dd").apply { timeZone = TimeZone.getTimeZone("UTC") }
-                .parse(call.request.queryParameters["date"])
-        } else {
-            Date()
+fun NormalOpenAPIRoute.getAnalyze() {
+    route(ANALYZE) {
+        throws(HttpStatusCode.InternalServerError, "Internal server error", { ex: Exception -> ex.toString() }) {
+            throws(HttpStatusCode.BadRequest, "Bad request", { ex: ParseException -> ex.message }) {
+                get<AnalyzeParam, String>(
+                    info("Analyze market at a specific date")
+                ) { param ->
+                    val controller: AnalyzeController = KoinJavaComponent.getKoin().get()
+                    val date = if (param.date != null) {
+                        SimpleDateFormat("yyyy-MM-dd").apply { timeZone = TimeZone.getTimeZone("UTC") }
+                            .parse(param.date)
+                    } else {
+                        Date()
+                    }
+                    val result = controller.get(date)
+                    respond(result)
+                }
+            }
         }
-        val result = controller.get(date)
-        val responseCode = if (result.isSuccess) HttpStatusCode.OK else HttpStatusCode.BadRequest
-        call.respondText(status = responseCode, text = result.getOrNull() ?: "Service not found")
     }
 }

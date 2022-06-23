@@ -1,5 +1,5 @@
 env:
-  flutter_version: 3.0.3
+  flutter_version: 3.0.4
 jobs:
   build:
     name: Build
@@ -22,10 +22,10 @@ jobs:
           java-version: 17
       - name: Get dependencies
         run: |
-          flutter pub get
+          cd domain; flutter pub get; cd ..
           cd data; flutter pub get; cd ..
           cd application; flutter pub get; cd ..
-          cd domain; flutter pub get; cd ..
+          flutter pub get
       - name: Format source code
         run: flutter format --set-exit-if-changed .
       - name: Analyze source code

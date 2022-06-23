@@ -6,6 +6,7 @@ class SelectImageSourceDialog extends StatelessWidget {
     required this.onImageSourceSelected,
     super.key,
   });
+
   final ValueSetter<ImageSource> onImageSourceSelected;
 
   @override

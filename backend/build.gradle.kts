@@ -4,9 +4,9 @@ val logbackVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.7.10"
     id("com.google.cloud.tools.jib") version "3.2.1"
-    id("org.graalvm.buildtools.native") version "0.9.12"
+    id("org.graalvm.buildtools.native") version "0.9.13"
     id("com.github.ben-manes.versions") version "0.42.0"
 }
 
@@ -44,10 +44,14 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
     implementation("org.ta4j:ta4j-core:0.14")
     implementation("org.apache.poi:poi-ooxml:5.2.2")
-    implementation("com.google.auth:google-auth-library-oauth2-http:1.7.0")
+    implementation("com.google.auth:google-auth-library-oauth2-http:1.8.0")
     implementation("com.google.apis:google-api-services-drive:v3-rev20220508-1.32.1")
-    implementation("com.google.cloud:google-cloud-firestore:3.2.0")
+    implementation("com.google.cloud:google-cloud-firestore:3.3.0")
     implementation("io.insert-koin:koin-ktor:3.2.0")
+    implementation("dev.forst:ktor-openapi-generator:0.4.4")
+    implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-gson:$ktorVersion")
+    implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
 }
 
 jib {

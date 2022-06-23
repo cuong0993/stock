@@ -1,24 +1,27 @@
 package com.chaomao.configurations.routes
 
 import com.chaomao.modules.infocheck.InfoCheckController
-import io.ktor.http.HttpStatusCode
-import io.ktor.server.application.call
-import io.ktor.server.response.respondText
-import io.ktor.server.routing.Route
-import io.ktor.server.routing.Routing
-import io.ktor.server.routing.get
-import org.koin.ktor.ext.inject
+import com.papsign.ktor.openapigen.route.info
+import com.papsign.ktor.openapigen.route.path.normal.NormalOpenAPIRoute
+import com.papsign.ktor.openapigen.route.path.normal.get
+import com.papsign.ktor.openapigen.route.response.respond
+import com.papsign.ktor.openapigen.route.route
+import org.koin.java.KoinJavaComponent
 
-fun Routing.infoCheck() {
+const val INFO_CHECK = "/infocheck"
+
+fun NormalOpenAPIRoute.infoCheck() {
     getInfoCheck()
 }
 
-fun Route.getInfoCheck() {
-    val controller: InfoCheckController by inject()
-
-    get("/infocheck") {
-        val result = controller.get()
-        val responseCode = if (result.isSuccess) HttpStatusCode.OK else HttpStatusCode.BadRequest
-        call.respondText(status = responseCode, text = result.getOrNull() ?: "Service not found")
+fun NormalOpenAPIRoute.getInfoCheck() {
+    route(INFO_CHECK) {
+        get<Unit, String>(
+            info("Info check")
+        ) {
+            val controller: InfoCheckController = KoinJavaComponent.getKoin().get()
+            val result = controller.get()
+            respond(result)
+        }
     }
 }

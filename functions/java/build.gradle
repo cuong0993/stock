@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlin_version = '1.7.0'
+        kotlin_version = '1.7.10'
     }
     repositories {
         mavenCentral()
@@ -22,13 +22,13 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
 compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17
 }
 
 configurations {
@@ -37,7 +37,7 @@ configurations {
 
 dependencies {
     implementation "com.google.cloud.functions:functions-framework-api:1.0.4"
-    implementation "com.google.cloud:google-cloud-firestore:3.2.0"
+    implementation "com.google.cloud:google-cloud-firestore:3.3.0"
     invoker "com.google.cloud.functions.invoker:java-function-invoker:1.1.0"
 }
 

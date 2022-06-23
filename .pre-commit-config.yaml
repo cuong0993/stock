@@ -12,19 +12,9 @@ repos:
         id: format_svg
         language: system
         name: Run format svg
-      - entry: bash -c "flutter pub upgrade"
-        id: flutter_pub_upgrade
-        language: system
-        name: Run flutter pub upgrade
-      - entry: bash -c "cd domain; flutter pub upgrade"
-        id: flutter_pub_upgrade
-        language: system
-        name: Run flutter pub upgrade
-      - entry: bash -c "cd data; flutter pub upgrade"
-        id: flutter_pub_upgrade
-        language: system
-        name: Run flutter pub upgrade
-      - entry: bash -c "cd application; flutter pub upgrade"
+      - entry: bash -c "cd domain; flutter pub upgrade; cd ..; cd data; flutter pub
+          upgrade; cd ..; cd application; flutter pub upgrade; cd ..; flutter pub
+          upgrade"
         id: flutter_pub_upgrade
         language: system
         name: Run flutter pub upgrade
