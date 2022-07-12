@@ -4,9 +4,19 @@
             <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
+    <!--    <appender name="CLOUD" class="com.google.cloud.logging.logback.LoggingAppender">-->
+    <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+    <!--            <level>INFO</level>-->
+    <!--        </filter>-->
+    <!--        <log>application.log</log>-->
+    <!--        <resourceType>gae_app</resourceType>-->
+    <!--        <enhancer>com.example.logging.logback.enhancers.ExampleEnhancer</enhancer>-->
+    <!--        <flushLevel>WARN</flushLevel>-->
+    <!--    </appender>-->
+
     <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
     <logger name="org.eclipse.jetty" level="DEBUG"/>
-    <logger name="io.netty" level="DEBUG"/>
+    <logger name="io.netty" level="ERROR"/>
 </configuration>

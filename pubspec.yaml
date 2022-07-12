@@ -38,7 +38,7 @@ dev_dependencies:
   flutter_native_splash: any
   go_router_builder: any
 environment:
-  sdk: '>=2.17.5 <3.0.0'
+  sdk: '>=2.17.6 <3.0.0'
 flutter:
   assets:
     - assets/images/

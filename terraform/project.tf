@@ -43,7 +43,8 @@ resource "google_cloud_run_service" "default" {
     spec {
       containers {
         // FIXME Initial image
-        image = "gcr.io/cloudrun/hello"
+        // image = "gcr.io/cloudrun/hello"
+        image = "gcr.io/${var.ENV_GCP_PROJECT_ID}/app:latest"
         env {
           // FIXME Hard code folder id
           name  = "DRIVE_FOLDER_ID"
@@ -77,7 +78,7 @@ resource "google_cloud_scheduler_job" "job" {
   name             = "analyze-market-job"
   description      = "Analyze Vietnam stock market every weekday at 12:00 PM and 6:00 PM"
   schedule         = "0 12,18 * * 1-5"
-  time_zone        = "Asia/Ho_Chi_Minh"
+  time_zone        = "Asia/Saigon"
   attempt_deadline = "320s"
   project          = var.ENV_GCP_PROJECT_ID
 
@@ -86,8 +87,12 @@ resource "google_cloud_scheduler_job" "job" {
   }
 
   http_target {
-    http_method = "GET"
+    http_method = "POST"
     uri         = "${google_cloud_run_service.default.status[0].url}/analyze"
+    headers = {
+      "Content-Type" = "application/json"
+    }
+    body = base64encode("{}")
     oidc_token {
       service_account_email = "sa-dev@${var.ENV_GCP_PROJECT_ID}.iam.gserviceaccount.com"
     }

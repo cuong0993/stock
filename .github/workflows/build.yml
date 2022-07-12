@@ -1,5 +1,5 @@
 env:
-  flutter_version: 3.0.4
+  flutter_version: 3.0.5
 jobs:
   build:
     name: Build

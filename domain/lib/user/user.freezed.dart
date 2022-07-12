@@ -203,15 +203,15 @@ abstract class _User implements User {
       required final DateTime creationTime}) = _$_User;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get photoUrl => throw _privateConstructorUsedError;
+  String get photoUrl;
   @override
-  List<String> get tokens => throw _privateConstructorUsedError;
+  List<String> get tokens;
   @override
-  DateTime get creationTime => throw _privateConstructorUsedError;
+  DateTime get creationTime;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

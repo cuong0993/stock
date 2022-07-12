@@ -153,9 +153,9 @@ abstract class _EditUserState implements EditUserState {
       required final User user}) = _$_EditUserState;
 
   @override
-  String? get newProfileImagePath => throw _privateConstructorUsedError;
+  String? get newProfileImagePath;
   @override
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @override
   @JsonKey(ignore: true)
   _$$_EditUserStateCopyWith<_$_EditUserState> get copyWith =>

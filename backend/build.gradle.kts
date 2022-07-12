@@ -38,20 +38,24 @@ tasks {
 
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-server-cio-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
     implementation("org.ta4j:ta4j-core:0.14")
     implementation("org.apache.poi:poi-ooxml:5.2.2")
-    implementation("com.google.auth:google-auth-library-oauth2-http:1.8.0")
-    implementation("com.google.apis:google-api-services-drive:v3-rev20220508-1.32.1")
+    implementation("org.apache.commons:commons-csv:1.9.0")
+    implementation("com.google.auth:google-auth-library-oauth2-http:1.8.1")
+    implementation("com.google.apis:google-api-services-drive:v3-rev20220709-1.32.1")
     implementation("com.google.cloud:google-cloud-firestore:3.3.0")
+    implementation("com.google.cloud:google-cloud-storage:2.10.0")
     implementation("io.insert-koin:koin-ktor:3.2.0")
     implementation("dev.forst:ktor-openapi-generator:0.4.4")
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
     implementation("io.ktor:ktor-serialization-gson:$ktorVersion")
     implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
+    implementation("org.apache.logging.log4j:log4j-to-slf4j:2.18.0")
+    implementation("com.google.cloud:google-cloud-logging-logback:0.127.0-alpha")
 }
 
 jib {

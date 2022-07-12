@@ -137,9 +137,9 @@ abstract class _AppState implements AppState {
       required final String? localeName}) = _$_AppState;
 
   @override
-  String? get themeName => throw _privateConstructorUsedError;
+  String? get themeName;
   @override
-  String? get localeName => throw _privateConstructorUsedError;
+  String? get localeName;
   @override
   @JsonKey(ignore: true)
   _$$_AppStateCopyWith<_$_AppState> get copyWith =>

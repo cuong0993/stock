@@ -8,7 +8,7 @@ dependencies:
     path: ../domain
   firebase_app_check: any
   firebase_auth: any
-  firebase_core: ^1.19.1
+  firebase_core: ^1.19.2
   firebase_crashlytics: any
   firebase_messaging: any
   firebase_storage: any
@@ -33,5 +33,5 @@ dev_dependencies:
   json_serializable: any
   retrofit_generator: any
 environment:
-  sdk: '>=2.17.5 <3.0.0'
+  sdk: '>=2.17.6 <3.0.0'
 name: data

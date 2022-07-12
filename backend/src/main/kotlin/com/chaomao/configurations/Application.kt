@@ -6,12 +6,18 @@ import com.chaomao.configurations.plugins.configureKoin
 import com.chaomao.configurations.plugins.configureOpenApiGenerator
 import com.chaomao.configurations.plugins.configureRouting
 import io.ktor.server.application.Application
-import io.ktor.server.cio.CIO
+import io.ktor.server.application.log
+import io.ktor.server.engine.addShutdownHook
 import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
 
 fun main() {
-    embeddedServer(CIO, port = 8080) {
+    embeddedServer(Netty, port = 8080) {
         module()
+    }.apply {
+        addShutdownHook {
+            this.application.log.debug("Server shutting down")
+        }
     }.start(wait = true)
 }
 
