@@ -1,14 +1,19 @@
 package com.chaomao.configurations.routes
 
 import com.chaomao.modules.analyze.AnalyzeController
-import com.papsign.ktor.openapigen.annotations.parameters.QueryParam
+import com.chaomao.modules.analyze.AnalyzeRequestBody
+import com.chaomao.modules.analyze.AnalyzeResponse
+
 import com.papsign.ktor.openapigen.route.info
 import com.papsign.ktor.openapigen.route.path.normal.NormalOpenAPIRoute
-import com.papsign.ktor.openapigen.route.path.normal.get
+import com.papsign.ktor.openapigen.route.path.normal.post
 import com.papsign.ktor.openapigen.route.response.respond
 import com.papsign.ktor.openapigen.route.route
 import com.papsign.ktor.openapigen.route.throws
 import io.ktor.http.HttpStatusCode
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.java.KoinJavaComponent
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -17,20 +22,16 @@ import java.util.*
 const val ANALYZE = "/analyze"
 
 fun NormalOpenAPIRoute.analyze() {
-    getAnalyze()
+    postAnalyze()
 }
 
-data class AnalyzeParam(
-    @QueryParam("Date") val date: String?
-)
-
-fun NormalOpenAPIRoute.getAnalyze() {
+fun NormalOpenAPIRoute.postAnalyze() {
     route(ANALYZE) {
         throws(HttpStatusCode.InternalServerError, "Internal server error", { ex: Exception -> ex.toString() }) {
             throws(HttpStatusCode.BadRequest, "Bad request", { ex: ParseException -> ex.message }) {
-                get<AnalyzeParam, String>(
+                post<Any, AnalyzeResponse, AnalyzeRequestBody>(
                     info("Analyze market at a specific date")
-                ) { param ->
+                ) { _, param ->
                     val controller: AnalyzeController = KoinJavaComponent.getKoin().get()
                     val date = if (param.date != null) {
                         SimpleDateFormat("yyyy-MM-dd").apply { timeZone = TimeZone.getTimeZone("UTC") }
@@ -39,7 +40,7 @@ fun NormalOpenAPIRoute.getAnalyze() {
                         Date()
                     }
                     val result = controller.get(date)
-                    respond(result)
+                    respond(AnalyzeResponse("","", "", "", ""))
                 }
             }
         }

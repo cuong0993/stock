@@ -875,3 +875,16 @@ private fun fillRow(date: ZonedDateTime, barSeries: BaseBarSeries, xssfWorkbook:
             }
     }
 }
+
+
+data class AnalyzeRequestBody(
+    val date: String?
+)
+
+data class AnalyzeResponse(
+    val id: String,
+    val file_id: String,
+    val file_url: String,
+    val state: String,
+    val requested_at: String
+)
