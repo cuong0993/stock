@@ -52,6 +52,7 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
     implementation("io.ktor:ktor-serialization-gson:$ktorVersion")
     implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
+    implementation("org.apache.logging.log4j:log4j-to-slf4j:2.18.0")
 }
 
 jib {

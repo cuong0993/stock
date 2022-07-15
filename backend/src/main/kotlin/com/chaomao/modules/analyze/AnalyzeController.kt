@@ -85,8 +85,8 @@ class AnalyzeController {
                     }
                 }
             }
+        logger.debug("Analyze local data")
 
-        withContext(Dispatchers.IO) {
             val credentialInputStream = System.getenv("SERVICE_ACCOUNT_JSON").byteInputStream()
             val credential =
                 GoogleCredentials.fromStream(credentialInputStream)
@@ -97,9 +97,7 @@ class AnalyzeController {
                 .setCredentialsProvider(FixedCredentialsProvider.create(credential))
                 .build().service
 
-            val companies =
-                db.collection("companies").whereIn("Exchange", listOf("HOSE", "HNX", "UPCoM")).get()
-                    .get().documents.map { it.toObject(Company::class.java) }
+            val companies = arrayListOf<Company>(Company(1, "HPG", "Technology", 1))
             val companyCodes = companies.map { it.Code }
             var currentTicker = ""
             val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
@@ -183,7 +181,7 @@ class AnalyzeController {
             }
             val mediaContent = FileContent("application/vnd.ms-excel", File(fileName))
             service.files().create(fileMetadata, mediaContent).execute()
-        }
+
         return "Done"
     }
 }

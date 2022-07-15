@@ -41,7 +41,7 @@ fun NormalOpenAPIRoute.postAnalyze() {
                     }
                     this.pipeline.launch {
                         withContext(Dispatchers.IO) {
-                            val result = controller.get(date)
+                            controller.get(date)
                         }
 
                     }
