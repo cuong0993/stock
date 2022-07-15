@@ -19,6 +19,6 @@ fun Application.module() {
     configureCallLogging()
     configureKoin()
     configureContentNegotiation()
-    configureOpenApiGenerator()
+    //configureOpenApiGenerator()
     configureRouting()
 }

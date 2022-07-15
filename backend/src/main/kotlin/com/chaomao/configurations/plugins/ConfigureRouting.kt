@@ -15,16 +15,8 @@ import io.ktor.server.routing.routing
 
 fun Application.configureRouting() {
     routing {
-        get("/openapi.json") {
-            call.respond(application.openAPIGen.api.serialize())
-        }
-        get("/") {
-            call.respondRedirect("/swagger-ui/index.html?url=/openapi.json", true)
-        }
-    }
-    apiRouting {
         analyze()
-        healthCheck()
-        infoCheck()
+        //healthCheck()
+       // infoCheck()
     }
 }

@@ -86,7 +86,7 @@ class AnalyzeController {
                 }
             }
 
-        withContext(Dispatchers.IO) {
+        //withContext(Dispatchers.IO) {
             val credentialInputStream = System.getenv("SERVICE_ACCOUNT_JSON").byteInputStream()
             val credential =
                 GoogleCredentials.fromStream(credentialInputStream)
@@ -183,7 +183,7 @@ class AnalyzeController {
             }
             val mediaContent = FileContent("application/vnd.ms-excel", File(fileName))
             service.files().create(fileMetadata, mediaContent).execute()
-        }
+        //}
         return "Done"
     }
 }
