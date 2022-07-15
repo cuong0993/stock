@@ -39,8 +39,14 @@ fun NormalOpenAPIRoute.postAnalyze() {
                     } else {
                         Date()
                     }
-                    val result = controller.get(date)
                     respond(AnalyzeResponse("","", "", "", ""))
+
+                    this.pipeline.launch {
+                        withContext(Dispatchers.IO) {
+                            val result = controller.get(date)
+                        }
+
+                    }
                 }
             }
         }
