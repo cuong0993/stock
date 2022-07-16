@@ -55,6 +55,7 @@ import java.util.zip.ZipInputStream
 class AnalyzeController {
     private val logger = LoggerFactory.getLogger("AnalyzeController")
     suspend fun get(date: Date): String {
+        logger.debug("Analyze local data 1")
         val zonedDateTime = ZonedDateTime.ofInstant(date.toInstant(), ZoneId.of("UTC"))
         val xssfWorkbook =
             XSSFWorkbook().apply {
@@ -85,17 +86,19 @@ class AnalyzeController {
                     }
                 }
             }
-        logger.debug("Analyze local data")
+        logger.debug("Analyze local data 2")
 
             val credentialInputStream = System.getenv("SERVICE_ACCOUNT_JSON").byteInputStream()
             val credential =
                 GoogleCredentials.fromStream(credentialInputStream)
                     .createScoped(listOf("https://www.googleapis.com/auth/datastore", DriveScopes.DRIVE))
             credentialInputStream.close()
+        logger.debug("Analyze local data 3")
 
             val db = FirestoreOptions.getDefaultInstance().toBuilder()
-                .setCredentialsProvider(FixedCredentialsProvider.create(credential))
+                .setCredentials(credential)
                 .build().service
+        logger.debug("Analyze local data 4")
 
             val companies = arrayListOf<Company>(Company(1, "HPG", "Technology", 1))
             val companyCodes = companies.map { it.Code }
@@ -103,6 +106,7 @@ class AnalyzeController {
             val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
             var barSeries: BaseBarSeries? = null
             var lastDate = ZonedDateTime.ofInstant(Instant.ofEpochSecond(0), ZoneOffset.UTC)
+        logger.debug("Analyze local data 5")
 
             val file = File("amibroker_all_data.txt")
             val dataInputStream = if (!file.exists()) {
@@ -126,6 +130,7 @@ class AnalyzeController {
                 val fields = line.split(",")
                 if (currentTicker != fields[0]) {
                     if (barSeries != null && companyCodes.contains(barSeries.name)) {
+                        break
                         fillRow(
                             zonedDateTime,
                             barSeries,

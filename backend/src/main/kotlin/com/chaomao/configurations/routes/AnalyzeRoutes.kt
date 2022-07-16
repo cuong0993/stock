@@ -11,7 +11,9 @@ import com.papsign.ktor.openapigen.route.response.respond
 import com.papsign.ktor.openapigen.route.route
 import com.papsign.ktor.openapigen.route.throws
 import io.ktor.http.HttpStatusCode
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.java.KoinJavaComponent
@@ -19,7 +21,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val ANALYZE = "/analyze"
+const val ANALYZE = "/analyze1"
 
 fun NormalOpenAPIRoute.analyze() {
     postAnalyze()
@@ -39,13 +41,15 @@ fun NormalOpenAPIRoute.postAnalyze() {
                     } else {
                         Date()
                     }
-                    this.pipeline.launch {
-                        withContext(Dispatchers.IO) {
-                            controller.get(date)
-                        }
+
+
+
+                   this.pipeline.launch {
+                       controller.get(date)
 
                     }
                     respond(AnalyzeResponse("","", "", "", ""))
+
                 }
             }
         }
