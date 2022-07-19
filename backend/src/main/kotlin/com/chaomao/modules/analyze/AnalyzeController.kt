@@ -62,7 +62,7 @@ fun post(): AnalyzeResponse {
     )
 }
 class AnalyzeController {
-    private val logger = LoggerFactory.getLogger("AnalyzeController")
+    private val logger = LoggerFactory.getLogger("ktor.application")
 
     fun process(
         param: AnalyzeRequestBody,
@@ -140,16 +140,16 @@ class AnalyzeController {
 
         val file = File("amibroker_all_data.txt")
         val dataInputStream = if (!file.exists()) {
-            logger.debug("Analyze remote data")
+            logger.info("Analyze remote data")
             ZipInputStream(
                 URL("http://www.cophieu68.vn/export/metastock_all.php").openStream()
             ).apply {
                 nextEntry.apply {
-                    logger.debug("entry: ${this?.name}, ${this?.size}")
+                    logger.info("entry: ${this?.name}, ${this?.size}")
                 }
             }
         } else {
-            logger.debug("Analyze local data")
+            logger.info("Analyze local data")
             FileInputStream(file)
         }
         val scanner = Scanner(dataInputStream)
@@ -167,7 +167,7 @@ class AnalyzeController {
                     companies.findLast { it.Code == stockDataController!!.name }!!
                 )
                 currentTicker = fields[0]
-                logger.debug(currentTicker)
+                logger.info("Analyzing $currentTicker")
                 stockDataController = if (companyCodes.contains(currentTicker)) {
                     StockDataController(currentTicker)
                 } else {
@@ -214,7 +214,7 @@ class AnalyzeController {
         val storage = StorageOptions.newBuilder().setCredentials(credential).build().service
         Files.walk(Paths.get("./ohlcv")).forEach {
             if (it.toFile().isFile) {
-                logger.debug("Uploading ${it.fileName}")
+                logger.info("Uploading ${it.fileName}")
                 storage.create(
                     BlobInfo.newBuilder(
                         BlobId.of(
