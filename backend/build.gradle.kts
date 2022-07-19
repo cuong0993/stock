@@ -65,6 +65,15 @@ jib {
     container {
         ports = listOf("8080")
         mainClass = mainClass
+        creationTime = "USE_CURRENT_TIMESTAMP"
+    }
+    extraDirectories {
+        paths {
+            path {
+                setFrom("config/gcloud")
+                into = "/app/resources"
+            }
+        }
     }
 }
 
