@@ -1,16 +1,13 @@
 <configuration>
-    <appender name="CLOUD" class="com.google.cloud.logging.logback.LoggingAppender">
-<!--        &lt;!&ndash; Optional : filter logs at or above a level &ndash;&gt;-->
-<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
-<!--            <level>INFO</level>-->
-<!--        </filter>-->
-<!--        <log>application.log</log> &lt;!&ndash; Optional : default java.log &ndash;&gt;-->
-<!--        <resourceType>gae_app</resourceType> &lt;!&ndash; Optional : default: auto-detected, fallback: global &ndash;&gt;-->
-<!--        <enhancer>com.example.logging.logback.enhancers.ExampleEnhancer</enhancer> &lt;!&ndash; Optional &ndash;&gt;-->
-<!--        <flushLevel>info</flushLevel> &lt;!&ndash; Optional : default ERROR &ndash;&gt;-->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
     </appender>
-
     <root level="info">
-        <appender-ref ref="CLOUD"/>
+        <appender-ref ref="FILE"/>
     </root>
+    <logger name="io.netty" level="INFO"/>
 </configuration>

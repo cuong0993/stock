@@ -1,5 +1,6 @@
 package com.chaomao.modules.analyze
 
+import com.chaomao.configurations.getLogger
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.http.FileContent
 import com.google.api.client.json.gson.GsonFactory
@@ -13,7 +14,6 @@ import com.google.cloud.storage.BlobId
 import com.google.cloud.storage.BlobInfo
 import com.google.cloud.storage.StorageOptions
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -62,7 +62,7 @@ fun post(): AnalyzeResponse {
     )
 }
 class AnalyzeController {
-    private val logger = LoggerFactory.getLogger("ktor.application")
+    private val logger = getLogger()
 
     fun process(
         param: AnalyzeRequestBody,

@@ -10,6 +10,8 @@ import io.ktor.server.application.log
 import io.ktor.server.engine.addShutdownHook
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 fun main() {
     embeddedServer(Netty, port = 8080) {
@@ -27,4 +29,8 @@ fun Application.module() {
     configureContentNegotiation()
     configureOpenApiGenerator()
     configureRouting()
+}
+
+inline fun <reified T> T.getLogger(): Logger {
+    return LoggerFactory.getLogger(T::class.java)
 }
