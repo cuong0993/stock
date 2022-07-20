@@ -63,6 +63,7 @@ fun post(): AnalyzeResponse {
 }
 class AnalyzeController {
     private val logger = getLogger()
+    private val isDevelopment = System.getProperty("io.ktor.development").toBoolean()
 
     fun process(
         param: AnalyzeRequestBody,
@@ -141,13 +142,17 @@ class AnalyzeController {
         val file = File("amibroker_all_data.txt")
         val dataInputStream = if (!file.exists()) {
             logger.info("Analyze remote data")
-            ZipInputStream(
+            val zipInputStream = ZipInputStream(
                 URL("http://www.cophieu68.vn/export/metastock_all.php").openStream()
             ).apply {
                 nextEntry.apply {
                     logger.info("entry: ${this?.name}, ${this?.size}")
                 }
             }
+            if (isDevelopment) {
+                Files.copy(zipInputStream, Paths.get("amibroker_all_data.txt"))
+            }
+            zipInputStream
         } else {
             logger.info("Analyze local data")
             FileInputStream(file)
@@ -202,31 +207,33 @@ class AnalyzeController {
         fileOutputStream.close()
         xssfWorkbook.close()
 
-        val fileMetadata = com.google.api.services.drive.model.File().apply {
-            name = fileName
-            id = fileId
-            parents = listOf(System.getenv("DRIVE_FOLDER_ID"))
-            mimeType = "application/vnd.ms-excel"
-        }
-        val mediaContent = FileContent("application/vnd.ms-excel", File(fileName))
-        googleDriveService.files().create(fileMetadata, mediaContent).execute()
+        if (!isDevelopment) {
+            val fileMetadata = com.google.api.services.drive.model.File().apply {
+                name = fileName
+                id = fileId
+                parents = listOf(System.getenv("DRIVE_FOLDER_ID"))
+                mimeType = "application/vnd.ms-excel"
+            }
+            val mediaContent = FileContent("application/vnd.ms-excel", File(fileName))
+            googleDriveService.files().create(fileMetadata, mediaContent).execute()
 
-        val storage = StorageOptions.newBuilder().setCredentials(credential).build().service
-        Files.walk(Paths.get("./ohlcv")).forEach {
-            if (it.toFile().isFile) {
-                logger.info("Uploading ${it.fileName}")
-                storage.create(
-                    BlobInfo.newBuilder(
-                        BlobId.of(
-                            "${credential.projectId}.appspot.com",
-                            "ohlcv/${it.fileName}"
+            val storage = StorageOptions.newBuilder().setCredentials(credential).build().service
+            Files.walk(Paths.get("./ohlcv")).forEach {
+                if (it.toFile().isFile) {
+                    logger.info("Uploading ${it.fileName}")
+                    storage.create(
+                        BlobInfo.newBuilder(
+                            BlobId.of(
+                                "${credential.projectId}.appspot.com",
+                                "ohlcv/${it.fileName}"
+                            )
+                        )
+                            .build(),
+                        Files.readAllBytes(
+                            Paths.get(it.toUri())
                         )
                     )
-                        .build(),
-                    Files.readAllBytes(
-                        Paths.get(it.toUri())
-                    )
-                )
+                }
             }
         }
     }
