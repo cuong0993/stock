@@ -1,6 +1,7 @@
 package com.chaomao.configurations.routes
 
 import com.chaomao.modules.infocheck.InfoCheckController
+import com.chaomao.modules.infocheck.InfoCheckResponse
 import com.papsign.ktor.openapigen.route.info
 import com.papsign.ktor.openapigen.route.path.normal.NormalOpenAPIRoute
 import com.papsign.ktor.openapigen.route.path.normal.get
@@ -16,7 +17,7 @@ fun NormalOpenAPIRoute.infoCheck() {
 
 fun NormalOpenAPIRoute.getInfoCheck() {
     route(INFO_CHECK) {
-        get<Unit, String>(
+        get<Unit, InfoCheckResponse>(
             info("Info check")
         ) {
             val controller: InfoCheckController = KoinJavaComponent.getKoin().get()

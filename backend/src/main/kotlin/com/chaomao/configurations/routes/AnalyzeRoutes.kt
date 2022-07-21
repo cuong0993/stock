@@ -29,7 +29,7 @@ fun NormalOpenAPIRoute.postAnalyze() {
                 ) { _, req ->
                     val result = post()
                     val controller: AnalyzeController = KoinJavaComponent.getKoin().get()
-                    controller.process(req, result.file_id)
+                    controller.process(req)
                     respond(result)
                 }
             }

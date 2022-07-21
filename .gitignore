@@ -48,6 +48,7 @@ google-services.json
 service_account.json
 /android/app/build/
 /android/fastlane/report.xml
+/android/.idea
 
 /ios/Flutter/Environment.xcconfig
 GoogleService-Info.plist

@@ -3,11 +3,15 @@ import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:domain/user/user.dart' as domain;
 import 'package:json_annotation/json_annotation.dart';
 
-import '../firebase_timestamp_converter.dart';
-
 part 'user.g.dart';
 
-@JsonSerializable()
+const firestoreSerializable = JsonSerializable(
+  explicitToJson: true,
+  createFieldMap: true,
+  converters: [FirestoreDateTimeConverter()],
+);
+
+@firestoreSerializable
 class User {
   const User({
     required this.id,
@@ -29,7 +33,6 @@ class User {
   final String name;
   final String photoUrl;
   final List<String> tokens;
-  @FirebaseTimestampConverter()
   final DateTime creationTime;
 
   domain.User toDomain() => domain.User(

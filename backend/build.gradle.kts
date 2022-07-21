@@ -46,7 +46,6 @@ dependencies {
     implementation("org.apache.poi:poi-ooxml:5.2.2")
     implementation("org.apache.commons:commons-csv:1.9.0")
     implementation("com.google.auth:google-auth-library-oauth2-http:1.8.1")
-    implementation("com.google.apis:google-api-services-drive:v3-rev20220709-1.32.1")
     implementation("com.google.cloud:google-cloud-firestore:3.3.0")
     implementation("com.google.cloud:google-cloud-storage:2.10.0")
     implementation("io.insert-koin:koin-ktor:3.2.0")
@@ -59,9 +58,6 @@ dependencies {
 }
 
 jib {
-    from {
-        image = "eclipse-temurin:17-jre@sha256:b4d622a58a70eab8b6a7a08a568fc1d5857c3eadd88f8061d5991c8c8837f749"
-    }
     container {
         ports = listOf("8080")
         mainClass = mainClass

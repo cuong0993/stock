@@ -23,7 +23,6 @@ resource "google_project_service" "services" {
     "cloudbuild.googleapis.com",
     "cloudfunctions.googleapis.com",
     "run.googleapis.com",
-    "drive.googleapis.com",
     "cloudscheduler.googleapis.com",
   ])
   service            = each.value
@@ -43,13 +42,8 @@ resource "google_cloud_run_service" "default" {
     spec {
       containers {
         // FIXME Initial image
-        // image = "gcr.io/cloudrun/hello"
-        image = "gcr.io/${var.ENV_GCP_PROJECT_ID}/app:latest"
-        env {
-          // FIXME Hard code folder id
-          name  = "DRIVE_FOLDER_ID"
-          value = "1xuDn-FFI8tD11q-F2MNtZEd4BjW1cuWK"
-        }
+        image = "gcr.io/cloudrun/hello"
+        // image = "gcr.io/${var.ENV_GCP_PROJECT_ID}/app:latest"
         env {
           name  = "SERVICE_ACCOUNT_JSON"
           value = file("${path.module}/sa-${var.ENV_FLAVOR}.json")

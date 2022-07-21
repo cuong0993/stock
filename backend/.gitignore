@@ -3,6 +3,8 @@
 /build/
 /.idea
 /amibroker_all_data.txt
-/VPA-*.xlsx
+/report/*.xlsx
 /sa-dev.json
-*.csv
+/ohlcv/*.csv
+/.run/Development.run.xml
+/.run/Release.run.xml

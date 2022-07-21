@@ -1,23 +1,17 @@
 package com.chaomao.modules.analyze
 
 import com.chaomao.configurations.getLogger
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
-import com.google.api.client.http.FileContent
-import com.google.api.client.json.gson.GsonFactory
-import com.google.api.services.drive.Drive
-import com.google.api.services.drive.DriveScopes
-import com.google.auth.http.HttpCredentialsAdapter
+import com.chaomao.configurations.provider.BlobProvider
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.auth.oauth2.ServiceAccountCredentials
 import com.google.cloud.firestore.FirestoreOptions
-import com.google.cloud.storage.BlobId
-import com.google.cloud.storage.BlobInfo
-import com.google.cloud.storage.StorageOptions
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.koin.java.KoinJavaComponent
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.net.URL
+import java.nio.ByteBuffer
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.text.SimpleDateFormat
@@ -32,31 +26,8 @@ import java.util.zip.ZipInputStream
 
 fun post(): AnalyzeResponse {
     val requestId = UUID.randomUUID().toString()
-    val credentialInputStream = System.getenv("SERVICE_ACCOUNT_JSON").byteInputStream()
-    val credential =
-        GoogleCredentials.fromStream(credentialInputStream)
-            .createScoped(
-                listOf(
-                    "https://www.googleapis.com/auth/datastore",
-                    "https://www.googleapis.com/auth/devstorage.read_write",
-                    DriveScopes.DRIVE
-                )
-            ) as ServiceAccountCredentials
-    credentialInputStream.close()
-    val googleDriveService =
-        Drive.Builder(
-            GoogleNetHttpTransport.newTrustedTransport(),
-            GsonFactory.getDefaultInstance(),
-            HttpCredentialsAdapter(credential)
-        )
-            .setApplicationName("CP")
-            .build()
-    val fileId =
-        (googleDriveService.files().generateIds().setCount(1).execute()["ids"] as ArrayList<*>)[0].toString()
     return AnalyzeResponse(
         requestId,
-        fileId,
-        "drive.google.com/uc?id=$fileId&export=download",
         "pending",
         Instant.now().toString()
     )
@@ -64,11 +35,9 @@ fun post(): AnalyzeResponse {
 class AnalyzeController {
     private val logger = getLogger()
     private val isDevelopment = System.getProperty("io.ktor.development").toBoolean()
+    private val blobProvider: BlobProvider = KoinJavaComponent.getKoin().get()
 
-    fun process(
-        param: AnalyzeRequestBody,
-        fileId: String
-    ) {
+    fun process(param: AnalyzeRequestBody) {
         val date = if (param.date != null) {
             SimpleDateFormat("yyyy-MM-dd").apply { timeZone = TimeZone.getTimeZone("UTC") }
                 .parse(param.date)
@@ -81,19 +50,10 @@ class AnalyzeController {
                 .createScoped(
                     listOf(
                         "https://www.googleapis.com/auth/datastore",
-                        "https://www.googleapis.com/auth/devstorage.read_write",
-                        DriveScopes.DRIVE
+                        "https://www.googleapis.com/auth/devstorage.read_write"
                     )
                 ) as ServiceAccountCredentials
         credentialInputStream.close()
-        val googleDriveService =
-            Drive.Builder(
-                GoogleNetHttpTransport.newTrustedTransport(),
-                GsonFactory.getDefaultInstance(),
-                HttpCredentialsAdapter(credential)
-            )
-                .setApplicationName("CP")
-                .build()
         val zonedDateTime = ZonedDateTime.ofInstant(date.toInstant(), ZoneId.of("UTC"))
         val xssfWorkbook =
             XSSFWorkbook().apply {
@@ -124,10 +84,6 @@ class AnalyzeController {
                     }
                 }
             }
-        val theDir = File("./ohlcv")
-        if (!theDir.exists()) {
-            theDir.mkdirs()
-        }
         val db = FirestoreOptions.newBuilder().setCredentials(credential).build().service
 
         val companies =
@@ -202,40 +158,17 @@ class AnalyzeController {
 
         val time = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(minOf(zonedDateTime, lastDate))
         val fileName = "VPA-$time.xlsx"
-        val fileOutputStream = FileOutputStream(fileName)
-        xssfWorkbook.write(fileOutputStream)
-        fileOutputStream.close()
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        xssfWorkbook.write(byteArrayOutputStream)
+        byteArrayOutputStream.close()
         xssfWorkbook.close()
 
-        if (!isDevelopment) {
-            val fileMetadata = com.google.api.services.drive.model.File().apply {
-                name = fileName
-                id = fileId
-                parents = listOf(System.getenv("DRIVE_FOLDER_ID"))
-                mimeType = "application/vnd.ms-excel"
-            }
-            val mediaContent = FileContent("application/vnd.ms-excel", File(fileName))
-            googleDriveService.files().create(fileMetadata, mediaContent).execute()
-
-            val storage = StorageOptions.newBuilder().setCredentials(credential).build().service
-            Files.walk(Paths.get("./ohlcv")).forEach {
-                if (it.toFile().isFile) {
-                    logger.info("Uploading ${it.fileName}")
-                    storage.create(
-                        BlobInfo.newBuilder(
-                            BlobId.of(
-                                "${credential.projectId}.appspot.com",
-                                "ohlcv/${it.fileName}"
-                            )
-                        )
-                            .build(),
-                        Files.readAllBytes(
-                            Paths.get(it.toUri())
-                        )
-                    )
-                }
-            }
-        }
+        val blob = blobProvider.createBlob(
+            "report/$fileName"
+        )
+        val writableByteChannel = blob.openWrite()
+        writableByteChannel.write(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()))
+        writableByteChannel.close()
     }
 }
 
@@ -245,8 +178,6 @@ data class AnalyzeRequestBody(
 
 data class AnalyzeResponse(
     val id: String,
-    val file_id: String,
-    val file_url: String,
     val state: String,
     val requested_at: String
 )

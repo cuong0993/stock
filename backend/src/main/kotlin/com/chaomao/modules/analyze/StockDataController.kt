@@ -1,5 +1,6 @@
 package com.chaomao.modules.analyze
 
+import com.chaomao.configurations.provider.BlobProvider
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVPrinter
 import org.apache.poi.common.usermodel.HyperlinkType
@@ -8,6 +9,7 @@ import org.apache.poi.ss.usermodel.IndexedColors
 import org.apache.poi.xssf.usermodel.XSSFFont
 import org.apache.poi.xssf.usermodel.XSSFHyperlink
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.koin.java.KoinJavaComponent
 import org.ta4j.core.BaseBarSeries
 import org.ta4j.core.indicators.EMAIndicator
 import org.ta4j.core.indicators.MACDIndicator
@@ -29,7 +31,9 @@ import org.ta4j.core.indicators.helpers.TransformIndicator
 import org.ta4j.core.indicators.helpers.VolumeIndicator
 import org.ta4j.core.indicators.statistics.SimpleLinearRegressionIndicator
 import org.ta4j.core.num.DecimalNum
-import java.io.FileWriter
+import java.io.ByteArrayOutputStream
+import java.io.OutputStreamWriter
+import java.nio.ByteBuffer
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
@@ -39,8 +43,10 @@ class StockDataController(val name: String) {
     }
 
     private val barSeries = BaseBarSeries(name)
-    private val fileWriter = FileWriter("./ohlcv/$name.csv")
-    private val csvFilePrinter = CSVPrinter(fileWriter, CSVFormat.DEFAULT)
+    private val byteArrayOutputStream = ByteArrayOutputStream()
+    private val csvFilePrinter = CSVPrinter(OutputStreamWriter(byteArrayOutputStream), CSVFormat.DEFAULT)
+    private val blobProvider: BlobProvider = KoinJavaComponent.getKoin().get()
+
     fun addBar(
         endTime: ZonedDateTime,
         openPrice: Number,
@@ -54,9 +60,16 @@ class StockDataController(val name: String) {
     }
 
     fun writeDown(date: ZonedDateTime, xssfWorkbook: XSSFWorkbook, company: Company) {
-        fileWriter.flush()
-        fileWriter.close()
+        byteArrayOutputStream.flush()
+        byteArrayOutputStream.close()
         csvFilePrinter.close()
+
+        val blob = blobProvider.createBlob(
+            "ohlcv/$name.csv"
+        )
+        val writableByteChannel = blob.openWrite()
+        writableByteChannel.write(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()))
+        writableByteChannel.close()
 
         var index = barSeries.endIndex
         while (index >= 0) {

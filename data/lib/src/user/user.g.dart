@@ -39,6 +39,9 @@ abstract class UserCollectionReference
   }
 
   @override
+  CollectionReference<User> get reference;
+
+  @override
   UserDocumentReference doc([String? id]);
 
   /// Add a new document to this collection with the specified data,
@@ -122,6 +125,7 @@ abstract class UserDocumentReference
     String name,
     String photoUrl,
     List<String> tokens,
+    DateTime creationTime,
   });
 
   Future<void> set(User value);
@@ -170,12 +174,14 @@ class _$UserDocumentReference
     Object? name = _sentinel,
     Object? photoUrl = _sentinel,
     Object? tokens = _sentinel,
+    Object? creationTime = _sentinel,
   }) async {
     final json = {
       if (id != _sentinel) "id": id as String,
       if (name != _sentinel) "name": name as String,
       if (photoUrl != _sentinel) "photoUrl": photoUrl as String,
       if (tokens != _sentinel) "tokens": tokens as List<String>,
+      if (creationTime != _sentinel) "creationTime": creationTime as DateTime,
     };
 
     return reference.update(json);
@@ -223,6 +229,71 @@ abstract class UserQuery implements QueryReference<UserQuerySnapshot> {
 
   @override
   UserQuery limitToLast(int limit);
+
+  /// Perform an order query based on a [FieldPath].
+  ///
+  /// This method is considered unsafe as it does check that the field path
+  /// maps to a valid property or that parameters such as [isEqualTo] receive
+  /// a value of the correct type.
+  ///
+  /// If possible, instead use the more explicit variant of order queries:
+  ///
+  /// **AVOID**:
+  /// ```dart
+  /// collection.orderByFieldPath(
+  ///   FieldPath.fromString('title'),
+  ///   startAt: 'title',
+  /// );
+  /// ```
+  ///
+  /// **PREFER**:
+  /// ```dart
+  /// collection.orderByTitle(startAt: 'title');
+  /// ```
+  UserQuery orderByFieldPath(
+    FieldPath fieldPath, {
+    bool descending = false,
+    Object? startAt,
+    Object? startAfter,
+    Object? endAt,
+    Object? endBefore,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  });
+
+  /// Perform a where query based on a [FieldPath].
+  ///
+  /// This method is considered unsafe as it does check that the field path
+  /// maps to a valid property or that parameters such as [isEqualTo] receive
+  /// a value of the correct type.
+  ///
+  /// If possible, instead use the more explicit variant of where queries:
+  ///
+  /// **AVOID**:
+  /// ```dart
+  /// collection.whereFieldPath(FieldPath.fromString('title'), isEqualTo: 'title');
+  /// ```
+  ///
+  /// **PREFER**:
+  /// ```dart
+  /// collection.whereTitle(isEqualTo: 'title');
+  /// ```
+  UserQuery whereFieldPath(
+    FieldPath fieldPath, {
+    Object? isEqualTo,
+    Object? isNotEqualTo,
+    Object? isLessThan,
+    Object? isLessThanOrEqualTo,
+    Object? isGreaterThan,
+    Object? isGreaterThanOrEqualTo,
+    Object? arrayContains,
+    List<Object?>? arrayContainsAny,
+    List<Object?>? whereIn,
+    List<Object?>? whereNotIn,
+    bool? isNull,
+  });
 
   UserQuery whereDocumentId({
     String? isEqualTo,
@@ -277,6 +348,17 @@ abstract class UserQuery implements QueryReference<UserQuerySnapshot> {
     List<String>? isGreaterThanOrEqualTo,
     bool? isNull,
     List<String>? arrayContainsAny,
+  });
+  UserQuery whereCreationTime({
+    DateTime? isEqualTo,
+    DateTime? isNotEqualTo,
+    DateTime? isLessThan,
+    DateTime? isLessThanOrEqualTo,
+    DateTime? isGreaterThan,
+    DateTime? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<DateTime>? whereIn,
+    List<DateTime>? whereNotIn,
   });
 
   UserQuery orderByDocumentId({
@@ -333,6 +415,18 @@ abstract class UserQuery implements QueryReference<UserQuerySnapshot> {
     List<String> startAfter,
     List<String> endAt,
     List<String> endBefore,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  });
+
+  UserQuery orderByCreationTime({
+    bool descending = false,
+    DateTime startAt,
+    DateTime startAfter,
+    DateTime endAt,
+    DateTime endBefore,
     UserDocumentSnapshot? startAtDocument,
     UserDocumentSnapshot? endAtDocument,
     UserDocumentSnapshot? endBeforeDocument,
@@ -401,6 +495,82 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     );
   }
 
+  UserQuery orderByFieldPath(
+    FieldPath fieldPath, {
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  }) {
+    var query = reference.orderBy(fieldPath, descending: descending);
+
+    if (startAtDocument != null) {
+      query = query.startAtDocument(startAtDocument.snapshot);
+    }
+    if (startAfterDocument != null) {
+      query = query.startAfterDocument(startAfterDocument.snapshot);
+    }
+    if (endAtDocument != null) {
+      query = query.endAtDocument(endAtDocument.snapshot);
+    }
+    if (endBeforeDocument != null) {
+      query = query.endBeforeDocument(endBeforeDocument.snapshot);
+    }
+
+    if (startAt != _sentinel) {
+      query = query.startAt([startAt]);
+    }
+    if (startAfter != _sentinel) {
+      query = query.startAfter([startAfter]);
+    }
+    if (endAt != _sentinel) {
+      query = query.endAt([endAt]);
+    }
+    if (endBefore != _sentinel) {
+      query = query.endBefore([endBefore]);
+    }
+
+    return _$UserQuery(query, _collection);
+  }
+
+  UserQuery whereFieldPath(
+    FieldPath fieldPath, {
+    Object? isEqualTo,
+    Object? isNotEqualTo,
+    Object? isLessThan,
+    Object? isLessThanOrEqualTo,
+    Object? isGreaterThan,
+    Object? isGreaterThanOrEqualTo,
+    Object? arrayContains,
+    List<Object?>? arrayContainsAny,
+    List<Object?>? whereIn,
+    List<Object?>? whereNotIn,
+    bool? isNull,
+  }) {
+    return _$UserQuery(
+      reference.where(
+        fieldPath,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        arrayContains: arrayContains,
+        arrayContainsAny: arrayContainsAny,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+        isNull: isNull,
+      ),
+      _collection,
+    );
+  }
+
   UserQuery whereDocumentId({
     String? isEqualTo,
     String? isNotEqualTo,
@@ -442,7 +612,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
   }) {
     return _$UserQuery(
       reference.where(
-        "id",
+        _$UserFieldMap["id"]!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -470,7 +640,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
   }) {
     return _$UserQuery(
       reference.where(
-        "name",
+        _$UserFieldMap["name"]!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -498,7 +668,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
   }) {
     return _$UserQuery(
       reference.where(
-        "photoUrl",
+        _$UserFieldMap["photoUrl"]!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -525,7 +695,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
   }) {
     return _$UserQuery(
       reference.where(
-        "tokens",
+        _$UserFieldMap["tokens"]!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -534,6 +704,34 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
         isNull: isNull,
         arrayContainsAny: arrayContainsAny,
+      ),
+      _collection,
+    );
+  }
+
+  UserQuery whereCreationTime({
+    DateTime? isEqualTo,
+    DateTime? isNotEqualTo,
+    DateTime? isLessThan,
+    DateTime? isLessThanOrEqualTo,
+    DateTime? isGreaterThan,
+    DateTime? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<DateTime>? whereIn,
+    List<DateTime>? whereNotIn,
+  }) {
+    return _$UserQuery(
+      reference.where(
+        _$UserFieldMap["creationTime"]!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
       ),
       _collection,
     );
@@ -592,7 +790,8 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy("id", descending: descending);
+    var query =
+        reference.orderBy(_$UserFieldMap["id"]!, descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -634,7 +833,8 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy("name", descending: descending);
+    var query =
+        reference.orderBy(_$UserFieldMap["name"]!, descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -676,7 +876,8 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy("photoUrl", descending: descending);
+    var query =
+        reference.orderBy(_$UserFieldMap["photoUrl"]!, descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -718,7 +919,51 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     UserDocumentSnapshot? endBeforeDocument,
     UserDocumentSnapshot? startAfterDocument,
   }) {
-    var query = reference.orderBy("tokens", descending: descending);
+    var query =
+        reference.orderBy(_$UserFieldMap["tokens"]!, descending: descending);
+
+    if (startAtDocument != null) {
+      query = query.startAtDocument(startAtDocument.snapshot);
+    }
+    if (startAfterDocument != null) {
+      query = query.startAfterDocument(startAfterDocument.snapshot);
+    }
+    if (endAtDocument != null) {
+      query = query.endAtDocument(endAtDocument.snapshot);
+    }
+    if (endBeforeDocument != null) {
+      query = query.endBeforeDocument(endBeforeDocument.snapshot);
+    }
+
+    if (startAt != _sentinel) {
+      query = query.startAt([startAt]);
+    }
+    if (startAfter != _sentinel) {
+      query = query.startAfter([startAfter]);
+    }
+    if (endAt != _sentinel) {
+      query = query.endAt([endAt]);
+    }
+    if (endBefore != _sentinel) {
+      query = query.endBefore([endBefore]);
+    }
+
+    return _$UserQuery(query, _collection);
+  }
+
+  UserQuery orderByCreationTime({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  }) {
+    var query = reference.orderBy(_$UserFieldMap["creationTime"]!,
+        descending: descending);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -803,9 +1048,17 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       photoUrl: json['photoUrl'] as String,
       tokens:
           (json['tokens'] as List<dynamic>).map((e) => e as String).toList(),
-      creationTime: const FirebaseTimestampConverter()
+      creationTime: const FirestoreDateTimeConverter()
           .fromJson(json['creationTime'] as Timestamp),
     );
+
+const _$UserFieldMap = <String, String>{
+  'id': 'id',
+  'name': 'name',
+  'photoUrl': 'photoUrl',
+  'tokens': 'tokens',
+  'creationTime': 'creationTime',
+};
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'id': instance.id,
@@ -813,5 +1066,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'photoUrl': instance.photoUrl,
       'tokens': instance.tokens,
       'creationTime':
-          const FirebaseTimestampConverter().toJson(instance.creationTime),
+          const FirestoreDateTimeConverter().toJson(instance.creationTime),
     };
