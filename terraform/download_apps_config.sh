@@ -5,7 +5,7 @@ set -o allexport
 source "$1"
 set +o allexport
 
-export GOOGLE_APPLICATION_CREDENTIALS="../terraform/sa-$ENV_FLAVOR.json"
+export GOOGLE_APPLICATION_CREDENTIALS="sa-$ENV_FLAVOR.json"
 TOKEN=$(gcloud auth application-default print-access-token)
 echo "$TOKEN"
 
