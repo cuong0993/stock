@@ -30,4 +30,4 @@ WEB_APP_ID=$(curl -X GET "https://firebase.googleapis.com/v1beta1/projects/$ENV_
   -H "Authorization: Bearer $TOKEN" | (jq '.apps[].appId' | sed 's/"//g'))
 CONFIG=$(curl -X GET "https://firebase.googleapis.com/v1beta1/projects/$ENV_GCP_PROJECT_ID/webApps/$WEB_APP_ID/config" \
   -H "Authorization: Bearer $TOKEN")
-echo "const firebaseConfig = ${CONFIG}; export default firebaseConfig;" >"../web/firebaseConfig.js"
+echo "Map<String, String> firebaseWebConfig = ${CONFIG};" >"../data/lib/src/firebase_web_config.dart"

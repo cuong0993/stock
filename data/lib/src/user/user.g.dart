@@ -19,7 +19,9 @@ const _sentinel = _Sentinel();
 /// getting document references, and querying for documents
 /// (using the methods inherited from Query).
 abstract class UserCollectionReference
-    implements UserQuery, FirestoreCollectionReference<UserQuerySnapshot> {
+    implements
+        UserQuery,
+        FirestoreCollectionReference<User, UserQuerySnapshot> {
   factory UserCollectionReference([
     FirebaseFirestore? firestore,
   ]) = _$UserCollectionReference;
@@ -100,7 +102,7 @@ class _$UserCollectionReference extends _$UserQuery
 }
 
 abstract class UserDocumentReference
-    extends FirestoreDocumentReference<UserDocumentSnapshot> {
+    extends FirestoreDocumentReference<User, UserDocumentSnapshot> {
   factory UserDocumentReference(DocumentReference<User> reference) =
       _$UserDocumentReference;
 
@@ -132,7 +134,7 @@ abstract class UserDocumentReference
 }
 
 class _$UserDocumentReference
-    extends FirestoreDocumentReference<UserDocumentSnapshot>
+    extends FirestoreDocumentReference<User, UserDocumentSnapshot>
     implements UserDocumentReference {
   _$UserDocumentReference(this.reference);
 
@@ -203,7 +205,7 @@ class _$UserDocumentReference
   int get hashCode => Object.hash(runtimeType, parent, id);
 }
 
-class UserDocumentSnapshot extends FirestoreDocumentSnapshot {
+class UserDocumentSnapshot extends FirestoreDocumentSnapshot<User> {
   UserDocumentSnapshot._(
     this.snapshot,
     this.data,
@@ -223,7 +225,7 @@ class UserDocumentSnapshot extends FirestoreDocumentSnapshot {
   final User? data;
 }
 
-abstract class UserQuery implements QueryReference<UserQuerySnapshot> {
+abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
   @override
   UserQuery limit(int limit);
 
@@ -347,6 +349,7 @@ abstract class UserQuery implements QueryReference<UserQuerySnapshot> {
     List<String>? isGreaterThan,
     List<String>? isGreaterThanOrEqualTo,
     bool? isNull,
+    String? arrayContains,
     List<String>? arrayContainsAny,
   });
   UserQuery whereCreationTime({
@@ -434,7 +437,7 @@ abstract class UserQuery implements QueryReference<UserQuerySnapshot> {
   });
 }
 
-class _$UserQuery extends QueryReference<UserQuerySnapshot>
+class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
     implements UserQuery {
   _$UserQuery(
     this.reference,
@@ -691,6 +694,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
     List<String>? isGreaterThan,
     List<String>? isGreaterThanOrEqualTo,
     bool? isNull,
+    String? arrayContains,
     List<String>? arrayContainsAny,
   }) {
     return _$UserQuery(
@@ -703,6 +707,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
         isGreaterThan: isGreaterThan,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
         isNull: isNull,
+        arrayContains: arrayContains,
         arrayContainsAny: arrayContainsAny,
       ),
       _collection,
@@ -1006,7 +1011,7 @@ class _$UserQuery extends QueryReference<UserQuerySnapshot>
 }
 
 class UserQuerySnapshot
-    extends FirestoreQuerySnapshot<UserQueryDocumentSnapshot> {
+    extends FirestoreQuerySnapshot<User, UserQueryDocumentSnapshot> {
   UserQuerySnapshot._(
     this.snapshot,
     this.docs,
@@ -1022,7 +1027,7 @@ class UserQuerySnapshot
   final List<FirestoreDocumentChange<UserDocumentSnapshot>> docChanges;
 }
 
-class UserQueryDocumentSnapshot extends FirestoreQueryDocumentSnapshot
+class UserQueryDocumentSnapshot extends FirestoreQueryDocumentSnapshot<User>
     implements UserDocumentSnapshot {
   UserQueryDocumentSnapshot._(this.snapshot, this.data);
 

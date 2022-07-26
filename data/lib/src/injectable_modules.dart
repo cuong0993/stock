@@ -13,6 +13,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'firebase_web_config.dart';
+
 @module
 abstract class AuthenticationModule {
   @lazySingleton
@@ -48,7 +50,26 @@ abstract class FirebaseModule {
   FirebaseMessaging get firebaseMessaging => FirebaseMessaging.instance;
 
   @preResolve
-  Future<FirebaseApp> get firebaseApp => Firebase.initializeApp();
+  Future<FirebaseApp> get firebaseApp => Firebase.initializeApp(
+        options: kIsWeb
+            ? FirebaseOptions(
+                apiKey: firebaseWebConfig['apiKey']!,
+                appId: firebaseWebConfig['appId']!,
+                messagingSenderId: firebaseWebConfig['messagingSenderId']!,
+                projectId: firebaseWebConfig['projectId']!,
+                authDomain: firebaseWebConfig['authDomain'],
+                databaseURL: firebaseWebConfig['databaseURL'],
+                storageBucket: firebaseWebConfig['storageBucket'],
+                measurementId: firebaseWebConfig['measurementId'],
+                trackingId: firebaseWebConfig['trackingId'],
+                deepLinkURLScheme: firebaseWebConfig['deepLinkURLScheme'],
+                androidClientId: firebaseWebConfig['androidClientId'],
+                iosClientId: firebaseWebConfig['iosClientId'],
+                iosBundleId: firebaseWebConfig['iosBundleId'],
+                appGroupId: firebaseWebConfig['appGroupId'],
+              )
+            : null,
+      );
 
   @preResolve
   Future<FirebaseAppCheck> getFirebaseAppCheck() async {

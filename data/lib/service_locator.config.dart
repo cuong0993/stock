@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:cloud_firestore/cloud_firestore.dart' as _i7;
 import 'package:dio/dio.dart' as _i20;
 import 'package:domain/app/app_repository.dart' as _i14;

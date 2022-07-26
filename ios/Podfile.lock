@@ -608,7 +608,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.24):
     - BoringSSL-GRPC/Interface (= 0.0.24)
   - BoringSSL-GRPC/Interface (0.0.24)
-  - cloud_firestore (3.4.1):
+  - cloud_firestore (3.4.2):
     - Firebase/Firestore (= 9.3.0)
     - firebase_core
     - Flutter
@@ -644,7 +644,7 @@ PODS:
     - firebase_core
     - FirebaseAppCheck (~> 9.3.0-beta)
     - Flutter
-  - firebase_auth (3.5.1):
+  - firebase_auth (3.6.1):
     - Firebase/Auth (= 9.3.0)
     - firebase_core
     - Flutter
@@ -659,7 +659,7 @@ PODS:
     - Firebase/Messaging (= 9.3.0)
     - firebase_core
     - Flutter
-  - firebase_storage (10.3.3):
+  - firebase_storage (10.3.4):
     - Firebase/Storage (= 9.3.0)
     - firebase_core
     - Flutter
@@ -964,7 +964,7 @@ SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
-  cloud_firestore: bc004ee2498babe8c3df4abfd68754939b398135
+  cloud_firestore: d08fbf2613a90b9150619ff371a2053e89f97bbe
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   FBAEMKit: d00064597439e75885c70d9adbcb5f3e9ad84f5d
   FBSDKCoreKit: e5d3acfffe5063a9d0b967ba2ad1f5afc460cf43
@@ -972,11 +972,11 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: dbe86ef42ab142f3bd0f1c904a21bb33f31c5569
   Firebase: ef75abb1cdbc746d5a38f4e26c422c807b189b8c
   firebase_app_check: cd846ac07b9e3a97ec35568799fb09ea88dbf0e9
-  firebase_auth: f6e32ca8921ff9fff94ba73745b67455fee8b22f
+  firebase_auth: e83a8e15aeac85f05ca17c241cff4bd20e5d8c17
   firebase_core: 96214f90497b808a2cf2a24517084c5f6de37b53
   firebase_crashlytics: cdba3f556462dd5ee25cc7d28790ff2de2c0edcf
   firebase_messaging: a2cd2c6dd7b5430bb9e4e50e9a474413ae3bce09
-  firebase_storage: 67c6bff2cda59f5973ea9fb2c4fca845c3055a5b
+  firebase_storage: e95ec41580e311cb30b1ed7459b9e94fb4bbe672
   FirebaseAppCheck: dea36639a4270b6deedc6f012302b84a3a22fe89
   FirebaseAppCheckInterop: f6b9670fb1360cf12006ca426e9c3b9a35317d17
   FirebaseAuth: 9ebc3577fe0acf9092df21ac314024b70aebf21e
@@ -991,7 +991,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 2f6e38b6133059eb796ec224104f09379298a8c3
   FirebaseStorage: 1414d27e15fa04f6350ef6602accef0e951c8bca
   FirebaseStorageInternal: f1a6d64cace780580d2b8ffa0a0c8cf3c376f3f8
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_facebook_auth: 8992ef870d441b8403a3b6b9859e7932605407cf
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef

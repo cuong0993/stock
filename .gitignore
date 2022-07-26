@@ -64,3 +64,4 @@ private_keys/
 
 /web/firebaseConfig.js
 /.firebase
+/data/lib/src/firebase_web_config.dart

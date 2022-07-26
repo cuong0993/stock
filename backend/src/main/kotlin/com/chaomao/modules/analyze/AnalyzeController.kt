@@ -1,12 +1,12 @@
 package com.chaomao.modules.analyze
 
 import com.chaomao.configurations.getLogger
+import com.chaomao.configurations.plugins.getKoinInstance
 import com.chaomao.configurations.provider.BlobProvider
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.auth.oauth2.ServiceAccountCredentials
 import com.google.cloud.firestore.FirestoreOptions
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import org.koin.java.KoinJavaComponent
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
@@ -14,11 +14,9 @@ import java.net.URL
 import java.nio.ByteBuffer
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
-import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -28,22 +26,19 @@ fun post(): AnalyzeResponse {
     val requestId = UUID.randomUUID().toString()
     return AnalyzeResponse(
         requestId,
-        "pending",
+        "completed",
         Instant.now().toString()
     )
 }
+
 class AnalyzeController {
     private val logger = getLogger()
     private val isDevelopment = System.getProperty("io.ktor.development").toBoolean()
-    private val blobProvider: BlobProvider = KoinJavaComponent.getKoin().get()
+    private val blobProvider: BlobProvider = getKoinInstance()
 
     fun process(param: AnalyzeRequestBody) {
-        val date = if (param.date != null) {
-            SimpleDateFormat("yyyy-MM-dd").apply { timeZone = TimeZone.getTimeZone("UTC") }
-                .parse(param.date)
-        } else {
-            Date()
-        }
+        val localDate = param.date ?: LocalDate.now()
+        logger.info("Trying to analyze the market at $localDate")
         val credentialInputStream = System.getenv("SERVICE_ACCOUNT_JSON").byteInputStream()
         val credential =
             GoogleCredentials.fromStream(credentialInputStream)
@@ -54,7 +49,8 @@ class AnalyzeController {
                     )
                 ) as ServiceAccountCredentials
         credentialInputStream.close()
-        val zonedDateTime = ZonedDateTime.ofInstant(date.toInstant(), ZoneId.of("UTC"))
+        val zoneId = ZoneId.of("UTC")
+        val zonedDateTime = localDate.atStartOfDay(zoneId)
         val xssfWorkbook =
             XSSFWorkbook().apply {
                 createSheet("Volume Price Analysis").apply {
@@ -93,7 +89,7 @@ class AnalyzeController {
         var currentTicker = ""
         val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
         var stockDataController: StockDataController? = null
-        var lastDate = ZonedDateTime.ofInstant(Instant.ofEpochSecond(0), ZoneOffset.UTC)
+        var lastDate = ZonedDateTime.ofInstant(Instant.ofEpochSecond(0), zoneId)
 
         val file = File("amibroker_all_data.txt")
         val dataInputStream = if (!file.exists()) {
@@ -136,7 +132,7 @@ class AnalyzeController {
                 }
             }
             if (stockDataController != null) {
-                val currentDate = LocalDate.parse(fields[1], dateTimeFormatter).atStartOfDay(ZoneId.of("UTC"))
+                val currentDate = LocalDate.parse(fields[1], dateTimeFormatter).atStartOfDay(zoneId)
                 val open = fields[2].toDouble()
                 val high = fields[3].toDouble()
                 val low = fields[4].toDouble()
@@ -173,7 +169,7 @@ class AnalyzeController {
 }
 
 data class AnalyzeRequestBody(
-    val date: String?
+    val date: LocalDate?
 )
 
 data class AnalyzeResponse(

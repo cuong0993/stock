@@ -1,5 +1,6 @@
 package com.chaomao.modules.analyze
 
+import com.chaomao.configurations.plugins.getKoinInstance
 import com.chaomao.configurations.provider.BlobProvider
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVPrinter
@@ -9,7 +10,6 @@ import org.apache.poi.ss.usermodel.IndexedColors
 import org.apache.poi.xssf.usermodel.XSSFFont
 import org.apache.poi.xssf.usermodel.XSSFHyperlink
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import org.koin.java.KoinJavaComponent
 import org.ta4j.core.BaseBarSeries
 import org.ta4j.core.indicators.EMAIndicator
 import org.ta4j.core.indicators.MACDIndicator
@@ -45,7 +45,7 @@ class StockDataController(val name: String) {
     private val barSeries = BaseBarSeries(name)
     private val byteArrayOutputStream = ByteArrayOutputStream()
     private val csvFilePrinter = CSVPrinter(OutputStreamWriter(byteArrayOutputStream), CSVFormat.DEFAULT)
-    private val blobProvider: BlobProvider = KoinJavaComponent.getKoin().get()
+    private val blobProvider: BlobProvider = getKoinInstance()
 
     fun addBar(
         endTime: ZonedDateTime,

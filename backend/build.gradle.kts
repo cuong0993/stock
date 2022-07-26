@@ -55,6 +55,7 @@ dependencies {
     implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
     implementation("org.apache.logging.log4j:log4j-to-slf4j:2.18.0")
     implementation("com.google.cloud:google-cloud-logging-logback:0.127.0-alpha")
+    implementation("io.konform:konform-jvm:0.4.0")
 }
 
 jib {

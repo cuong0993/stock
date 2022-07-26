@@ -13,6 +13,9 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.config.dart"
     - lib/generated_plugin_registrant.dart
+    - data/lib/src/firebase_web_config.dart
+  plugins:
+    - dart_code_metrics
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
