@@ -17,7 +17,6 @@ import java.nio.file.Paths
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.zip.ZipInputStream
@@ -37,8 +36,9 @@ class AnalyzeController {
     private val blobProvider: BlobProvider = getKoinInstance()
 
     fun process(param: AnalyzeRequestBody) {
-        val localDate = param.date ?: LocalDate.now()
-        logger.info("Trying to analyze the market at $localDate")
+        val utcZoneId = ZoneId.of("UTC")
+        val analyzeDateTime = (param.date ?: LocalDate.now()).atStartOfDay(utcZoneId)
+        logger.info("Trying to analyze the market at $analyzeDateTime")
         val credentialInputStream = System.getenv("SERVICE_ACCOUNT_JSON").byteInputStream()
         val credential =
             GoogleCredentials.fromStream(credentialInputStream)
@@ -49,15 +49,12 @@ class AnalyzeController {
                     )
                 ) as ServiceAccountCredentials
         credentialInputStream.close()
-        val zoneId = ZoneId.of("UTC")
-        val zonedDateTime = localDate.atStartOfDay(zoneId)
         val xssfWorkbook =
             XSSFWorkbook().apply {
-                createSheet("Volume Price Analysis").apply {
+                createSheet("Analysis").apply {
                     createFreezePane(3, 1, 3, 1)
                     createRow(0).apply {
                         var cellIndex = 0
-                        createCell(cellIndex++).setCellValue("Date")
                         createCell(cellIndex++).setCellValue("Ticker")
                         createCell(cellIndex++).setCellValue("Name")
                         createCell(cellIndex++).setCellValue("IndustryName")
@@ -89,7 +86,6 @@ class AnalyzeController {
         var currentTicker = ""
         val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
         var stockDataController: StockDataController? = null
-        var lastDate = ZonedDateTime.ofInstant(Instant.ofEpochSecond(0), zoneId)
 
         val file = File("amibroker_all_data.txt")
         val dataInputStream = if (!file.exists()) {
@@ -119,7 +115,7 @@ class AnalyzeController {
                 // FIXME Trick for analyze 1 stock only
                 // if (stockDataController != null) break
                 stockDataController?.writeDown(
-                    zonedDateTime,
+                    analyzeDateTime,
                     xssfWorkbook,
                     companies.findLast { it.Code == stockDataController!!.name }!!
                 )
@@ -132,28 +128,25 @@ class AnalyzeController {
                 }
             }
             if (stockDataController != null) {
-                val currentDate = LocalDate.parse(fields[1], dateTimeFormatter).atStartOfDay(zoneId)
+                val currentDate = LocalDate.parse(fields[1], dateTimeFormatter).atStartOfDay(utcZoneId)
                 val open = fields[2].toDouble()
                 val high = fields[3].toDouble()
                 val low = fields[4].toDouble()
                 val close = fields[5].toDouble()
                 val volume = fields[6].toBigInteger()
-                if (currentDate > lastDate) {
-                    lastDate = currentDate
-                }
                 stockDataController.addBar(currentDate, open, high, low, close, volume)
             }
         }
         stockDataController?.writeDown(
-            zonedDateTime,
+            analyzeDateTime,
             xssfWorkbook,
             companies.findLast { it.Code == stockDataController.name }!!
         )
 
         dataInputStream.close()
 
-        val time = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(minOf(zonedDateTime, lastDate))
-        val fileName = "VPA-$time.xlsx"
+        val time = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(analyzeDateTime)
+        val fileName = "$time.xlsx"
         val byteArrayOutputStream = ByteArrayOutputStream()
         xssfWorkbook.write(byteArrayOutputStream)
         byteArrayOutputStream.close()

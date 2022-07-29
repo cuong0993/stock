@@ -59,10 +59,15 @@ class StockDataController(val name: String) {
         csvFilePrinter.printRecord(DATE_FORMAT.format(endTime), openPrice, highPrice, lowPrice, closePrice, volume)
     }
 
-    fun writeDown(date: ZonedDateTime, xssfWorkbook: XSSFWorkbook, company: Company) {
+    fun writeDown(analyzeDateTime: ZonedDateTime, xssfWorkbook: XSSFWorkbook, company: Company) {
         byteArrayOutputStream.flush()
         byteArrayOutputStream.close()
         csvFilePrinter.close()
+
+        if (barSeries.lastBar.endTime < analyzeDateTime) {
+            // Do not analyze the past
+            return
+        }
 
         val blob = blobProvider.createBlob(
             "ohlcv/$name.csv"
@@ -75,7 +80,7 @@ class StockDataController(val name: String) {
         while (index >= 0) {
             val bar = barSeries.getBar(index)
             val time = bar.endTime
-            if (time <= date) {
+            if (time <= analyzeDateTime) {
                 break
             }
             index--
@@ -83,7 +88,6 @@ class StockDataController(val name: String) {
         if (index < 0) {
             return
         }
-        val bar = barSeries.getBar(index)
         val volume = VolumeIndicator(barSeries)
         val volumeSma = SMAIndicator(volume, 30)
         val previousVolume = PreviousValueIndicator(volume)
@@ -639,7 +643,6 @@ class StockDataController(val name: String) {
         val sheet = xssfWorkbook.getSheetAt(0)
         val row = sheet.createRow(sheet.lastRowNum + 1)
         var cellIndex = 0
-        row.createCell(cellIndex++).setCellValue(bar.simpleDateName.removeSuffix("T00:00:00"))
         row.createCell(cellIndex++).apply {
             setCellValue(barSeries.name)
             if (priceChangePercent > 0) {
