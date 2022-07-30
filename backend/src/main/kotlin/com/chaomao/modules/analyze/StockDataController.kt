@@ -5,10 +5,8 @@ import com.chaomao.configurations.provider.BlobProvider
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVPrinter
 import org.apache.poi.common.usermodel.HyperlinkType
-import org.apache.poi.ss.usermodel.FillPatternType
-import org.apache.poi.ss.usermodel.IndexedColors
-import org.apache.poi.xssf.usermodel.XSSFFont
 import org.apache.poi.xssf.usermodel.XSSFHyperlink
+import org.apache.poi.xssf.usermodel.XSSFSheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.ta4j.core.BaseBarSeries
 import org.ta4j.core.indicators.EMAIndicator
@@ -88,6 +86,9 @@ class StockDataController(val name: String) {
         if (index < 0) {
             return
         }
+
+        val sheet = xssfWorkbook.getSheetAt(0)
+
         val volume = VolumeIndicator(barSeries)
         val volumeSma = SMAIndicator(volume, 30)
         val previousVolume = PreviousValueIndicator(volume)
@@ -542,51 +543,6 @@ class StockDataController(val name: String) {
                 ),
                 isWidePriceSpread
             )
-        val signal =
-            when {
-                isUpThrustPrice.getValue(index) -> "Weakness appeared. An upthrust bar."
-                isPreviousUpThrustPriceAndPriceDown.getValue(index) ->
-                    "Weakness confirmed. A down bar after an upthrust."
-                isPreviousUpThrustPriceAndPriceDownAndVolumeUp.getValue(index) &&
-                    !isPreviousUpThrustPriceAndPriceDown.getValue(index) ->
-                    "Weakness confirmed. A high volume down bar after an upthrust."
-                isUpThrustPriceAndUltraHighVolume.getValue(index) ->
-                    "Weakness confirmed. This upthrust at very high volume."
-                isStrengthInLongDownTrendVolExplode.getValue(index) ->
-                    "Strength testing. Volume explode above average. Price up. Close price near highest price"
-                isStrengthInLongDownTrendVolUp.getValue(index) &&
-                    !isStrengthInMiddleDownTrendVolUp.getValue(index) ->
-                    "Strength testing. Volume up. Price up. Close price near highest price"
-                isStrengthInMiddleDownTrendVolUp.getValue(index) &&
-                    !isStrengthInLongDownTrendVolExplode.getValue(index) ->
-                    "Strength testing. Volume up. Price up. Close price near highest price"
-                isStrengthInShortDownTrendPriceUpSurely.getValue(index) ->
-                    "Strength confirmed in down trend. Previous volume down. " +
-                        "This high volume up bar closing on the high indicates strength."
-                isStrengthConfirmation.getValue(index) ->
-                    "Strength confirmed. The previous bar saw strength coming back. This up bar confirms strength."
-                isSupplyTest.getValue(index) ->
-                    "Strength testing. Test for supply. Volume down. Close price near highest price"
-                isSuccessfulSupplyTest.getValue(index) ->
-                    "Strength testing. An up bar closing near high after a test for supply."
-                isDistribution.getValue(index) ->
-                    "Weakness appeared. A high volume up bar closing down in a uptrend shows distribution."
-                isPseudoUpThrust.getValue(index) -> "Weakness appeared. Pseudo upthrust."
-                isPseudoUpThrustConfirmation.getValue(index) ->
-                    "Weakness confirmed. A down bar closing down after a pseudo upthrust."
-                isSupplyTestInUpTrend.getValue(index) -> "Strength testing. Test for supply in a uptrend."
-                isWeakness.getValue(index) ->
-                    "Weakness appeared. High volume down bar after an up move on high volume."
-                isNoDemand.getValue(index) -> "Weakness appeared. No demand."
-                isNoSupply.getValue(index) -> "Strength testing. No supply."
-                isEffortUpMove.getValue(index) -> "Strength appeared. Effort to rise. Bullish sign."
-                isEffortDownMove.getValue(index) -> "Weakness confirmed. Effort to fall. Bearish sign."
-                isFailedEffortUpMove.getValue(index) ->
-                    "Weakness confirmed. Effort to move up has failed. Bearish sign."
-                isStopVol.getValue(index) ->
-                    "Strength testing. Stopping volume. Normally indicates end of bearishness is nearing."
-                else -> ""
-            }
         val rsi = RSIIndicator(closePrice, 14)
         val macd = MACDIndicator(closePrice)
         val macdSignal = EMAIndicator(macd, 9)
@@ -608,156 +564,304 @@ class StockDataController(val name: String) {
                     BooleanTransformIndicator.BooleanTransformSimpleType.isPositive
                 )
             )
-        val priceChangePercent = (priceVariation.getValue(index).doubleValue() - 1) * 100
 
-        val goodStyle =
-            xssfWorkbook.createCellStyle().apply {
-                fillForegroundColor = IndexedColors.LAVENDER.index
-                fillPattern = FillPatternType.SOLID_FOREGROUND
+        fun addRow(index: Int, sheet: XSSFSheet, insertDate: Boolean = false) {
+            val row = sheet.createRow(sheet.lastRowNum + 1)
+            var cellIndex = 0
+            val priceChangePercent = (priceVariation.getValue(index).doubleValue() - 1) * 100
+
+            val goodStyle = xssfWorkbook.getCellStyleAt(1)
+            val normalStyle = xssfWorkbook.getCellStyleAt(2)
+            val upStyle = if (barSeries.getBar(index).volume > DecimalNum.valueOf(5000)) {
+                xssfWorkbook.getCellStyleAt(3)
+            } else {
+                xssfWorkbook.getCellStyleAt(4)
             }
-        val normalStyle =
-            xssfWorkbook.createCellStyle().apply {
-                fillForegroundColor = IndexedColors.LIGHT_YELLOW.index
-                fillPattern = FillPatternType.SOLID_FOREGROUND
+            val downStyle = xssfWorkbook.getCellStyleAt(5)
+            val oopsStyle = xssfWorkbook.getCellStyleAt(6)
+            val linkStyle = xssfWorkbook.getCellStyleAt(7)
+            val signal =
+                when {
+                    isUpThrustPrice.getValue(index) -> "Weakness appeared. An upthrust bar."
+                    isPreviousUpThrustPriceAndPriceDown.getValue(index) ->
+                        "Weakness confirmed. A down bar after an upthrust."
+
+                    isPreviousUpThrustPriceAndPriceDownAndVolumeUp.getValue(index) &&
+                        !isPreviousUpThrustPriceAndPriceDown.getValue(index) ->
+                        "Weakness confirmed. A high volume down bar after an upthrust."
+
+                    isUpThrustPriceAndUltraHighVolume.getValue(index) ->
+                        "Weakness confirmed. This upthrust at very high volume."
+
+                    isStrengthInLongDownTrendVolExplode.getValue(index) ->
+                        "Strength testing. Volume explode above average. Price up. Close price near highest price"
+
+                    isStrengthInLongDownTrendVolUp.getValue(index) &&
+                        !isStrengthInMiddleDownTrendVolUp.getValue(index) ->
+                        "Strength testing. Volume up. Price up. Close price near highest price"
+
+                    isStrengthInMiddleDownTrendVolUp.getValue(index) &&
+                        !isStrengthInLongDownTrendVolExplode.getValue(index) ->
+                        "Strength testing. Volume up. Price up. Close price near highest price"
+
+                    isStrengthInShortDownTrendPriceUpSurely.getValue(index) ->
+                        "Strength confirmed in down trend. Previous volume down. " +
+                            "This high volume up bar closing on the high indicates strength."
+
+                    isStrengthConfirmation.getValue(index) ->
+                        "Strength confirmed. The previous bar saw strength coming back. This up bar confirms strength."
+
+                    isSupplyTest.getValue(index) ->
+                        "Strength testing. Test for supply. Volume down. Close price near highest price"
+
+                    isSuccessfulSupplyTest.getValue(index) ->
+                        "Strength testing. An up bar closing near high after a test for supply."
+
+                    isDistribution.getValue(index) ->
+                        "Weakness appeared. A high volume up bar closing down in a uptrend shows distribution."
+
+                    isPseudoUpThrust.getValue(index) -> "Weakness appeared. Pseudo upthrust."
+                    isPseudoUpThrustConfirmation.getValue(index) ->
+                        "Weakness confirmed. A down bar closing down after a pseudo upthrust."
+
+                    isSupplyTestInUpTrend.getValue(index) -> "Strength testing. Test for supply in a uptrend."
+                    isWeakness.getValue(index) ->
+                        "Weakness appeared. High volume down bar after an up move on high volume."
+
+                    isNoDemand.getValue(index) -> "Weakness appeared. No demand."
+                    isNoSupply.getValue(index) -> "Strength testing. No supply."
+                    isEffortUpMove.getValue(index) -> "Strength appeared. Effort to rise. Bullish sign."
+                    isEffortDownMove.getValue(index) -> "Weakness confirmed. Effort to fall. Bearish sign."
+                    isFailedEffortUpMove.getValue(index) ->
+                        "Weakness confirmed. Effort to move up has failed. Bearish sign."
+
+                    isStopVol.getValue(index) ->
+                        "Strength testing. Stopping volume. Normally indicates end of bearishness is nearing."
+
+                    else -> ""
+                }
+            if (insertDate) {
+                row.createCell(cellIndex++).apply {
+                    setCellValue(DateTimeFormatter.ofPattern("yyyy-MM-dd").format(barSeries.getBar(index).endTime))
+                }
             }
-        val upStyle =
-            xssfWorkbook.createCellStyle().apply {
-                fillForegroundColor = IndexedColors.BRIGHT_GREEN.index
-                fillPattern = FillPatternType.SOLID_FOREGROUND
+            row.createCell(cellIndex++).apply {
+                setCellValue(barSeries.name)
+                if (priceChangePercent > 0) {
+                    cellStyle = upStyle
+                } else if (priceChangePercent < 0) {
+                    cellStyle = downStyle
+                }
             }
-        val downStyle =
-            xssfWorkbook.createCellStyle().apply {
-                fillForegroundColor = IndexedColors.RED.index
-                fillPattern = FillPatternType.SOLID_FOREGROUND
+            row.createCell(cellIndex++).apply {
+                setCellValue(company.Name)
+                val link = xssfWorkbook.creationHelper.createHyperlink(HyperlinkType.URL) as XSSFHyperlink
+                link.address = company.URL
+                hyperlink = link
+                cellStyle = linkStyle
             }
-        val oopsStyle =
-            xssfWorkbook.createCellStyle().apply {
-                fillForegroundColor = IndexedColors.BLUE.index
-                fillPattern = FillPatternType.SOLID_FOREGROUND
+            row.createCell(cellIndex++).apply {
+                setCellValue(company.IndustryName)
             }
-        val linkStyle = xssfWorkbook.createCellStyle()
-        val linkFont = xssfWorkbook.createFont()
-        linkFont.underline = XSSFFont.U_SINGLE
-        linkFont.color = IndexedColors.BLUE.index
-        linkStyle.setFont(linkFont)
-        val sheet = xssfWorkbook.getSheetAt(0)
-        val row = sheet.createRow(sheet.lastRowNum + 1)
-        var cellIndex = 0
-        row.createCell(cellIndex++).apply {
-            setCellValue(barSeries.name)
-            if (priceChangePercent > 0) {
-                cellStyle = upStyle
-            } else if (priceChangePercent < 0) {
-                cellStyle = downStyle
+            row.createCell(cellIndex++).apply {
+                setCellValue(company.Exchange)
             }
-        }
-        row.createCell(cellIndex++).apply {
-            setCellValue(company.Name)
-            val link = xssfWorkbook.creationHelper.createHyperlink(HyperlinkType.URL) as XSSFHyperlink
-            link.address = company.URL
-            hyperlink = link
-            cellStyle = linkStyle
-        }
-        row.createCell(cellIndex++).apply {
-            setCellValue(company.IndustryName)
-        }
-        row.createCell(cellIndex++).apply {
-            setCellValue(company.Exchange)
-        }
-        row.createCell(cellIndex++).setCellValue(closePrice.getValue(index).doubleValue())
-        row.createCell(cellIndex++).setCellValue(volume.getValue(index).doubleValue())
-        row.createCell(cellIndex++).apply {
-            setCellValue(priceChangePercent)
-            if (priceChangePercent > 0) {
-                cellStyle = upStyle
-            } else if (priceChangePercent < 0) {
-                cellStyle = downStyle
+            row.createCell(cellIndex++).setCellValue(closePrice.getValue(index).doubleValue())
+            row.createCell(cellIndex++).setCellValue(volume.getValue(index).doubleValue())
+            row.createCell(cellIndex++).apply {
+                setCellValue(priceChangePercent)
+                if (priceChangePercent > 0) {
+                    cellStyle = upStyle
+                } else if (priceChangePercent < 0) {
+                    cellStyle = downStyle
+                }
             }
-        }
-        // HighestValueIndicator(highPrice, 10)
-        // val lowest10Days = LowestValueIndicator(closePrice, 10).getValue(index)
-        // val highest10Days = HighestValueIndicator(closePrice, 10).getValue(index)
-        row.createCell(cellIndex++).setCellValue(
-            (closePrice.getValue(index) - closePrice.getValue(index - 10)).dividedBy(
-                closePrice.getValue(index - 10)
-            ).toString()
-        )
-        row.createCell(cellIndex++).setCellValue(closePriceRatio.getValue(index).toString())
-        row.createCell(cellIndex++).setCellValue(isReversalLikely.getValue(index))
-        row.createCell(cellIndex++).apply {
-            setCellValue(priceSpread.getValue(index).doubleValue() / avgPriceSpread.getValue(index).doubleValue())
-        }
-        row.createCell(cellIndex++)
-            .setCellValue(
-                volume.getValue(index).doubleValue() / volumeSma.getValue(index).doubleValue()
+            // HighestValueIndicator(highPrice, 10)
+            // val lowest10Days = LowestValueIndicator(closePrice, 10).getValue(index)
+            // val highest10Days = HighestValueIndicator(closePrice, 10).getValue(index)
+            row.createCell(cellIndex++).setCellValue(
+                (closePrice.getValue(index) - closePrice.getValue(index - 10)).dividedBy(
+                    closePrice.getValue(index - 10)
+                ).toString()
             )
-        row.createCell(cellIndex++).apply {
-            setCellValue(signal)
-            if (signal.lowercase().contains("strength")) {
+            row.createCell(cellIndex++).setCellValue(closePriceRatio.getValue(index).toString())
+            row.createCell(cellIndex++).setCellValue(isReversalLikely.getValue(index))
+            row.createCell(cellIndex++).apply {
+                setCellValue(priceSpread.getValue(index).doubleValue() / avgPriceSpread.getValue(index).doubleValue())
+            }
+            row.createCell(cellIndex++)
+                .setCellValue(
+                    volume.getValue(index).doubleValue() / volumeSma.getValue(index).doubleValue()
+                )
+            row.createCell(cellIndex++).apply {
+                setCellValue(signal)
+                if (signal.lowercase().contains("strength")) {
+                    cellStyle =
+                        if (signal.lowercase().contains("confirm")) {
+                            goodStyle
+                        } else if (signal.lowercase().contains("testing")) {
+                            normalStyle
+                        } else {
+                            upStyle
+                        }
+                } else if (signal.lowercase().contains("weakness")) {
+                    cellStyle =
+                        if (signal.lowercase().contains("confirm")) {
+                            oopsStyle
+                        } else {
+                            downStyle
+                        }
+                }
+            }
+            row.createCell(cellIndex++).apply {
+                val value = shortTermTrendSlope.getValue(index).doubleValue()
+                setCellValue(value)
+                if (value > 0) {
+                    cellStyle = upStyle
+                } else if (value < 0) {
+                    cellStyle = downStyle
+                }
+            }
+            row.createCell(cellIndex++).apply {
+                val value = middleTermTrendSlope.getValue(index).doubleValue()
+                setCellValue(value)
+                if (value > 0) {
+                    cellStyle = upStyle
+                } else if (value < 0) {
+                    cellStyle = downStyle
+                }
+            }
+            row.createCell(cellIndex++).apply {
+                val value = longTermTrendSlope.getValue(index).doubleValue()
+                setCellValue(value)
+                if (value > 0) {
+                    cellStyle = upStyle
+                } else if (value < 0) {
+                    cellStyle = downStyle
+                }
+            }
+            row.createCell(cellIndex++).setCellValue(rsi.getValue(index).intValue().toString())
+            row.createCell(cellIndex++).apply {
+                val value = macd.getValue(index).doubleValue()
+                setCellValue(value)
                 cellStyle =
-                    if (signal.lowercase().contains("confirm")) {
-                        goodStyle
-                    } else if (signal.lowercase().contains("testing")) {
-                        normalStyle
-                    } else {
+                    if (value > 0) {
                         upStyle
+                    } else {
+                        downStyle
                     }
-            } else if (signal.lowercase().contains("weakness")) {
+            }
+            row.createCell(cellIndex).apply {
+                val value = macdSignalValue.getValue(index)
+                setCellValue(macdDiff.getValue(index).doubleValue())
                 cellStyle =
-                    if (signal.lowercase().contains("confirm")) {
-                        oopsStyle
+                    if (value) {
+                        upStyle
                     } else {
                         downStyle
                     }
             }
         }
-        row.createCell(cellIndex++).apply {
-            val value = shortTermTrendSlope.getValue(index).doubleValue()
-            setCellValue(value)
-            if (value > 0) {
-                cellStyle = upStyle
-            } else if (value < 0) {
-                cellStyle = downStyle
+
+        addRow(index, sheet)
+        val currentSignal =
+            when {
+                isUpThrustPrice.getValue(index) -> "Weakness appeared. An upthrust bar."
+                isPreviousUpThrustPriceAndPriceDown.getValue(index) ->
+                    "Weakness confirmed. A down bar after an upthrust."
+
+                isPreviousUpThrustPriceAndPriceDownAndVolumeUp.getValue(index) &&
+                    !isPreviousUpThrustPriceAndPriceDown.getValue(index) ->
+                    "Weakness confirmed. A high volume down bar after an upthrust."
+
+                isUpThrustPriceAndUltraHighVolume.getValue(index) ->
+                    "Weakness confirmed. This upthrust at very high volume."
+
+                isStrengthInLongDownTrendVolExplode.getValue(index) ->
+                    "Strength testing. Volume explode above average. Price up. Close price near highest price"
+
+                isStrengthInLongDownTrendVolUp.getValue(index) &&
+                    !isStrengthInMiddleDownTrendVolUp.getValue(index) ->
+                    "Strength testing. Volume up. Price up. Close price near highest price"
+
+                isStrengthInMiddleDownTrendVolUp.getValue(index) &&
+                    !isStrengthInLongDownTrendVolExplode.getValue(index) ->
+                    "Strength testing. Volume up. Price up. Close price near highest price"
+
+                isStrengthInShortDownTrendPriceUpSurely.getValue(index) ->
+                    "Strength confirmed in down trend. Previous volume down. " +
+                        "This high volume up bar closing on the high indicates strength."
+
+                isStrengthConfirmation.getValue(index) ->
+                    "Strength confirmed. The previous bar saw strength coming back. This up bar confirms strength."
+
+                isSupplyTest.getValue(index) ->
+                    "Strength testing. Test for supply. Volume down. Close price near highest price"
+
+                isSuccessfulSupplyTest.getValue(index) ->
+                    "Strength testing. An up bar closing near high after a test for supply."
+
+                isDistribution.getValue(index) ->
+                    "Weakness appeared. A high volume up bar closing down in a uptrend shows distribution."
+
+                isPseudoUpThrust.getValue(index) -> "Weakness appeared. Pseudo upthrust."
+                isPseudoUpThrustConfirmation.getValue(index) ->
+                    "Weakness confirmed. A down bar closing down after a pseudo upthrust."
+
+                isSupplyTestInUpTrend.getValue(index) -> "Strength testing. Test for supply in a uptrend."
+                isWeakness.getValue(index) ->
+                    "Weakness appeared. High volume down bar after an up move on high volume."
+
+                isNoDemand.getValue(index) -> "Weakness appeared. No demand."
+                isNoSupply.getValue(index) -> "Strength testing. No supply."
+                isEffortUpMove.getValue(index) -> "Strength appeared. Effort to rise. Bullish sign."
+                isEffortDownMove.getValue(index) -> "Weakness confirmed. Effort to fall. Bearish sign."
+                isFailedEffortUpMove.getValue(index) ->
+                    "Weakness confirmed. Effort to move up has failed. Bearish sign."
+
+                isStopVol.getValue(index) ->
+                    "Strength testing. Stopping volume. Normally indicates end of bearishness is nearing."
+
+                else -> ""
             }
-        }
-        row.createCell(cellIndex++).apply {
-            val value = middleTermTrendSlope.getValue(index).doubleValue()
-            setCellValue(value)
-            if (value > 0) {
-                cellStyle = upStyle
-            } else if (value < 0) {
-                cellStyle = downStyle
-            }
-        }
-        row.createCell(cellIndex++).apply {
-            val value = longTermTrendSlope.getValue(index).doubleValue()
-            setCellValue(value)
-            if (value > 0) {
-                cellStyle = upStyle
-            } else if (value < 0) {
-                cellStyle = downStyle
-            }
-        }
-        row.createCell(cellIndex++).setCellValue(rsi.getValue(index).intValue().toString())
-        row.createCell(cellIndex++).apply {
-            val value = macd.getValue(index).doubleValue()
-            setCellValue(value)
-            cellStyle =
-                if (value > 0) {
-                    upStyle
-                } else {
-                    downStyle
+        if ((
+            shortTermTrendSlope.getValue(index)
+                .doubleValue() >= 0.5 || currentSignal.contains("Strength appeared") || currentSignal.contains(
+                    "Strength confirmed"
+                )
+            ) && barSeries.getBar(
+                    index
+                ).volume > DecimalNum.valueOf(5000)
+        ) {
+            val mySheet = xssfWorkbook.createSheet(name).apply {
+                createFreezePane(3, 1, 3, 1)
+                createRow(0).apply {
+                    var cellIndex = 0
+                    createCell(cellIndex++).setCellValue("Date")
+                    createCell(cellIndex++).setCellValue("Ticker")
+                    createCell(cellIndex++).setCellValue("Name")
+                    createCell(cellIndex++).setCellValue("IndustryName")
+                    createCell(cellIndex++).setCellValue("Exchange")
+                    createCell(cellIndex++).setCellValue("Close price")
+                    createCell(cellIndex++).setCellValue("Volume")
+                    createCell(cellIndex++).setCellValue("% Price")
+                    createCell(cellIndex++).setCellValue("% Price 10 days")
+                    createCell(cellIndex++).setCellValue("(H-L)/(C-L)")
+                    createCell(cellIndex++).setCellValue("Reversal Likely")
+                    createCell(cellIndex++).setCellValue("Spread price/ avg Spread price")
+                    createCell(cellIndex++).setCellValue("V/avgV")
+                    createCell(cellIndex++).setCellValue("Signal")
+                    createCell(cellIndex++).setCellValue("Short (5 bars) term trend")
+                    createCell(cellIndex++).setCellValue("Mid (15 bars) term trend")
+                    createCell(cellIndex++).setCellValue("Long (40 bars) term trend")
+                    createCell(cellIndex++).setCellValue("RSI")
+                    createCell(cellIndex++).setCellValue("MACD")
+                    createCell(cellIndex).setCellValue("MACD/Signal")
                 }
-        }
-        row.createCell(cellIndex).apply {
-            val value = macdSignalValue.getValue(index)
-            setCellValue(macdDiff.getValue(index).doubleValue())
-            cellStyle =
-                if (value) {
-                    upStyle
-                } else {
-                    downStyle
-                }
+            }
+            for (i in index - 15..index) {
+                addRow(i, mySheet, true)
+            }
         }
     }
 }

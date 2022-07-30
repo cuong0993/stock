@@ -6,6 +6,9 @@ import com.chaomao.configurations.provider.BlobProvider
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.auth.oauth2.ServiceAccountCredentials
 import com.google.cloud.firestore.FirestoreOptions
+import org.apache.poi.ss.usermodel.FillPatternType
+import org.apache.poi.ss.usermodel.IndexedColors
+import org.apache.poi.xssf.usermodel.XSSFFont
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -68,13 +71,46 @@ class AnalyzeController {
                         createCell(cellIndex++).setCellValue("Spread price/ avg Spread price")
                         createCell(cellIndex++).setCellValue("V/avgV")
                         createCell(cellIndex++).setCellValue("Signal")
-                        createCell(cellIndex++).setCellValue("Short term trend")
-                        createCell(cellIndex++).setCellValue("Mid term trend")
-                        createCell(cellIndex++).setCellValue("Long term trend")
+                        createCell(cellIndex++).setCellValue("Short (5 bars) term trend")
+                        createCell(cellIndex++).setCellValue("Mid (15 bars) term trend")
+                        createCell(cellIndex++).setCellValue("Long (40 bars) term trend")
                         createCell(cellIndex++).setCellValue("RSI")
                         createCell(cellIndex++).setCellValue("MACD")
                         createCell(cellIndex).setCellValue("MACD/Signal")
                     }
+                }
+                createCellStyle().apply {
+                    fillForegroundColor = IndexedColors.LAVENDER.index
+                    fillPattern = FillPatternType.SOLID_FOREGROUND
+                }
+                createCellStyle().apply {
+                    fillForegroundColor = IndexedColors.LIGHT_YELLOW.index
+                    fillPattern = FillPatternType.SOLID_FOREGROUND
+                }
+                createCellStyle().apply {
+                    fillForegroundColor = IndexedColors.BRIGHT_GREEN.index
+                    fillPattern = FillPatternType.SOLID_FOREGROUND
+                }
+                createCellStyle().apply {
+                    fillForegroundColor = IndexedColors.DARK_GREEN.index
+                    fillPattern = FillPatternType.SOLID_FOREGROUND
+                }
+                createCellStyle().apply {
+                    fillForegroundColor = IndexedColors.RED.index
+                    fillPattern = FillPatternType.SOLID_FOREGROUND
+                }
+                createCellStyle().apply {
+                    this.index
+                    fillForegroundColor = IndexedColors.BLUE.index
+                    fillPattern = FillPatternType.SOLID_FOREGROUND
+                }
+                createCellStyle().apply {
+                    setFont(
+                        createFont().apply {
+                            underline = XSSFFont.U_SINGLE
+                            color = IndexedColors.BLUE.index
+                        }
+                    )
                 }
             }
         val db = FirestoreOptions.newBuilder().setCredentials(credential).build().service
